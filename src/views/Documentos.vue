@@ -4,8 +4,6 @@
     <section class="hero-section">
       <!-- Mapa Interativo -->
       <div ref="mapContainer" class="map-container"></div>
-
-      <!-- Overlay com Filtro Azul e Conteúdo -->
       <div class="hero-overlay">
         <v-container>
           <v-row class="text-center">
@@ -22,19 +20,12 @@
       </div>
     </section>
 
-    <!-- Conteúdo das Abas -->
-    <section class="content-section py-16">
-      <v-container>
-        <DocumentTabs />
-      </v-container>
-    </section>
-
     <!-- Seção de Downloads -->
     <section class="downloads-section py-16 bg-grey-lighten-4">
       <v-container>
         <div class="text-center mb-12">
           <h2 class="text-h3 font-weight-bold text-primary mb-4">Documentos para Download</h2>
-          <p class="text-h6 text-grey-darken-1">
+          <p class="text-h6 text-grey-darken-1 max-width-600 mx-auto">
             Acesse nossos documentos institucionais e materiais técnicos.
           </p>
         </div>
@@ -82,7 +73,7 @@
         <v-row class="text-center">
           <v-col cols="12" md="8" class="mx-auto">
             <h2 class="text-h3 font-weight-bold text-primary mb-4">Precisa de Mais Informações?</h2>
-            <p class="text-h6 text-grey-darken-1 mb-6">
+            <p class="text-h6 text-grey-darken-1 max-width-600 mx-auto mb-6">
               Entre em contato conosco para solicitar informações adicionais ou esclarecer dúvidas
               sobre nossa documentação.
             </p>
@@ -101,13 +92,46 @@
         </v-row>
       </v-container>
     </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section py-16 bg-gradient-primary">
+      <v-container>
+        <v-row class="text-center">
+          <v-col cols="12" md="8" class="mx-auto">
+            <h2 class="text-h3 font-weight-bold text-white mb-4">
+              Pronto para Conhecer Nossos Serviços?
+            </h2>
+            <p class="text-h6 text-grey-lighten-2 mb-6">
+              Entre em contato conosco e descubra como podemos ajudar você a transformar seus dados
+              geoespaciais em insights valiosos.
+            </p>
+            <div class="d-flex flex-column flex-sm-row gap-6 justify-center">
+              <v-btn
+                color="accent"
+                size="large"
+                variant="elevated"
+                to="/contato"
+                class="text-dark font-weight-bold"
+              >
+                <v-icon start>mdi-phone</v-icon>
+                Solicitar Orçamento
+              </v-btn>
+
+              <v-btn size="large" variant="outlined" to="/servicos" class="text-white border-white">
+                <v-icon start>mdi-cog</v-icon>
+                Nossos Serviços
+              </v-btn>
+            </div>
+          </v-col>
+        </v-row>
+      </v-container>
+    </section>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import L from 'leaflet'
-import DocumentTabs from '@/components/DocumentTabs.vue'
 
 const mapContainer = ref<HTMLElement>()
 let map: L.Map | null = null
@@ -174,7 +198,7 @@ onMounted(() => {
         size: 'medium',
       },
       {
-        lat: -3.1190,
+        lat: -3.119,
         lng: -60.0217,
         title: 'Manaus - AM',
         type: 'capital',
@@ -198,7 +222,7 @@ onMounted(() => {
 
     // Adicionar marcadores dos projetos
     projects.forEach((project) => {
-      const markerColor = project.type === 'capital' ? '#0B5FA5' : '#1FA7A1'
+      const markerColor = project.type === 'capital' ? '#1a365d' : '#2d5a87'
       const markerSize = project.size === 'large' ? 12 : 8
 
       const marker = L.circleMarker([project.lat, project.lng], {
@@ -230,7 +254,7 @@ onMounted(() => {
 
     // Ajustar o mapa para mostrar todos os marcadores
     if (map) {
-      const bounds = L.latLngBounds(projects.map(p => [p.lat, p.lng]))
+      const bounds = L.latLngBounds(projects.map((p) => [p.lat, p.lng]))
       map.fitBounds(bounds, { padding: [20, 20] })
     }
   }
@@ -316,18 +340,47 @@ const downloadDocument = (document: any) => {
   min-height: 100vh;
 }
 
+.max-width-600 {
+  max-width: 600px;
+}
+
 .bg-gradient-primary {
-  background: linear-gradient(135deg, #0b5fa5 0%, #1fa7a1 100%);
+  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
 }
 
 .document-card {
   border-radius: 12px;
   overflow: hidden;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
+  background: #ffffff;
+  border: 1px solid rgba(26, 54, 93, 0.1);
+  box-shadow: 0 4px 20px rgba(26, 54, 93, 0.08);
 }
 
 .document-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-8px);
+  border-color: rgba(26, 54, 93, 0.3);
+  box-shadow: 0 20px 40px rgba(26, 54, 93, 0.15);
+}
+
+/* Custom icon colors */
+:deep(.document-card .v-icon) {
+  color: #1a365d !important;
+}
+
+/* Custom button styles */
+:deep(.document-card .v-btn) {
+  border-color: #1a365d !important;
+  color: #1a365d !important;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+:deep(.document-card .v-btn:hover) {
+  background-color: #1a365d !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.2);
 }
 
 .h-100 {
@@ -356,7 +409,7 @@ const downloadDocument = (document: any) => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(11, 95, 165, 0.85) 0%, rgba(31, 167, 161, 0.85) 100%);
+  background: linear-gradient(135deg, rgba(26, 54, 93, 0.85) 0%, rgba(45, 90, 135, 0.85) 100%);
   z-index: 2;
   display: flex;
   align-items: center;
@@ -367,12 +420,53 @@ const downloadDocument = (document: any) => {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+.border-white {
+  border-color: white !important;
+}
+
+/* Reset filters button */
+:deep(.reset-filters-btn) {
+  background-color: #1a365d !important;
+  color: white !important;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+:deep(.reset-filters-btn:hover) {
+  background-color: #2d5a87 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.2);
+}
+
+/* CTA section */
+.cta-section {
+  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%) !important;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .hero-section {
+    height: 50vh;
+    min-height: 350px;
+  }
+
+  .hero-overlay {
+    padding: 2rem 1rem;
+  }
+
+  .text-h2 {
+    font-size: 2rem;
+  }
+
+  .text-h6 {
+    font-size: 1rem;
+  }
+
   .hero-section,
   .content-section,
   .downloads-section,
-  .contact-section {
+  .contact-section,
+  .cta-section {
     padding: 3rem 0;
   }
 }

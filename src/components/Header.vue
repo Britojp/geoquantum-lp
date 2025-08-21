@@ -4,7 +4,7 @@
       <!-- Logo -->
       <div class="logo-section">
         <router-link to="/" class="logo-link">
-          <span class="logo-text">GeoQuantum</span>
+          <img src="@/assets/main-logo-removebg-preview.png" alt="GeoQuantum" class="logo-image" />
         </router-link>
       </div>
 
@@ -22,7 +22,7 @@
       </nav>
 
       <!-- Contact Button -->
-      <div class="contact-section">
+      <div class="contact-section d-none d-md-flex">
         <router-link to="/contato" class="contact-button">
           <i class="mdi mdi-phone"></i>
           <span>Contato</span>
@@ -197,6 +197,19 @@ onUnmounted(() => {
 
 .logo-link:hover {
   opacity: 0.9;
+}
+
+.logo-image {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+  transition: all 0.3s ease;
+}
+
+.logo-link:hover .logo-image {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
+  transform: scale(1.05);
 }
 
 .logo-text {
@@ -555,6 +568,10 @@ onUnmounted(() => {
     padding: 0 20px;
   }
 
+  .logo-image {
+    height: 45px;
+  }
+
   .logo-text {
     font-size: 1.4rem;
   }
@@ -569,6 +586,10 @@ onUnmounted(() => {
   .header-container {
     height: 65px;
     padding: 0 16px;
+  }
+
+  .logo-image {
+    height: 40px;
   }
 
   .logo-text {
@@ -594,6 +615,10 @@ onUnmounted(() => {
   .header-container {
     height: 60px;
     padding: 0 16px;
+  }
+
+  .logo-image {
+    height: 35px;
   }
 
   .logo-text {
@@ -627,6 +652,10 @@ onUnmounted(() => {
   .header-container {
     height: 55px;
     padding: 0 12px;
+  }
+
+  .logo-image {
+    height: 30px;
   }
 
   .contact-button {

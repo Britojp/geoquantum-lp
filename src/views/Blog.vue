@@ -21,7 +21,7 @@
     </section>
 
     <!-- Filtros e Busca -->
-    <section class="filters-section py-8 bg-grey-lighten-4">
+    <section class="filters-section py-8">
       <v-container>
         <v-row align="center">
           <v-col cols="12" sm="6" md="4">
@@ -32,6 +32,7 @@
               variant="outlined"
               clearable
               @input="filterPosts"
+              class="search-input"
             ></v-text-field>
           </v-col>
 
@@ -43,6 +44,7 @@
               variant="outlined"
               clearable
               @update:model-value="filterPosts"
+              class="category-select"
             ></v-select>
           </v-col>
 
@@ -54,11 +56,20 @@
               variant="outlined"
               clearable
               @update:model-value="filterPosts"
+              class="tag-select"
             ></v-select>
           </v-col>
 
           <v-col cols="12" sm="6" md="2">
-            <v-btn color="primary" variant="elevated" @click="resetFilters" block> Limpar </v-btn>
+            <v-btn
+              color="primary"
+              variant="elevated"
+              @click="resetFilters"
+              block
+              class="reset-filters-btn"
+            >
+              Limpar
+            </v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -69,7 +80,7 @@
       <v-container>
         <div class="text-center mb-12">
           <h2 class="text-h3 font-weight-bold text-primary mb-4">Artigos em Destaque</h2>
-          <p class="text-h6 text-grey-darken-1">
+          <p class="text-h6 text-grey-darken-1 max-width-600 mx-auto">
             Os artigos mais populares e relevantes sobre geoprocessamento.
           </p>
         </div>
@@ -79,14 +90,14 @@
             <v-card class="featured-post-card h-100" elevation="4">
               <v-img :src="post.image" height="200" cover class="post-image">
                 <div class="post-overlay">
-                  <v-chip :color="post.category.color" size="small" class="mb-2">
+                  <div class="post-date">{{ formatDate(post.date) }}</div>
+                  <v-chip :color="post.category.color" size="small" class="category-chip">
                     {{ post.category.name }}
                   </v-chip>
-                  <div class="post-date">{{ formatDate(post.date) }}</div>
                 </div>
               </v-img>
 
-              <v-card-item>
+              <v-card-item class="pa-6">
                 <v-card-title class="text-h6 font-weight-bold mb-2">
                   {{ post.title }}
                 </v-card-title>
@@ -94,7 +105,7 @@
                   {{ post.excerpt }}
                 </v-card-text>
 
-                <div class="d-flex flex-wrap gap-1 mb-3">
+                <div class="d-flex flex-wrap gap-2 mb-3">
                   <v-chip
                     v-for="tag in post.tags"
                     :key="tag"
@@ -139,14 +150,14 @@
             <v-card class="post-card h-100" elevation="4">
               <v-img :src="post.image" height="200" cover class="post-image">
                 <div class="post-overlay">
-                  <v-chip :color="post.category.color" size="small" class="mb-2">
+                  <div class="post-date">{{ formatDate(post.date) }}</div>
+                  <v-chip :color="post.category.color" size="small" class="category-chip">
                     {{ post.category.name }}
                   </v-chip>
-                  <div class="post-date">{{ formatDate(post.date) }}</div>
                 </div>
               </v-img>
 
-              <v-card-item>
+              <v-card-item class="pa-6">
                 <v-card-title class="text-h6 font-weight-bold mb-2">
                   {{ post.title }}
                 </v-card-title>
@@ -154,7 +165,7 @@
                   {{ post.excerpt }}
                 </v-card-text>
 
-                <div class="d-flex flex-wrap gap-1 mb-3">
+                <div class="d-flex flex-wrap gap-2 mb-3">
                   <v-chip
                     v-for="tag in post.tags"
                     :key="tag"
@@ -196,12 +207,12 @@
     </section>
 
     <!-- Newsletter -->
-    <section class="newsletter-section py-16 bg-grey-lighten-4">
+    <section class="newsletter-section py-16">
       <v-container>
         <v-row class="text-center">
           <v-col cols="12" md="8" class="mx-auto">
             <h2 class="text-h3 font-weight-bold text-primary mb-4">Fique por Dentro</h2>
-            <p class="text-h6 text-grey-darken-1 mb-6">
+            <p class="text-h6 text-grey-darken-1 max-width-600 mx-auto mb-6">
               Inscreva-se em nossa newsletter para receber os melhores artigos sobre
               geoprocessamento e tecnologia geoespacial.
             </p>
@@ -217,6 +228,7 @@
                     prepend-inner-icon="mdi-email"
                     :rules="emailRules"
                     required
+                    class="newsletter-input"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="4" md="3">
@@ -227,6 +239,7 @@
                     variant="elevated"
                     :loading="newsletterLoading"
                     block
+                    class="newsletter-btn"
                   >
                     Inscrever-se
                   </v-btn>
@@ -238,93 +251,234 @@
       </v-container>
     </section>
 
-    <!-- Modal de Leitura do Post -->
-    <v-dialog v-model="showPostModal" max-width="900" fullscreen>
-      <v-card v-if="selectedPost">
-        <v-toolbar color="primary" dark>
-          <v-btn icon @click="showPostModal = false">
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-          <v-toolbar-title>{{ selectedPost.title }}</v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-btn icon @click="sharePost">
-            <v-icon>mdi-share</v-icon>
-          </v-btn>
-        </v-toolbar>
+    <!-- CTA Section -->
+    <section class="cta-section py-16 bg-gradient-primary">
+      <v-container>
+        <v-row class="text-center">
+          <v-col cols="12" md="8" class="mx-auto">
+            <h2 class="text-h3 font-weight-bold text-white mb-4">
+              Pronto para Aplicar o Conhecimento?
+            </h2>
+            <p class="text-h6 text-grey-lighten-2 mb-6">
+              Entre em contato conosco e descubra como podemos ajudar você a transformar seus dados
+              geoespaciais em insights valiosos.
+            </p>
+            <div class="d-flex flex-column flex-sm-row gap-6 justify-center">
+              <v-btn
+                color="accent"
+                size="large"
+                variant="elevated"
+                to="/contato"
+                class="text-dark font-weight-bold"
+              >
+                <v-icon start>mdi-phone</v-icon>
+                Solicitar Orçamento
+              </v-btn>
 
-        <v-img :src="selectedPost.image" height="300" cover></v-img>
-
-        <v-card-text class="pa-6">
-          <div class="d-flex align-center mb-4">
-            <v-chip :color="selectedPost.category.color" class="me-3">
-              {{ selectedPost.category.name }}
-            </v-chip>
-            <span class="text-body-2 text-grey">{{ formatDate(selectedPost.date) }}</span>
-          </div>
-
-          <div class="d-flex align-center mb-4">
-            <v-avatar size="32" color="primary" class="me-3">
-              <v-icon size="20" color="white">{{ selectedPost.author.icon }}</v-icon>
-            </v-avatar>
-            <div>
-              <div class="text-body-1 font-weight-bold">{{ selectedPost.author.name }}</div>
-              <div class="text-body-2 text-grey">{{ selectedPost.author.title }}</div>
+              <v-btn size="large" variant="outlined" to="/servicos" class="text-white border-white">
+                <v-icon start>mdi-cog</v-icon>
+                Nossos Serviços
+              </v-btn>
             </div>
-          </div>
+          </v-col>
+        </v-row>
+      </v-container>
+    </section>
 
-          <div class="mb-4">
-            <div class="d-flex flex-wrap gap-1">
+    <!-- Modal de Leitura do Post -->
+    <v-dialog v-model="showPostModal" max-width="1000" @click:outside="closePostModal">
+      <v-card v-if="selectedPost" class="post-modal" @click.stop>
+        <!-- Header do Modal -->
+        <div class="modal-header">
+          <div class="modal-header-content">
+            <v-btn icon @click="closePostModal" class="close-btn" variant="text">
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+            <div class="modal-title-container">
+              <h1 class="modal-title">{{ selectedPost.title }}</h1>
+              <div class="modal-meta">
+                <v-chip
+                  :color="selectedPost.category.color"
+                  size="small"
+                  class="category-chip-modal"
+                >
+                  {{ selectedPost.category.name }}
+                </v-chip>
+                <span class="post-date-modal">{{ formatDate(selectedPost.date) }}</span>
+              </div>
+              <div class="modal-hint">
+                <small class="text-grey-lighten-2">Clique fora para fechar</small>
+              </div>
+            </div>
+            <v-btn icon @click="sharePost" class="share-btn" variant="text">
+              <v-icon>mdi-share-variant</v-icon>
+            </v-btn>
+          </div>
+        </div>
+
+        <!-- Imagem de Capa -->
+        <div class="modal-image-container">
+          <v-img :src="selectedPost.image" height="400" cover class="modal-cover-image">
+            <div class="image-overlay">
+              <div class="image-overlay-content">
+                <div class="author-info">
+                  <v-avatar size="60" color="primary" class="author-avatar">
+                    <v-icon size="30" color="white">{{ selectedPost.author.icon }}</v-icon>
+                  </v-avatar>
+                  <div class="author-details">
+                    <h3 class="author-name">{{ selectedPost.author.name }}</h3>
+                    <p class="author-title">{{ selectedPost.author.title }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </v-img>
+        </div>
+
+        <!-- Conteúdo do Modal -->
+        <div class="modal-content">
+          <!-- Tags -->
+          <div class="tags-section">
+            <div class="d-flex flex-wrap gap-2">
               <v-chip
                 v-for="tag in selectedPost.tags"
                 :key="tag"
                 size="small"
                 color="primary"
                 variant="outlined"
+                class="tag-chip-modal"
               >
                 {{ tag }}
               </v-chip>
             </div>
           </div>
 
-          <div class="post-content text-body-1">
-            <p class="mb-4">{{ selectedPost.content }}</p>
-
-            <div v-if="selectedPost.sections" class="mb-4">
-              <div v-for="section in selectedPost.sections" :key="section.title" class="mb-4">
-                <h3 class="text-h6 font-weight-bold mb-2">{{ section.title }}</h3>
-                <p>{{ section.content }}</p>
+          <!-- Conteúdo do Post -->
+          <div class="post-content-modal">
+            <!-- Introdução com destaque visual -->
+            <div class="content-intro">
+              <div class="intro-container">
+                <div class="intro-icon">
+                  <v-icon size="24" color="white">mdi-lightbulb-on</v-icon>
+                </div>
+                <div class="intro-content">
+                  <h2 class="intro-title">Resumo</h2>
+                  <p class="intro-text">{{ selectedPost.content }}</p>
+                </div>
               </div>
             </div>
 
-            <div v-if="selectedPost.conclusion" class="mb-4">
-              <h3 class="text-h6 font-weight-bold mb-2">Conclusão</h3>
-              <p>{{ selectedPost.conclusion }}</p>
+            <!-- Seções do conteúdo com cards -->
+            <div v-if="selectedPost.sections" class="content-sections">
+              <div
+                v-for="(section, index) in selectedPost.sections"
+                :key="section.title"
+                class="content-section"
+              >
+                <div class="section-card">
+                  <div class="section-header">
+                    <div class="section-number">{{ index + 1 }}</div>
+                    <h3 class="section-title">{{ section.title }}</h3>
+                  </div>
+                  <div class="section-content-wrapper">
+                    <p class="section-content">{{ section.content }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Conclusão com destaque especial -->
+            <div v-if="selectedPost.conclusion" class="content-conclusion">
+              <div class="conclusion-card">
+                <div class="conclusion-header">
+                  <div class="conclusion-icon">
+                    <v-icon size="24" color="white">mdi-check-circle</v-icon>
+                  </div>
+                  <h3 class="conclusion-title">Conclusão</h3>
+                </div>
+                <div class="conclusion-content-wrapper">
+                  <p class="conclusion-text">{{ selectedPost.conclusion }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Separador visual -->
+            <div class="content-separator">
+              <v-divider class="content-divider"></v-divider>
+              <div class="separator-icon">
+                <v-icon size="20" color="white">mdi-arrow-down</v-icon>
+              </div>
             </div>
           </div>
 
-          <v-divider class="my-6"></v-divider>
+          <!-- Seção de Compartilhamento -->
+          <div class="sharing-section">
+            <v-divider class="sharing-divider"></v-divider>
 
-          <div class="d-flex justify-space-between align-center">
-            <div>
-              <h4 class="text-h6 font-weight-bold mb-2">Compartilhe este artigo:</h4>
-              <div class="d-flex gap-2">
-                <v-btn icon variant="outlined" color="primary" @click="shareOnSocial('facebook')">
+            <div class="sharing-content">
+              <div class="sharing-info">
+                <h4 class="sharing-title">Compartilhe este artigo</h4>
+                <p class="sharing-subtitle">Ajude outros a descobrirem este conteúdo</p>
+              </div>
+
+              <div class="social-buttons">
+                <v-btn
+                  icon
+                  variant="outlined"
+                  color="primary"
+                  @click="shareOnSocial('facebook')"
+                  class="social-btn"
+                  size="large"
+                >
                   <v-icon>mdi-facebook</v-icon>
                 </v-btn>
-                <v-btn icon variant="outlined" color="primary" @click="shareOnSocial('twitter')">
+                <v-btn
+                  icon
+                  variant="outlined"
+                  color="primary"
+                  @click="shareOnSocial('twitter')"
+                  class="social-btn"
+                  size="large"
+                >
                   <v-icon>mdi-twitter</v-icon>
                 </v-btn>
-                <v-btn icon variant="outlined" color="primary" @click="shareOnSocial('linkedin')">
+                <v-btn
+                  icon
+                  variant="outlined"
+                  color="primary"
+                  @click="shareOnSocial('linkedin')"
+                  class="social-btn"
+                  size="large"
+                >
                   <v-icon>mdi-linkedin</v-icon>
+                </v-btn>
+                <v-btn
+                  icon
+                  variant="outlined"
+                  color="primary"
+                  @click="shareOnSocial('whatsapp')"
+                  class="social-btn"
+                  size="large"
+                >
+                  <v-icon>mdi-whatsapp</v-icon>
                 </v-btn>
               </div>
             </div>
 
-            <v-btn color="primary" variant="elevated" @click="contactAuthor">
-              Contatar Autor
-            </v-btn>
+            <div class="contact-section">
+              <v-btn
+                color="primary"
+                variant="elevated"
+                @click="contactAuthor"
+                class="contact-author-btn"
+                size="large"
+              >
+                <v-icon start>mdi-email</v-icon>
+                Contatar Autor
+              </v-btn>
+            </div>
           </div>
-        </v-card-text>
+        </div>
       </v-card>
     </v-dialog>
   </div>
@@ -562,6 +716,9 @@ const mapContainer = ref<HTMLElement>()
 let map: L.Map | null = null
 
 onMounted(() => {
+  // Adicionar listener para tecla Escape
+  document.addEventListener('keydown', handleKeydown)
+
   if (mapContainer.value) {
     // Inicializar mapa focado na região do Brasil
     map = L.map(mapContainer.value, {
@@ -623,7 +780,7 @@ onMounted(() => {
         size: 'medium',
       },
       {
-        lat: -3.1190,
+        lat: -3.119,
         lng: -60.0217,
         title: 'Manaus - AM',
         type: 'capital',
@@ -679,13 +836,16 @@ onMounted(() => {
 
     // Ajustar o mapa para mostrar todos os marcadores
     if (map) {
-      const bounds = L.latLngBounds(projects.map(p => [p.lat, p.lng]))
+      const bounds = L.latLngBounds(projects.map((p) => [p.lat, p.lng]))
       map.fitBounds(bounds, { padding: [20, 20] })
     }
   }
 })
 
 onUnmounted(() => {
+  // Remover listener para tecla Escape
+  document.removeEventListener('keydown', handleKeydown)
+
   if (map) {
     map.remove()
     map = null
@@ -708,6 +868,16 @@ const readPost = (post: any) => {
   showPostModal.value = true
 }
 
+const closePostModal = () => {
+  showPostModal.value = false
+}
+
+const handleKeydown = (event: KeyboardEvent) => {
+  if (event.key === 'Escape' && showPostModal.value) {
+    closePostModal()
+  }
+}
+
 const sharePost = () => {
   // Implementar compartilhamento
   console.log('Compartilhar post:', selectedPost.value?.title)
@@ -728,6 +898,9 @@ const shareOnSocial = (platform: string) => {
     case 'linkedin':
       shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
       break
+    case 'whatsapp':
+      shareUrl = `https://wa.me/?text=${title} ${url}`
+      break
   }
 
   if (shareUrl) {
@@ -736,7 +909,7 @@ const shareOnSocial = (platform: string) => {
 }
 
 const contactAuthor = () => {
-  showPostModal.value = false
+  closePostModal()
   router.push({
     path: '/contato',
     query: { author: selectedPost.value?.author.name },
@@ -775,20 +948,29 @@ const formatDate = (dateString: string) => {
   min-height: 100vh;
 }
 
+.max-width-600 {
+  max-width: 600px;
+}
+
 .bg-gradient-primary {
-  background: linear-gradient(135deg, #0b5fa5 0%, #1fa7a1 100%);
+  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
 }
 
 .featured-post-card,
 .post-card {
   border-radius: 12px;
   overflow: hidden;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
+  background: #ffffff;
+  border: 1px solid rgba(26, 54, 93, 0.1);
+  box-shadow: 0 4px 20px rgba(26, 54, 93, 0.08);
 }
 
 .featured-post-card:hover,
 .post-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-8px);
+  border-color: rgba(26, 54, 93, 0.3);
+  box-shadow: 0 20px 40px rgba(26, 54, 93, 0.15);
 }
 
 .post-image {
@@ -799,19 +981,581 @@ const formatDate = (dateString: string) => {
   position: absolute;
   top: 16px;
   left: 16px;
+  right: 16px;
   z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .post-date {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background: rgba(0, 0, 0, 0.7);
+  background: #1a365d;
   color: white;
-  padding: 4px 8px;
-  border-radius: 4px;
+  padding: 6px 12px;
+  border-radius: 6px;
   font-size: 0.875rem;
-  font-weight: bold;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(26, 54, 93, 0.2);
+}
+
+.category-chip {
+  margin: 0;
+}
+
+/* Reset filters button */
+:deep(.reset-filters-btn) {
+  background-color: #1a365d !important;
+  color: white !important;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+:deep(.reset-filters-btn:hover) {
+  background-color: #2d5a87 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.2);
+}
+
+/* CTA section */
+.cta-section {
+  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%) !important;
+}
+
+/* Newsletter section */
+.newsletter-section {
+  background: #f8f9fa;
+}
+
+/* Post Modal Styles */
+.post-modal {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(26, 54, 93, 0.25);
+}
+
+/* Modal Header */
+.modal-header {
+  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
+  color: white;
+  padding: 24px;
+}
+
+.modal-header-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.close-btn {
+  color: white !important;
+  margin-top: 4px;
+}
+
+.modal-title-container {
+  flex: 1;
+}
+
+.modal-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  line-height: 1.3;
+  color: white;
+}
+
+.modal-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.category-chip-modal {
+  margin: 0;
+}
+
+.post-date-modal {
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
+
+.modal-hint {
+  margin-top: 8px;
+  opacity: 0.7;
+  font-style: italic;
+}
+
+.share-btn {
+  color: white !important;
+  margin-top: 4px;
+}
+
+/* Modal Image */
+.modal-image-container {
+  position: relative;
+}
+
+.modal-cover-image {
+  width: 100%;
+}
+
+.image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(26, 54, 93, 0.8));
+  padding: 40px 24px 24px;
+}
+
+.image-overlay-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.author-avatar {
+  border: 3px solid white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.author-details {
+  color: white;
+}
+
+.author-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  color: white;
+}
+
+.author-title {
+  font-size: 0.875rem;
+  opacity: 0.9;
+  margin: 0;
+  color: white;
+}
+
+/* Modal Content */
+.modal-content {
+  padding: 32px;
+  background: white;
+}
+
+.tags-section {
+  margin-bottom: 32px;
+}
+
+.tag-chip-modal {
+  border-color: #1a365d !important;
+  color: #1a365d !important;
+}
+
+.tag-chip-modal:hover {
+  background-color: rgba(26, 54, 93, 0.1) !important;
+}
+
+/* Post Content */
+.post-content-modal {
+  margin-bottom: 40px;
+}
+
+.content-intro {
+  margin-bottom: 32px;
+}
+
+.intro-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 24px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e2f2ff 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(26, 54, 93, 0.1);
+  box-shadow: 0 4px 20px rgba(26, 54, 93, 0.08);
+}
+
+.intro-icon {
+  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.2);
+  flex-shrink: 0;
+}
+
+.intro-content {
+  flex: 1;
+}
+
+.intro-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a365d;
+  margin: 0 0 12px 0;
+}
+
+.intro-text {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: #1a202c;
+  margin: 0;
+}
+
+.content-sections {
+  margin-bottom: 32px;
+}
+
+.content-section {
+  margin-bottom: 24px;
+}
+
+.section-card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(26, 54, 93, 0.1);
+  box-shadow: 0 4px 20px rgba(26, 54, 93, 0.08);
+  transition: all 0.3s ease;
+}
+
+.section-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(26, 54, 93, 0.15);
+  border-color: rgba(26, 54, 93, 0.2);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, #e2f2ff 0%, #f0f8ff 100%);
+  border-bottom: 1px solid rgba(26, 54, 93, 0.1);
+}
+
+.section-number {
+  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
+  color: white;
+  border-radius: 10px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.125rem;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.3);
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a365d;
+  margin: 0;
+}
+
+.section-content-wrapper {
+  padding: 24px;
+}
+
+.section-content {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #4a5568;
+  margin: 0;
+}
+
+.content-conclusion {
+  margin-bottom: 32px;
+}
+
+.conclusion-card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(26, 54, 93, 0.1);
+  box-shadow: 0 4px 20px rgba(26, 54, 93, 0.08);
+  transition: all 0.3s ease;
+}
+
+.conclusion-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(26, 54, 93, 0.15);
+  border-color: rgba(26, 54, 93, 0.2);
+}
+
+.conclusion-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, #e2f2ff 0%, #f0f8ff 100%);
+  border-bottom: 1px solid rgba(26, 54, 93, 0.1);
+}
+
+.conclusion-icon {
+  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.3);
+  flex-shrink: 0;
+}
+
+.conclusion-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a365d;
+  margin: 0;
+}
+
+.conclusion-content-wrapper {
+  padding: 24px;
+}
+
+.conclusion-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #4a5568;
+  margin: 0;
+}
+
+.content-separator {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+  gap: 16px;
+}
+
+.content-divider {
+  flex: 1;
+  border-color: rgba(26, 54, 93, 0.1);
+}
+
+.separator-icon {
+  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.2);
+  flex-shrink: 0;
+}
+
+/* Sharing Section */
+.sharing-section {
+  background: #f8f9fa;
+  margin: 0 -32px -32px -32px;
+  padding: 32px;
+  border-radius: 16px 16px 0 0;
+}
+
+.sharing-divider {
+  margin-bottom: 24px;
+  border-color: rgba(26, 54, 93, 0.1);
+}
+
+.sharing-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.sharing-info {
+  flex: 1;
+  min-width: 250px;
+}
+
+.sharing-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1a202c;
+  margin: 0 0 8px 0;
+}
+
+.sharing-subtitle {
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin: 0;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  border-color: #1a365d !important;
+  color: #1a365d !important;
+  transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+  background-color: #1a365d !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.2);
+}
+
+.contact-section {
+  text-align: center;
+}
+
+.contact-author-btn {
+  background-color: #1a365d !important;
+  color: white !important;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.contact-author-btn:hover {
+  background-color: #2d5a87 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(26, 54, 93, 0.3);
+}
+
+/* Responsive Modal */
+@media (max-width: 768px) {
+  .modal-header {
+    padding: 20px;
+  }
+
+  .modal-title {
+    font-size: 1.5rem;
+  }
+
+  .modal-content {
+    padding: 24px;
+  }
+
+  .sharing-section {
+    margin: 0 -24px -24px -24px;
+    padding: 24px;
+  }
+
+  .sharing-content {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: center;
+  }
+
+  .social-buttons {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .image-overlay {
+    padding: 24px 20px 20px;
+  }
+
+  .author-info {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  /* Content Responsiveness */
+  .intro-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+    padding: 20px;
+  }
+
+  .intro-icon {
+    align-self: center;
+  }
+
+  .section-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+    padding: 16px 20px;
+  }
+
+  .section-number {
+    align-self: center;
+  }
+
+  .conclusion-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+    padding: 16px 20px;
+  }
+
+  .conclusion-icon {
+    align-self: center;
+  }
+
+  .section-content-wrapper,
+  .conclusion-content-wrapper {
+    padding: 20px;
+  }
+
+  .content-separator {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .separator-icon {
+    align-self: center;
+  }
+}
+
+/* Filters section */
+.filters-section {
+  background: #f8f9fa;
+}
+
+:deep(.search-input .v-field),
+:deep(.category-select .v-field),
+:deep(.tag-select .v-field) {
+  border-color: rgba(26, 54, 93, 0.2) !important;
+}
+
+:deep(.search-input .v-field:hover),
+:deep(.category-select .v-field:hover),
+:deep(.tag-select .v-field:hover) {
+  border-color: rgba(26, 54, 93, 0.4) !important;
+}
+
+:deep(.search-input .v-field--focused),
+:deep(.category-select .v-field--focused),
+:deep(.tag-select .v-field--focused) {
+  border-color: #1a365d !important;
+}
+
+:deep(.newsletter-btn) {
+  background-color: #1a365d !important;
+  color: white !important;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+:deep(.newsletter-btn:hover) {
+  background-color: #2d5a87 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.2);
 }
 
 .post-content {
@@ -844,7 +1588,7 @@ const formatDate = (dateString: string) => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(11, 95, 165, 0.85) 0%, rgba(31, 167, 161, 0.85) 100%);
+  background: linear-gradient(135deg, rgba(26, 54, 93, 0.85) 0%, rgba(45, 90, 135, 0.85) 100%);
   z-index: 2;
   display: flex;
   align-items: center;
@@ -855,13 +1599,35 @@ const formatDate = (dateString: string) => {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+.border-white {
+  border-color: white !important;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .hero-section {
+    height: 50vh;
+    min-height: 350px;
+  }
+
+  .hero-overlay {
+    padding: 2rem 1rem;
+  }
+
+  .text-h2 {
+    font-size: 2rem;
+  }
+
+  .text-h6 {
+    font-size: 1rem;
+  }
+
   .hero-section,
   .filters-section,
   .featured-posts,
   .posts-section,
-  .newsletter-section {
+  .newsletter-section,
+  .cta-section {
     padding: 3rem 0;
   }
 }

@@ -1,12 +1,12 @@
 <template>
-  <v-footer color="dark" class="text-white">
+  <v-footer class="footer-main">
     <v-container>
       <v-row>
         <!-- Logo e Descrição -->
         <v-col cols="12" md="4" class="mb-4">
           <div class="d-flex align-center mb-3">
             <img
-              src="/logo-geoquantum.svg"
+              src="@/assets/main-logo-removebg-preview.png"
               alt="GeoQuantum Logo"
               class="logo-image me-2"
               width="32"
@@ -14,7 +14,7 @@
             />
             <span class="text-h6 font-weight-bold text-white">GeoQuantum</span>
           </div>
-          <p class="text-body-2 text-grey-lighten-1">
+          <p class="footer-description">
             Especialistas em geoprocessamento e análise geoespacial. Soluções inovadoras para
             projetos de engenharia e meio ambiente.
           </p>
@@ -36,86 +36,59 @@
 
         <!-- Links Rápidos -->
         <v-col cols="12" sm="6" md="2" class="mb-4">
-          <h6 class="text-h6 font-weight-bold mb-3 text-white">Links Rápidos</h6>
-          <v-list density="compact" color="transparent">
-            <v-list-item
-              v-for="item in quickLinks"
-              :key="item.name"
-              :to="item.path"
-              class="px-0 footer-link"
-              color="grey-lighten-1"
-            >
-              <v-list-item-title class="text-body-2">
+          <h6 class="footer-section-title">Links Rápidos</h6>
+          <div class="footer-links">
+            <div v-for="item in quickLinks" :key="item.name" class="footer-link-item">
+              <router-link :to="item.path" class="footer-link">
                 {{ item.name }}
-              </v-list-item-title>
-            </v-list-item>
-          </v-list>
+              </router-link>
+            </div>
+          </div>
         </v-col>
 
         <!-- Serviços -->
         <v-col cols="12" sm="6" md="3" class="mb-4">
-          <h6 class="text-h6 font-weight-bold mb-3 text-white">Serviços</h6>
-          <v-list density="compact" color="transparent">
-            <v-list-item
-              v-for="service in services"
-              :key="service.name"
-              class="px-0 footer-link"
-              color="grey-lighten-1"
-            >
-              <v-list-item-title class="text-body-2">
-                {{ service.name }}
-              </v-list-item-title>
-            </v-list-item>
-          </v-list>
+          <h6 class="footer-section-title">Serviços</h6>
+          <div class="footer-links">
+            <div v-for="service in services" :key="service.name" class="footer-link-item">
+              <span class="footer-link">{{ service.name }}</span>
+            </div>
+          </div>
         </v-col>
 
         <!-- Contato -->
         <v-col cols="12" md="3" class="mb-4">
-          <h6 class="text-h6 font-weight-bold mb-3 text-white">Contato</h6>
-          <div class="d-flex align-center mb-2">
-            <v-icon icon="mdi-map-marker" size="16" class="me-2 text-grey-lighten-1"></v-icon>
-            <span class="text-body-2 text-grey-lighten-1">Goiânia, GO - Brasil</span>
+          <h6 class="footer-section-title">Contato</h6>
+          <div class="footer-contact-item">
+            <v-icon icon="mdi-map-marker" size="16" class="me-2 contact-icon"></v-icon>
+            <span class="contact-text">Goiânia, GO - Brasil</span>
           </div>
-          <div class="d-flex align-center mb-2">
-            <v-icon icon="mdi-phone" size="16" class="me-2 text-grey-lighten-1"></v-icon>
-            <span class="text-body-2 text-grey-lighten-1">(12) 99733-2141</span>
+          <div class="footer-contact-item">
+            <v-icon icon="mdi-phone" size="16" class="me-2 contact-icon"></v-icon>
+            <span class="contact-text">(12) 99733-2141</span>
           </div>
-          <div class="d-flex align-center mb-2">
-            <v-icon icon="mdi-email" size="16" class="me-2 text-grey-lighten-1"></v-icon>
-            <span class="text-body-2 text-grey-lighten-1">ola@grandesite.com.br</span>
+          <div class="footer-contact-item">
+            <v-icon icon="mdi-email" size="16" class="me-2 contact-icon"></v-icon>
+            <span class="contact-text">ola@grandesite.com.br</span>
           </div>
-          <div class="d-flex align-center">
-            <v-icon icon="mdi-instagram" size="16" class="me-2 text-grey-lighten-1"></v-icon>
-            <span class="text-body-2 text-grey-lighten-1">@grandesite</span>
+          <div class="footer-contact-item">
+            <v-icon icon="mdi-instagram" size="16" class="me-2 contact-icon"></v-icon>
+            <span class="contact-text">@grandesite</span>
           </div>
         </v-col>
       </v-row>
 
       <!-- Linha Divisória -->
-      <v-divider color="grey-darken-2" class="my-4"></v-divider>
+      <v-divider class="footer-divider"></v-divider>
 
       <!-- Copyright -->
       <div class="d-flex flex-column flex-sm-row justify-space-between align-center">
-        <p class="text-body-2 text-grey-lighten-1 mb-0">
-          © 2025 GeoQuantum. Todos os direitos reservados.
-        </p>
+        <p class="copyright-text">© 2025 GeoQuantum. Todos os direitos reservados.</p>
         <div class="d-flex mt-2 mt-sm-0">
-          <v-btn
-            variant="text"
-            color="grey-lighten-1"
-            size="small"
-            class="text-body-2 footer-legal-link"
-          >
+          <v-btn variant="text" size="small" class="footer-legal-link">
             Política de Privacidade
           </v-btn>
-          <v-btn
-            variant="text"
-            color="grey-lighten-1"
-            size="small"
-            class="text-body-2 footer-legal-link"
-          >
-            Termos de Uso
-          </v-btn>
+          <v-btn variant="text" size="small" class="footer-legal-link"> Termos de Uso </v-btn>
         </div>
       </div>
     </v-container>
@@ -141,9 +114,10 @@ const services = [
 </script>
 
 <style scoped>
-.v-footer {
+.footer-main {
+  background: #1a365d !important;
+  color: #b0bec5;
   margin-top: auto;
-  background: #2e3a47 !important;
 }
 
 .logo-image {
@@ -167,6 +141,11 @@ const services = [
 .footer-link {
   transition: all 0.3s ease;
   cursor: pointer;
+  text-decoration: none;
+  color: #b0bec5;
+  display: block;
+  padding: 4px 0;
+  font-size: 0.875rem;
 }
 
 .footer-link:hover {
@@ -174,17 +153,75 @@ const services = [
   transform: translateX(4px);
 }
 
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-link-item {
+  transition: all 0.3s ease;
+}
+
+.footer-link-item:hover {
+  transform: translateX(4px);
+}
+
+.footer-section-title {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.footer-description {
+  color: #b0bec5;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.contact-icon {
+  color: #b0bec5;
+  margin-right: 8px;
+}
+
+.contact-text {
+  color: #b0bec5;
+  font-size: 0.875rem;
+}
+
 .footer-legal-link {
   transition: all 0.3s ease;
+  text-decoration: none;
+  color: #b0bec5;
+  font-size: 0.875rem;
 }
 
 .footer-legal-link:hover {
   color: #1fa7a1 !important;
 }
 
+.footer-divider {
+  background-color: #2d5a87 !important;
+  margin: 24px 0;
+}
+
+.copyright-text {
+  color: #b0bec5;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
-  .v-footer {
+  .footer-main {
     text-align: center;
   }
 

@@ -1,9 +1,7 @@
 <template>
   <div class="hero-map-container">
-    <!-- Mapa Interativo -->
     <div ref="mapContainer" class="map-container"></div>
 
-    <!-- Overlay com Conteúdo -->
     <div class="hero-overlay">
       <v-container>
         <v-row align="center" style="min-height: 80vh">
@@ -307,7 +305,7 @@ const downloadPDF = () => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(11, 95, 165, 0.7) 0%, rgba(31, 167, 161, 0.6) 100%);
+  background: linear-gradient(135deg, rgba(26, 54, 93, 0.85) 0%, rgba(45, 90, 135, 0.85) 100%);
   z-index: 2;
   display: flex;
   align-items: center;
@@ -406,7 +404,7 @@ const downloadPDF = () => {
   }
 
   .hero-overlay {
-    background: linear-gradient(135deg, rgba(11, 95, 165, 0.8) 0%, rgba(31, 167, 161, 0.7) 100%);
+    background: linear-gradient(135deg, rgba(26, 54, 93, 0.9) 0%, rgba(45, 90, 135, 0.9) 100%);
   }
 }
 </style>

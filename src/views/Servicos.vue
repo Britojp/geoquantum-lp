@@ -628,7 +628,7 @@ onUnmounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(11, 95, 165, 0.85) 0%, rgba(31, 167, 161, 0.85) 100%);
+  background: linear-gradient(135deg, rgba(26, 54, 93, 0.85) 0%, rgba(45, 90, 135, 0.85) 100%);
   z-index: 2;
   display: flex;
   align-items: center;
@@ -846,13 +846,13 @@ onUnmounted(() => {
 
 .tech-item:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(11, 95, 165, 0.15);
+  box-shadow: 0 15px 40px rgba(26, 54, 93, 0.15);
 }
 
 .tech-icon {
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, rgba(11, 95, 165, 0.1) 0%, rgba(31, 167, 161, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(26, 54, 93, 0.1) 0%, rgba(45, 90, 135, 0.1) 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -863,7 +863,7 @@ onUnmounted(() => {
 
 .tech-icon i {
   font-size: 28px;
-  color: #0b5fa5;
+  color: #1a365d;
 }
 
 .tech-item h4 {
@@ -909,14 +909,14 @@ onUnmounted(() => {
 
 .sector-card:hover {
   transform: translateY(-5px);
-  border-color: rgba(11, 95, 165, 0.3);
-  box-shadow: 0 15px 40px rgba(11, 95, 165, 0.1);
+  border-color: rgba(26, 54, 93, 0.3);
+  box-shadow: 0 15px 40px rgba(26, 54, 93, 0.1);
 }
 
 .sector-icon {
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #0b5fa5 0%, #1fa7a1 100%);
+  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -964,13 +964,13 @@ onUnmounted(() => {
 
 .case-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(11, 95, 165, 0.15);
+  box-shadow: 0 15px 40px rgba(26, 54, 93, 0.15);
 }
 
 .case-image {
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, #0b5fa5 0%, #1fa7a1 100%);
+  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1006,7 +1006,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #1fa7a1;
+  color: #2d5a87;
   font-weight: 600;
   font-size: 0.9rem;
 }
@@ -1018,7 +1018,7 @@ onUnmounted(() => {
 /* CTA Section */
 .cta-section {
   padding: 80px 0;
-  background: linear-gradient(135deg, #2e3a47 0%, #0b5fa5 100%);
+  background: linear-gradient(135deg, #1a202c 0%, #1a365d 100%);
   color: white;
   text-align: center;
 }
@@ -1042,7 +1042,7 @@ onUnmounted(() => {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  background: linear-gradient(135deg, #1fa7a1 0%, #ffc857 100%);
+  background: linear-gradient(135deg, #2d5a87 0%, #ffc857 100%);
   color: white;
   text-decoration: none;
   padding: 16px 32px;
@@ -1050,17 +1050,17 @@ onUnmounted(() => {
   font-weight: 600;
   font-size: 1.1rem;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(31, 167, 161, 0.2);
+  box-shadow: 0 2px 8px rgba(45, 90, 135, 0.2);
 }
 
 .cta-button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(31, 167, 161, 0.4);
+  box-shadow: 0 15px 40px rgba(45, 90, 135, 0.4);
 }
 
 .cta-button:active {
   transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(31, 167, 161, 0.4);
+  box-shadow: 0 8px 20px rgba(45, 90, 135, 0.4);
 }
 
 .cta-button i {
@@ -1088,7 +1088,7 @@ onUnmounted(() => {
   left: 50px;
   right: 50px;
   height: 3px;
-  background: linear-gradient(90deg, #0b5fa5 0%, #1fa7a1 100%);
+  background: linear-gradient(90deg, #1a365d 0%, #2d5a87 100%);
   z-index: 1;
 }
 
@@ -1106,7 +1106,7 @@ onUnmounted(() => {
 .step-number {
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, #0b5fa5 0%, #1fa7a1 100%);
+  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1115,13 +1115,13 @@ onUnmounted(() => {
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 15px;
-  box-shadow: 0 8px 25px rgba(11, 95, 165, 0.3);
+  box-shadow: 0 8px 25px rgba(26, 54, 93, 0.3);
   transition: all 0.3s ease;
 }
 
 .timeline-step:hover .step-number {
   transform: scale(1.1);
-  box-shadow: 0 12px 35px rgba(11, 95, 165, 0.4);
+  box-shadow: 0 12px 35px rgba(26, 54, 93, 0.4);
 }
 
 .step-title {

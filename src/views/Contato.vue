@@ -21,132 +21,134 @@
         <v-row>
           <!-- Informações de Contato -->
           <v-col cols="12" lg="4" class="mb-8">
-            <div class="contact-info">
-              <h2 class="text-h4 font-weight-bold text-primary mb-6">Informações de Contato</h2>
+            <v-card class="contact-info-card" elevation="4">
+              <v-card-item class="pa-6">
+                <h2 class="text-h4 font-weight-bold text-primary mb-6">Informações de Contato</h2>
 
-              <!-- Endereço -->
-              <div class="contact-item mb-6">
-                <div class="d-flex align-start mb-3">
-                  <v-icon
-                    icon="mdi-map-marker"
-                    color="primary"
-                    size="24"
-                    class="me-3 mt-1"
-                  ></v-icon>
-                  <div>
-                    <h3 class="text-h6 font-weight-bold mb-1">Endereço</h3>
-                    <p class="text-body-1 text-grey-darken-1">
-                      Goiânia, GO<br />
-                      Brasil
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Telefone -->
-              <div class="contact-item mb-6">
-                <div class="d-flex align-start mb-3">
-                  <v-icon icon="mdi-phone" color="primary" size="24" class="me-3 mt-1"></v-icon>
-                  <div>
-                    <h3 class="text-h6 font-weight-bold mb-1">Telefone</h3>
-                    <p class="text-body-1 text-grey-darken-1">
-                      <a href="tel:+5512997332141" class="text-decoration-none">
-                        (12) 99733-2141
-                      </a>
-                    </p>
-                    <p class="text-body-2 text-grey">Segunda a Sexta, 8h às 18h</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- E-mail -->
-              <div class="contact-item mb-6">
-                <div class="d-flex align-start mb-3">
-                  <v-icon icon="mdi-email" color="primary" size="24" class="me-3 mt-1"></v-icon>
-                  <div>
-                    <h3 class="text-h6 font-weight-bold mb-1">E-mail</h3>
-                    <p class="text-body-1 text-grey-darken-1">
-                      <a href="mailto:ola@grandesite.com.br" class="text-decoration-none">
-                        ola@grandesite.com.br
-                      </a>
-                    </p>
-                    <p class="text-body-2 text-grey">Resposta em até 24h</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Redes Sociais -->
-              <div class="contact-item mb-6">
-                <div class="d-flex align-start mb-3">
-                  <v-icon
-                    icon="mdi-share-variant"
-                    color="primary"
-                    size="24"
-                    class="me-3 mt-1"
-                  ></v-icon>
-                  <div>
-                    <h3 class="text-h6 font-weight-bold mb-1">Redes Sociais</h3>
-                    <div class="d-flex gap-2 mt-2">
-                      <v-btn
-                        icon
-                        variant="outlined"
-                        color="primary"
-                        size="small"
-                        href="https://linkedin.com/company/geoquantum"
-                        target="_blank"
-                      >
-                        <v-icon>mdi-linkedin</v-icon>
-                      </v-btn>
-                      <v-btn
-                        icon
-                        variant="outlined"
-                        color="primary"
-                        size="small"
-                        href="https://facebook.com/geoquantum"
-                        target="_blank"
-                      >
-                        <v-icon>mdi-facebook</v-icon>
-                      </v-btn>
-                      <v-btn
-                        icon
-                        variant="outlined"
-                        color="primary"
-                        size="small"
-                        href="https://instagram.com/geoquantum"
-                        target="_blank"
-                      >
-                        <v-icon>mdi-instagram</v-icon>
-                      </v-btn>
-                      <v-btn
-                        icon
-                        variant="outlined"
-                        color="primary"
-                        size="small"
-                        href="https://youtube.com/geoquantum"
-                        target="_blank"
-                      >
-                        <v-icon>mdi-youtube</v-icon>
-                      </v-btn>
+                <!-- Endereço -->
+                <div class="contact-item mb-6">
+                  <div class="d-flex align-start mb-3">
+                    <v-icon
+                      icon="mdi-map-marker"
+                      color="primary"
+                      size="24"
+                      class="me-3 mt-1"
+                    ></v-icon>
+                    <div>
+                      <h3 class="text-h6 font-weight-bold mb-1">Endereço</h3>
+                      <p class="text-body-1 text-grey-darken-1">
+                        Goiânia, GO<br />
+                        Brasil
+                      </p>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <!-- Horário de Funcionamento -->
-              <div class="contact-item">
-                <div class="d-flex align-start">
-                  <v-icon icon="mdi-clock" color="primary" size="24" class="me-3 mt-1"></v-icon>
-                  <div>
-                    <h3 class="text-h6 font-weight-bold mb-1">Horário de Funcionamento</h3>
-                    <p class="text-body-1 text-grey-darken-1">
-                      Segunda a Sexta: 8h às 18h<br />
-                      Sábado: 9h às 13h<br />
-                      Domingo: Fechado
-                    </p>
+                <!-- Telefone -->
+                <div class="contact-item mb-6">
+                  <div class="d-flex align-start mb-3">
+                    <v-icon icon="mdi-phone" color="primary" size="24" class="me-3 mt-1"></v-icon>
+                    <div>
+                      <h3 class="text-h6 font-weight-bold mb-1">Telefone</h3>
+                      <p class="text-body-1 text-grey-darken-1">
+                        <a href="tel:+5512997332141" class="text-decoration-none">
+                          (12) 99733-2141
+                        </a>
+                      </p>
+                      <p class="text-body-2 text-grey">Segunda a Sexta, 8h às 18h</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+
+                <!-- E-mail -->
+                <div class="contact-item mb-6">
+                  <div class="d-flex align-start mb-3">
+                    <v-icon icon="mdi-email" color="primary" size="24" class="me-3 mt-1"></v-icon>
+                    <div>
+                      <h3 class="text-h6 font-weight-bold mb-1">E-mail</h3>
+                      <p class="text-body-1 text-grey-darken-1">
+                        <a href="mailto:ola@grandesite.com.br" class="text-decoration-none">
+                          ola@grandesite.com.br
+                        </a>
+                      </p>
+                      <p class="text-body-2 text-grey">Resposta em até 24h</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Redes Sociais -->
+                <div class="contact-item mb-6">
+                  <div class="d-flex align-start mb-3">
+                    <v-icon
+                      icon="mdi-share-variant"
+                      color="primary"
+                      size="24"
+                      class="me-3 mt-1"
+                    ></v-icon>
+                    <div>
+                      <h3 class="text-h6 font-weight-bold mb-1">Redes Sociais</h3>
+                      <div class="d-flex gap-2 mt-2">
+                        <v-btn
+                          icon
+                          variant="outlined"
+                          color="primary"
+                          size="small"
+                          href="https://linkedin.com/company/geoquantum"
+                          target="_blank"
+                        >
+                          <v-icon>mdi-linkedin</v-icon>
+                        </v-btn>
+                        <v-btn
+                          icon
+                          variant="outlined"
+                          color="primary"
+                          size="small"
+                          href="https://facebook.com/geoquantum"
+                          target="_blank"
+                        >
+                          <v-icon>mdi-facebook</v-icon>
+                        </v-btn>
+                        <v-btn
+                          icon
+                          variant="outlined"
+                          color="primary"
+                          size="small"
+                          href="https://instagram.com/geoquantum"
+                          target="_blank"
+                        >
+                          <v-icon>mdi-instagram</v-icon>
+                        </v-btn>
+                        <v-btn
+                          icon
+                          variant="outlined"
+                          color="primary"
+                          size="small"
+                          href="https://youtube.com/geoquantum"
+                          target="_blank"
+                        >
+                          <v-icon>mdi-youtube</v-icon>
+                        </v-btn>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Horário de Funcionamento -->
+                <div class="contact-item">
+                  <div class="d-flex align-start">
+                    <v-icon icon="mdi-clock" color="primary" size="24" class="me-3 mt-1"></v-icon>
+                    <div>
+                      <h3 class="text-h6 font-weight-bold mb-1">Horário de Funcionamento</h3>
+                      <p class="text-body-1 text-grey-darken-1">
+                        Segunda a Sexta: 8h às 18h<br />
+                        Sábado: 9h às 13h<br />
+                        Domingo: Fechado
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </v-card-item>
+            </v-card>
           </v-col>
 
           <!-- Formulário de Contato -->
@@ -162,7 +164,7 @@
       <v-container>
         <div class="text-center mb-8">
           <h2 class="text-h3 font-weight-bold text-primary mb-4">Nossa Localização</h2>
-          <p class="text-h6 text-grey-darken-1">
+          <p class="text-h6 text-grey-darken-1 max-width-600 mx-auto">
             Visite nossa sede em São Paulo ou entre em contato para agendar uma visita.
           </p>
         </div>
@@ -178,7 +180,7 @@
       <v-container>
         <div class="text-center mb-12">
           <h2 class="text-h3 font-weight-bold text-primary mb-4">Perguntas Frequentes</h2>
-          <p class="text-h6 text-grey-darken-1">
+          <p class="text-h6 text-grey-darken-1 max-width-600 mx-auto">
             Respostas para as dúvidas mais comuns sobre nossos serviços.
           </p>
         </div>
@@ -195,6 +197,40 @@
                 </v-expansion-panel-text>
               </v-expansion-panel>
             </v-expansion-panels>
+          </v-col>
+        </v-row>
+      </v-container>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section py-16 bg-gradient-primary">
+      <v-container>
+        <v-row class="text-center">
+          <v-col cols="12" md="8" class="mx-auto">
+            <h2 class="text-h3 font-weight-bold text-white mb-4">
+              Pronto para Iniciar Seu Projeto?
+            </h2>
+            <p class="text-h6 text-grey-lighten-2 mb-6">
+              Entre em contato conosco e descubra como podemos ajudar você a transformar seus dados
+              geoespaciais em insights valiosos.
+            </p>
+            <div class="d-flex flex-column flex-sm-row gap-6 justify-center">
+              <v-btn
+                color="accent"
+                size="large"
+                variant="elevated"
+                to="/servicos"
+                class="text-dark font-weight-bold"
+              >
+                <v-icon start>mdi-cog</v-icon>
+                Nossos Serviços
+              </v-btn>
+
+              <v-btn size="large" variant="outlined" to="/projetos" class="text-white border-white">
+                <v-icon start>mdi-briefcase</v-icon>
+                Ver Projetos
+              </v-btn>
+            </div>
           </v-col>
         </v-row>
       </v-container>
@@ -283,15 +319,23 @@ onMounted(() => {
   min-height: 100vh;
 }
 
-.bg-gradient-primary {
-  background: linear-gradient(135deg, #0b5fa5 0%, #1fa7a1 100%);
+.max-width-600 {
+  max-width: 600px;
 }
 
-.contact-info {
-  background: white;
-  padding: 2rem;
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
+}
+
+.contact-info-card {
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.contact-info-card:hover {
+  transform: translateY(-4px);
 }
 
 .contact-item {
@@ -313,6 +357,10 @@ onMounted(() => {
   width: 100%;
 }
 
+.border-white {
+  border-color: white !important;
+}
+
 /* Custom marker styles */
 :deep(.custom-marker) {
   background: transparent;
@@ -321,7 +369,7 @@ onMounted(() => {
 :deep(.marker-icon) {
   width: 40px;
   height: 40px;
-  background: #0b5fa5;
+  background: #1a365d;
   border: 4px solid white;
   border-radius: 50%;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -338,7 +386,7 @@ onMounted(() => {
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-top: 10px solid #0b5fa5;
+  border-top: 10px solid #1a365d;
 }
 
 /* Responsive adjustments */
@@ -346,11 +394,12 @@ onMounted(() => {
   .hero-section,
   .main-section,
   .map-section,
-  .faq-section {
+  .faq-section,
+  .cta-section {
     padding: 3rem 0;
   }
 
-  .contact-info {
+  .contact-info-card {
     padding: 1.5rem;
   }
 }

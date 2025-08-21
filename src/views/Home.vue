@@ -1,8 +1,6 @@
 <template>
   <div class="home-page">
     <HeroMap />
-
-    <!-- Seção de Serviços -->
     <section class="services-section py-16">
       <v-container>
         <div class="text-center mb-12">
@@ -16,10 +14,10 @@
         <v-row>
           <v-col
             v-for="service in services"
-            :key="service.title"
+            :key="service.id"
             cols="12"
             sm="6"
-            lg="3"
+            md="3"
             class="mb-6 d-flex"
           >
             <ServiceCard :service="service" class="flex-grow-1" />
@@ -30,20 +28,20 @@
 
     <section class="stats-section py-16 bg-primary">
       <v-container>
-        <v-row class="text-center">
-          <v-col cols="12" sm="6" md="3" class="mb-6">
+        <v-row class="text-center justify-center">
+          <v-col cols="12" sm="6" md="4" class="mb-6">
             <div class="stat-item">
               <div class="text-h2 font-weight-bold text-white mb-2">20+</div>
               <div class="text-h6 text-grey-lighten-2">Clientes Fidelizados</div>
             </div>
           </v-col>
-          <v-col cols="12" sm="6" md="3" class="mb-6">
+          <v-col cols="12" sm="6" md="4" class="mb-6">
             <div class="stat-item">
               <div class="text-h2 font-weight-bold text-white mb-2">1</div>
               <div class="text-h6 text-grey-lighten-2">Ano de Atuação</div>
             </div>
           </v-col>
-          <v-col cols="12" sm="6" md="3" class="mb-6">
+          <v-col cols="12" sm="6" md="4" class="mb-6">
             <div class="stat-item">
               <div class="text-h2 font-weight-bold text-white mb-2">9</div>
               <div class="text-h6 text-grey-lighten-2">Serviços Especializados</div>
@@ -76,24 +74,15 @@
           </v-col>
 
           <v-col cols="12" md="6">
-            <v-card class="about-card" elevation="8">
-              <v-card-item class="pa-8">
-                <div class="text-center">
-                  <img
-                    src="/src/assets/main-logo-removebg-preview.png"
-                    alt="GeoQuantum Logo"
-                    width="80"
-                    height="80"
-                    class="mb-4"
-                  />
-                  <h3 class="text-h5 font-weight-bold mb-3">Especialistas em Geoprocessamento</h3>
-                  <p class="text-body-1 text-grey-darken-1">
-                    Nossa equipe é composta por profissionais altamente qualificados e experientes
-                    em tecnologias geoespaciais.
-                  </p>
-                </div>
-              </v-card-item>
-            </v-card>
+            <div class="text-center">
+              <img
+                src="/src/assets/main-logo-removebg-preview.png"
+                alt="GeoQuantum Logo"
+                width="400"
+                height="400"
+                class="mb-4"
+              />
+            </div>
           </v-col>
         </v-row>
       </v-container>
@@ -176,7 +165,7 @@
               Entre em contato conosco e descubra como podemos ajudar você a transformar seus dados
               geoespaciais em insights valiosos.
             </p>
-            <div class="d-flex flex-column flex-sm-row gap-4 justify-center">
+            <div class="d-flex flex-column flex-sm-row gap-6 justify-center">
               <v-btn
                 color="accent"
                 size="large"
@@ -189,13 +178,14 @@
               </v-btn>
 
               <v-btn
-                color="transparent"
                 size="large"
                 variant="outlined"
-                to="/documentos"
-                class="text-white border-white"
+                class="text-white border-white documents-btn"
+                :ripple="true"
+                :loading="false"
+                @click="navigateToDocuments"
               >
-                <v-icon start>mdi-file-document</v-icon>
+                <v-icon start size="20">mdi-file-document</v-icon>
                 Ver Documentação
               </v-btn>
             </div>
@@ -209,6 +199,13 @@
 <script setup lang="ts">
 import HeroMap from '../components/HeroMap.vue'
 import ServiceCard from '../components/ServiceCard.vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const navigateToDocuments = () => {
+  router.push('/documentos')
+}
 
 const services = [
   {
@@ -308,7 +305,32 @@ const featuredProjects = [
 }
 
 .stats-section {
-  background: linear-gradient(135deg, #0b5fa5 0%, #1fa7a1 100%);
+  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
+}
+
+.stat-item {
+  text-align: center;
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.stat-item .text-h2 {
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 3rem !important;
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+.stat-item .text-h6 {
+  color: #e2e8f0 !important;
+  font-size: 1rem !important;
+  font-weight: 500;
+  line-height: 1.4;
 }
 
 .about-card {
@@ -338,11 +360,21 @@ const featuredProjects = [
 }
 
 .bg-gradient-primary {
-  background: linear-gradient(135deg, #0b5fa5 0%, #1fa7a1 100%);
+  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
 }
 
 .border-white {
   border-color: white !important;
+}
+
+.documents-btn {
+  transition: all 0.3s ease;
+  border-width: 2px;
+}
+l .documents-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
 }
 
 .h-100 {
@@ -363,6 +395,11 @@ const featuredProjects = [
 
   .stat-item .text-h2 {
     font-size: 2.5rem !important;
+  }
+
+  .stat-item {
+    padding: 16px;
+    margin-bottom: 16px;
   }
 }
 </style>

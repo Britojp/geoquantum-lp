@@ -101,14 +101,14 @@ const goToContact = () => {
 <style scoped>
 .service-card {
   position: relative;
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  border-radius: 8px;
+  background: #ffffff;
+  border-radius: 12px;
   padding: 24px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(26, 54, 93, 0.08);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   overflow: hidden;
-  border: 1px solid rgba(11, 95, 165, 0.1);
+  border: 1px solid rgba(26, 54, 93, 0.1);
   height: 280px;
   display: flex;
   flex-direction: column;
@@ -116,8 +116,8 @@ const goToContact = () => {
 
 .service-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(11, 95, 165, 0.15);
-  border-color: rgba(11, 95, 165, 0.3);
+  box-shadow: 0 20px 40px rgba(26, 54, 93, 0.15);
+  border-color: rgba(26, 54, 93, 0.3);
 }
 
 .service-card:hover .service-overlay {
@@ -135,7 +135,7 @@ const goToContact = () => {
 .service-icon {
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #0b5fa5 0%, #1fa7a1 100%);
+  background: #1a365d;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -156,7 +156,7 @@ const goToContact = () => {
 .service-number {
   font-size: 2.5rem;
   font-weight: 700;
-  color: rgba(11, 95, 165, 0.1);
+  color: rgba(26, 54, 93, 0.1);
   font-family: 'Courier New', monospace;
   line-height: 1;
   flex-shrink: 0;
@@ -173,13 +173,13 @@ const goToContact = () => {
 .service-title {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #2e3a47;
+  color: #1a202c;
   margin: 0 0 12px 0;
   line-height: 1.3;
 }
 
 .service-description {
-  color: #6c757d;
+  color: #4a5568;
   line-height: 1.6;
   margin: 0;
   font-size: 0.95rem;
@@ -195,7 +195,7 @@ const goToContact = () => {
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(135deg, #0b5fa5 0%, #1fa7a1 100%);
+  background: #1a365d;
   color: white;
   padding: 16px;
   text-align: center;
@@ -258,7 +258,7 @@ const goToContact = () => {
 
 .modal-header h2 {
   margin: 0;
-  color: #2e3a47;
+  color: #1a202c;
   font-size: 1.5rem;
   font-weight: 600;
 }
@@ -267,7 +267,7 @@ const goToContact = () => {
   background: none;
   border: none;
   font-size: 24px;
-  color: #6c757d;
+  color: #4a5568;
   cursor: pointer;
   padding: 8px;
   border-radius: 50%;
@@ -276,7 +276,7 @@ const goToContact = () => {
 
 .close-btn:hover {
   background: #f8f9fa;
-  color: #2e3a47;
+  color: #1a202c;
 }
 
 .modal-content {
@@ -286,21 +286,21 @@ const goToContact = () => {
 .service-number-large {
   font-size: 4rem;
   font-weight: 700;
-  color: rgba(11, 95, 165, 0.1);
+  color: rgba(26, 54, 93, 0.1);
   font-family: 'Courier New', monospace;
   text-align: center;
   margin-bottom: 20px;
 }
 
 .modal-description {
-  color: #2e3a47;
+  color: #1a202c;
   line-height: 1.7;
   font-size: 1.1rem;
   margin-bottom: 24px;
 }
 
 .modal-features h4 {
-  color: #0b5fa5;
+  color: #1a365d;
   margin-bottom: 12px;
   font-size: 1.1rem;
 }
@@ -312,7 +312,7 @@ const goToContact = () => {
 
 .modal-features li {
   padding: 8px 0;
-  color: #2e3a47;
+  color: #1a202c;
   position: relative;
   padding-left: 20px;
 }
@@ -321,7 +321,7 @@ const goToContact = () => {
   content: '✓';
   position: absolute;
   left: 0;
-  color: #1fa7a1;
+  color: #2d5a87;
   font-weight: bold;
 }
 
@@ -332,7 +332,7 @@ const goToContact = () => {
 }
 
 .contact-btn {
-  background: linear-gradient(135deg, #0b5fa5 0%, #1fa7a1 100%);
+  background: #1a365d;
   color: white;
   border: none;
   padding: 14px 28px;
@@ -344,17 +344,18 @@ const goToContact = () => {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 2px 8px rgba(11, 95, 165, 0.2);
+  box-shadow: 0 2px 8px rgba(26, 54, 93, 0.2);
 }
 
 .contact-btn:hover {
+  background: #2d5a87;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(11, 95, 165, 0.3);
+  box-shadow: 0 8px 25px rgba(26, 54, 93, 0.3);
 }
 
 .contact-btn:active {
   transform: translateY(0);
-  box-shadow: 0 4px 12px rgba(11, 95, 165, 0.3);
+  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.3);
 }
 
 .contact-btn i {

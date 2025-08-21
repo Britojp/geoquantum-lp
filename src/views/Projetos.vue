@@ -1,27 +1,30 @@
 <template>
   <div class="projetos-page">
     <!-- Hero Section com Mapa de Fundo -->
-    <GlobalMap
-      title="Nossos Projetos"
-      subtitle="Conheça alguns dos projetos que desenvolvemos em geoprocessamento e análise geoespacial."
-    >
-      <v-container>
-        <v-row class="text-center">
-          <v-col cols="12" md="8" class="mx-auto">
-            <h1 class="text-h2 text-h3-sm font-weight-bold text-white mb-4 text-shadow">
-              Nossos Projetos
-            </h1>
-            <p class="text-h6 text-grey-lighten-2 mb-6">
-              Conheça alguns dos projetos que desenvolvemos em geoprocessamento e análise
-              geoespacial.
-            </p>
-          </v-col>
-        </v-row>
-      </v-container>
-    </GlobalMap>
+    <section class="hero-section">
+      <!-- Mapa Interativo -->
+      <div ref="mapContainer" class="map-container"></div>
+
+      <!-- Overlay com Filtro Azul e Conteúdo -->
+      <div class="hero-overlay">
+        <v-container>
+          <v-row class="text-center">
+            <v-col cols="12" md="8" class="mx-auto">
+              <h1 class="text-h2 text-h3-sm font-weight-bold text-white mb-4 text-shadow">
+                Nossos Projetos
+              </h1>
+              <p class="text-h6 text-grey-lighten-2 mb-6">
+                Conheça alguns dos projetos que desenvolvemos em geoprocessamento e análise
+                geoespacial.
+              </p>
+            </v-col>
+          </v-row>
+        </v-container>
+      </div>
+    </section>
 
     <!-- Filtros e Busca -->
-    <section class="filters-section py-8 bg-grey-lighten-4">
+    <section class="filters-section py-8">
       <v-container>
         <v-row align="center">
           <v-col cols="12" sm="6" md="4">
@@ -32,6 +35,7 @@
               variant="outlined"
               clearable
               @input="filterProjects"
+              class="search-input"
             ></v-text-field>
           </v-col>
 
@@ -43,6 +47,7 @@
               variant="outlined"
               clearable
               @update:model-value="filterProjects"
+              class="category-select"
             ></v-select>
           </v-col>
 
@@ -54,11 +59,20 @@
               variant="outlined"
               clearable
               @update:model-value="filterProjects"
+              class="tech-select"
             ></v-select>
           </v-col>
 
           <v-col cols="12" sm="6" md="2">
-            <v-btn color="primary" variant="elevated" @click="resetFilters" block> Limpar </v-btn>
+            <v-btn
+              color="primary"
+              variant="elevated"
+              @click="resetFilters"
+              block
+              class="reset-filters-btn"
+            >
+              Limpar
+            </v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -85,14 +99,14 @@
             <v-card class="project-card h-100" elevation="4">
               <v-img :src="project.image" height="250" cover class="project-image">
                 <div class="project-overlay">
-                  <v-chip :color="project.category.color" size="small" class="mb-2">
+                  <div class="project-year">{{ project.year }}</div>
+                  <v-chip :color="project.category.color" size="small" class="category-chip">
                     {{ project.category.name }}
                   </v-chip>
-                  <div class="project-year">{{ project.year }}</div>
                 </div>
               </v-img>
 
-              <v-card-item>
+              <v-card-item class="pa-6">
                 <v-card-title class="text-h6 font-weight-bold mb-2">
                   {{ project.title }}
                 </v-card-title>
@@ -107,13 +121,14 @@
 
                 <div class="mb-3">
                   <h6 class="text-subtitle-2 font-weight-bold mb-2">Serviços:</h6>
-                  <div class="d-flex flex-wrap gap-1">
+                  <div class="d-flex flex-wrap gap-2">
                     <v-chip
                       v-for="service in project.services"
                       :key="service"
                       size="small"
-                      color="secondary"
+                      color="primary"
                       variant="outlined"
+                      class="service-chip"
                     >
                       {{ service }}
                     </v-chip>
@@ -122,13 +137,14 @@
 
                 <div class="mb-3">
                   <h6 class="text-subtitle-2 font-weight-bold mb-2">Tecnologias:</h6>
-                  <div class="d-flex flex-wrap gap-1">
+                  <div class="d-flex flex-wrap gap-2">
                     <v-chip
                       v-for="tech in project.technologies"
                       :key="tech"
                       size="small"
-                      color="primary"
+                      color="secondary"
                       variant="outlined"
+                      class="tech-chip"
                     >
                       {{ tech }}
                     </v-chip>
@@ -149,6 +165,7 @@
                   variant="outlined"
                   block
                   @click="showProjectDetails(project)"
+                  class="project-details-btn"
                 >
                   Ver Detalhes
                 </v-btn>
@@ -174,14 +191,48 @@
       <v-container>
         <div class="text-center mb-8">
           <h2 class="text-h3 font-weight-bold text-primary mb-4">Localização dos Projetos</h2>
-          <p class="text-h6 text-grey-darken-1">
+          <p class="text-h6 text-grey-darken-1 max-width-600 mx-auto">
             Visualize a distribuição geográfica dos nossos projetos pelo Brasil.
           </p>
         </div>
 
         <v-card elevation="4" class="map-card">
-          <div ref="mapContainer" class="map-container" style="height: 500px"></div>
+          <div ref="projectsMapContainer" class="projects-map-container"></div>
         </v-card>
+      </v-container>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section py-16 bg-gradient-primary">
+      <v-container>
+        <v-row class="text-center">
+          <v-col cols="12" md="8" class="mx-auto">
+            <h2 class="text-h3 font-weight-bold text-white mb-4">
+              Pronto para Desenvolver Seu Projeto?
+            </h2>
+            <p class="text-h6 text-grey-lighten-2 mb-6">
+              Entre em contato conosco e descubra como podemos ajudar você a transformar seus dados
+              geoespaciais em insights valiosos.
+            </p>
+            <div class="d-flex flex-column flex-sm-row gap-6 justify-center">
+              <v-btn
+                color="accent"
+                size="large"
+                variant="elevated"
+                to="/contato"
+                class="text-dark font-weight-bold"
+              >
+                <v-icon start>mdi-phone</v-icon>
+                Solicitar Orçamento
+              </v-btn>
+
+              <v-btn size="large" variant="outlined" to="/servicos" class="text-white border-white">
+                <v-icon start>mdi-cog</v-icon>
+                Nossos Serviços
+              </v-btn>
+            </div>
+          </v-col>
+        </v-row>
       </v-container>
     </section>
 
@@ -262,9 +313,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
-import GlobalMap from '@/components/GlobalMap.vue'
+import L from 'leaflet'
 
 const router = useRouter()
 
@@ -273,6 +324,9 @@ const selectedCategory = ref('')
 const selectedTechnology = ref('')
 const currentPage = ref(1)
 const showDetails = ref(false)
+const projectsMapContainer = ref<HTMLElement>()
+let projectsMap: L.Map | null = null
+
 interface Project {
   id: number
   title: string
@@ -518,6 +572,143 @@ const contactAboutProject = () => {
     query: { project: selectedProject.value?.title },
   })
 }
+
+// Função para inicializar o mapa dos projetos
+const initializeProjectsMap = () => {
+  if (projectsMapContainer.value && !projectsMap) {
+    try {
+      // Inicializar mapa focado no Brasil
+      projectsMap = L.map(projectsMapContainer.value, {
+        center: [-15.6014, -47.7308], // Centro do Brasil (Brasília)
+        zoom: 5,
+        zoomControl: true,
+        attributionControl: false,
+        minZoom: 4,
+        maxZoom: 12,
+      })
+
+      // Adicionar tile layer base
+      L.tileLayer(
+        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
+        {
+          attribution: '© Esri',
+          maxZoom: 12,
+        },
+      ).addTo(projectsMap)
+
+      // Adicionar pontos dos projetos
+      projects.forEach((project) => {
+        if (project.location) {
+          // Criar marcador personalizado
+          const marker = L.circleMarker([project.location.lat, project.location.lng], {
+            radius: 12,
+            fillColor: getMarkerColor(project.category.color),
+            color: '#1a365d',
+            weight: 2,
+            opacity: 1,
+            fillOpacity: 0.8,
+          })
+
+          // Adicionar popup com informações do projeto
+          const popupContent = `
+            <div class="project-popup">
+              <h4 style="margin: 0 0 8px 0; color: #1a365d; font-size: 1rem; font-weight: 600;">
+                ${project.title}
+              </h4>
+              <p style="margin: 0 0 8px 0; color: #666; font-size: 0.875rem;">
+                <strong>Cliente:</strong> ${project.client}
+              </p>
+              <p style="margin: 0 0 8px 0; color: #666; font-size: 0.875rem;">
+                <strong>Ano:</strong> ${project.year}
+              </p>
+              <p style="margin: 0 0 8px 0; color: #666; font-size: 0.875rem;">
+                <strong>Categoria:</strong> ${project.category.name}
+              </p>
+              <button 
+                onclick="window.showProjectDetailsFromMap(${project.id})"
+                style="
+                  background: #1a365d; 
+                  color: white; 
+                  border: none; 
+                  padding: 6px 12px; 
+                  border-radius: 4px; 
+                  cursor: pointer;
+                  font-size: 0.875rem;
+                "
+              >
+                Ver Detalhes
+              </button>
+            </div>
+          `
+
+          marker.bindPopup(popupContent, {
+            maxWidth: 300,
+            className: 'project-popup-custom',
+          })
+
+          marker.addTo(projectsMap!)
+
+          // Efeito de hover
+          marker.on('mouseover', function (this: L.CircleMarker) {
+            this.setRadius(16)
+            this.setStyle({ fillOpacity: 1 })
+          })
+
+          marker.on('mouseout', function (this: L.CircleMarker) {
+            this.setRadius(12)
+            this.setStyle({ fillOpacity: 0.8 })
+          })
+        }
+      })
+
+      // Ajustar view para mostrar todos os projetos
+      const bounds = L.latLngBounds(projects.map((p) => [p.location.lat, p.location.lng]))
+      projectsMap.fitBounds(bounds, { padding: [20, 20] })
+    } catch (error) {
+      console.error('Erro ao inicializar mapa dos projetos:', error)
+    }
+  }
+}
+
+// Função para obter cor do marcador baseada na categoria
+const getMarkerColor = (categoryColor: string) => {
+  const colorMap: { [key: string]: string } = {
+    primary: '#1a365d',
+    success: '#2d5a87',
+    info: '#4a90e2',
+    warning: '#f39c12',
+    error: '#e74c3c',
+  }
+  return colorMap[categoryColor] || '#1a365d'
+}
+
+// Função para mostrar detalhes do projeto a partir do mapa
+const showProjectDetailsFromMap = (projectId: number) => {
+  const project = projects.find((p) => p.id === projectId)
+  if (project) {
+    showProjectDetails(project)
+  }
+}
+
+// Lifecycle hooks
+onMounted(() => {
+  // Aguardar um pouco para garantir que o DOM esteja pronto
+  setTimeout(() => {
+    initializeProjectsMap()
+  }, 100)
+
+  // Expor função global para o popup do mapa
+  ;(window as any).showProjectDetailsFromMap = showProjectDetailsFromMap
+})
+
+onUnmounted(() => {
+  if (projectsMap) {
+    projectsMap.remove()
+    projectsMap = null
+  }
+  // Remover função global
+  delete (window as any).showProjectDetailsFromMap
+})
 </script>
 
 <style scoped>
@@ -525,18 +716,27 @@ const contactAboutProject = () => {
   min-height: 100vh;
 }
 
+.max-width-600 {
+  max-width: 600px;
+}
+
 .bg-gradient-primary {
-  background: linear-gradient(135deg, #0b5fa5 0%, #1fa7a1 100%);
+  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
 }
 
 .project-card {
   border-radius: 12px;
   overflow: hidden;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
+  background: #ffffff;
+  border: 1px solid rgba(26, 54, 93, 0.1);
+  box-shadow: 0 4px 20px rgba(26, 54, 93, 0.08);
 }
 
 .project-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-8px);
+  border-color: rgba(26, 54, 93, 0.3);
+  box-shadow: 0 20px 40px rgba(26, 54, 93, 0.15);
 }
 
 .project-image {
@@ -547,24 +747,173 @@ const contactAboutProject = () => {
   position: absolute;
   top: 16px;
   left: 16px;
+  right: 16px;
   z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .project-year {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background: rgba(0, 0, 0, 0.7);
+  background: #1a365d;
   color: white;
-  padding: 4px 8px;
-  border-radius: 4px;
+  padding: 6px 12px;
+  border-radius: 6px;
   font-size: 0.875rem;
-  font-weight: bold;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(26, 54, 93, 0.2);
+}
+
+.category-chip {
+  margin: 0;
+}
+
+/* Custom chip styles */
+:deep(.service-chip) {
+  border-color: #1a365d !important;
+  color: #1a365d !important;
+}
+
+:deep(.service-chip:hover) {
+  background-color: rgba(26, 54, 93, 0.1) !important;
+}
+
+:deep(.tech-chip) {
+  border-color: #2d5a87 !important;
+  color: #2d5a87 !important;
+}
+
+:deep(.tech-chip:hover) {
+  background-color: rgba(45, 90, 135, 0.1) !important;
+}
+
+/* Project details button */
+:deep(.project-details-btn) {
+  border-color: #1a365d !important;
+  color: #1a365d !important;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+:deep(.project-details-btn:hover) {
+  background-color: #1a365d !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.2);
+}
+
+/* Reset filters button */
+:deep(.reset-filters-btn) {
+  background-color: #1a365d !important;
+  color: white !important;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+:deep(.reset-filters-btn:hover) {
+  background-color: #2d5a87 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.2);
+}
+
+/* Filters section */
+.filters-section {
+  background: #f8f9fa;
+}
+
+:deep(.search-input .v-field),
+:deep(.category-select .v-field),
+:deep(.tech-select .v-field) {
+  border-color: rgba(26, 54, 93, 0.2) !important;
+}
+
+:deep(.search-input .v-field:hover),
+:deep(.category-select .v-field:hover),
+:deep(.tech-select .v-field:hover) {
+  border-color: rgba(26, 54, 93, 0.4) !important;
+}
+
+:deep(.search-input .v-field--focused),
+:deep(.category-select .v-field--focused),
+:deep(.tech-select .v-field--focused) {
+  border-color: #1a365d !important;
 }
 
 .map-card {
   border-radius: 12px;
   overflow: hidden;
+}
+
+.projects-map-container {
+  height: 500px;
+  width: 100%;
+  position: relative;
+}
+
+/* Estilos para os popups do mapa */
+:deep(.project-popup-custom) {
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(26, 54, 93, 0.15);
+}
+
+:deep(.project-popup-custom .leaflet-popup-content-wrapper) {
+  border-radius: 8px;
+  background: white;
+}
+
+:deep(.project-popup-custom .leaflet-popup-tip) {
+  background: white;
+}
+
+:deep(.project-popup-custom .leaflet-popup-close-button) {
+  color: #1a365d;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+:deep(.project-popup-custom .leaflet-popup-close-button:hover) {
+  color: #2d5a87;
+}
+
+.hero-section {
+  position: relative;
+  height: 60vh;
+  min-height: 400px;
+  overflow: hidden;
+}
+
+.map-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(26, 54, 93, 0.85) 0%, rgba(45, 90, 135, 0.85) 100%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.border-white {
+  border-color: white !important;
+}
+
+.h-100 {
+  height: 100%;
 }
 
 /* Custom marker styles */
@@ -575,10 +924,11 @@ const contactAboutProject = () => {
 :deep(.marker-icon) {
   width: 30px;
   height: 30px;
-  border: 3px solid white;
+  border: 3px solid #1a365d;
   border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 8px rgba(26, 54, 93, 0.3);
   position: relative;
+  background: #2d5a87;
 }
 
 :deep(.marker-icon)::after {
@@ -591,18 +941,32 @@ const contactAboutProject = () => {
   height: 0;
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
-  border-top: 8px solid currentColor;
-}
-
-.h-100 {
-  height: 100%;
+  border-top: 8px solid #1a365d;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .hero-section {
+    height: 50vh;
+    min-height: 350px;
+  }
+
+  .hero-overlay {
+    padding: 2rem 1rem;
+  }
+
+  .text-h2 {
+    font-size: 2rem;
+  }
+
+  .text-h6 {
+    font-size: 1rem;
+  }
+
   .filters-section,
   .projects-section,
-  .map-section {
+  .map-section,
+  .cta-section {
     padding: 3rem 0;
   }
 }

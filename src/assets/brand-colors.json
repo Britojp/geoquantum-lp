@@ -1,23 +1,23 @@
 {
-  "primary": "#0B5FA5",
-  "secondary": "#1FA7A1",
+  "primary": "#1a365d",
+  "secondary": "#2d5a87",
   "accent": "#D4A574",
-  "dark": "#2E3A47",
+  "dark": "#1a202c",
   "surface": "#FFFFFF",
   "background": "#F5F5F5",
   "text": {
-    "primary": "#2E3A47",
-    "secondary": "#666666",
+    "primary": "#1a202c",
+    "secondary": "#4a5568",
     "light": "#FFFFFF"
   },
   "gradients": {
-    "primary": "linear-gradient(135deg, #0B5FA5 0%, #1FA7A1 100%)",
-    "secondary": "linear-gradient(135deg, #1FA7A1 0%, #0B5FA5 100%)",
-    "globe": "linear-gradient(135deg, #87CEEB 0%, #0066CC 100%)"
+    "primary": "linear-gradient(135deg, #1a365d 0%, #2d5a87 100%)",
+    "secondary": "linear-gradient(135deg, #2d5a87 0%, #1a365d 100%)",
+    "globe": "linear-gradient(135deg, #2d5a87 0%, #1a365d 100%)"
   },
   "globe": {
     "land": "#D4A574",
-    "ocean": "#87CEEB",
-    "grid": "#1FA7A1"
+    "ocean": "#2d5a87",
+    "grid": "#1a365d"
   }
 }

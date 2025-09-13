@@ -6,29 +6,30 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    vue(),
-    vueDevTools(),
-  ],
+  base: '/geoquantum-lp/',
+  plugins: [vue(), vueDevTools()],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
 
   build: {
+    chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['vue', 'vue-router', 'pinia'],
           vuetify: ['vuetify'],
-          leaflet: ['leaflet']
-        }
-      }
-    }
+          leaflet: ['leaflet'],
+        },
+      },
+    },
+    target: 'es2015',
   },
   server: {
     host: true,
-    port: 3000
-  }
+    port: 3000,
+  },
+  publicDir: 'public',
 })

@@ -363,7 +363,100 @@ const goToContact = () => {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 599.98px) {
+  .service-card {
+    padding: 16px;
+    height: 240px;
+    margin-bottom: 1rem;
+  }
+
+  .service-icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .service-icon i {
+    font-size: 20px;
+  }
+
+  .service-title {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .service-description {
+    font-size: 0.875rem;
+    line-height: 1.4;
+    -webkit-line-clamp: 3;
+  }
+
+  .service-number {
+    font-size: 1.75rem;
+  }
+
+  .service-modal {
+    margin: 16px;
+    max-height: calc(100vh - 32px);
+    border-radius: 16px;
+    width: calc(100% - 32px);
+  }
+
+  .modal-header,
+  .modal-content,
+  .modal-footer {
+    padding: 16px;
+  }
+
+  .modal-header h2 {
+    font-size: 1.25rem;
+    line-height: 1.2;
+  }
+
+  .service-number-large {
+    font-size: 3rem;
+    margin-bottom: 16px;
+  }
+
+  .modal-description {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .modal-features h4 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+
+  .modal-features li {
+    font-size: 0.875rem;
+    padding: 6px 0;
+    padding-left: 16px;
+  }
+
+  .contact-btn {
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    width: 100%;
+    justify-content: center;
+    height: 48px;
+  }
+
+  .contact-btn i {
+    font-size: 16px;
+  }
+
+  .card-header {
+    margin-bottom: 12px;
+  }
+
+  .service-content {
+    gap: 8px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 959.98px) {
   .service-card {
     padding: 20px;
     height: 260px;
@@ -395,6 +488,57 @@ const goToContact = () => {
   .modal-content,
   .modal-footer {
     padding: 20px;
+  }
+}
+
+@media (min-width: 960px) {
+  .service-card {
+    padding: 24px;
+    height: 280px;
+  }
+
+  .service-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .service-icon i {
+    font-size: 28px;
+  }
+
+  .service-title {
+    font-size: 1.25rem;
+  }
+
+  .service-number {
+    font-size: 2.5rem;
+  }
+
+  .service-modal {
+    margin: 20px;
+    max-height: 90vh;
+  }
+
+  .modal-header,
+  .modal-content,
+  .modal-footer {
+    padding: 24px;
+  }
+}
+
+/* Melhorias para Touch */
+@media (hover: none) and (pointer: coarse) {
+  .service-card:hover {
+    transform: none;
+  }
+
+  .service-card:hover .service-icon {
+    transform: none;
+  }
+
+  .service-card:hover .service-overlay {
+    opacity: 0;
+    transform: translateY(100%);
   }
 }
 </style>

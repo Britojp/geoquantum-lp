@@ -94,44 +94,33 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section py-16 bg-gradient-primary">
-      <v-container>
-        <v-row class="text-center">
-          <v-col cols="12" md="8" class="mx-auto">
-            <h2 class="text-h3 font-weight-bold text-white mb-4">
-              Pronto para Conhecer Nossos Serviços?
-            </h2>
-            <p class="text-h6 text-grey-lighten-2 mb-6">
-              Entre em contato conosco e descubra como podemos ajudar você a transformar seus dados
-              geoespaciais em insights valiosos.
-            </p>
-            <div class="d-flex flex-column flex-sm-row gap-6 justify-center">
-              <v-btn
-                color="accent"
-                size="large"
-                variant="elevated"
-                to="/contato"
-                class="text-dark font-weight-bold"
-              >
-                <v-icon start>mdi-phone</v-icon>
-                Solicitar Orçamento
-              </v-btn>
-
-              <v-btn size="large" variant="outlined" to="/servicos" class="text-white border-white">
-                <v-icon start>mdi-cog</v-icon>
-                Nossos Serviços
-              </v-btn>
-            </div>
-          </v-col>
-        </v-row>
-      </v-container>
-    </section>
+    <CtaSection
+      :title="'Pronto para Conhecer Nossos Serviços?'"
+      :subtitle="'Entre em contato e descubra como podemos ajudar você a transformar seus dados geoespaciais em insights valiosos.'"
+      :stats="[
+        { number: '24h', label: 'Resposta Rápida' },
+        { number: '100%', label: 'Satisfação' },
+        { number: '10+', label: 'Anos de Experiência' },
+      ]"
+      :primary="{
+        to: '/contato',
+        label: 'Solicitar Orçamento',
+        icon: 'mdi-phone',
+        color: 'accent',
+      }"
+      :secondary="{ to: '/servicos', label: 'Nossos Serviços', icon: 'mdi-cog' }"
+      :contactChips="[
+        { icon: 'mdi-email', text: 'contato@geoquantum.com' },
+        { icon: 'mdi-phone', text: '+55 (11) 99999-9999' },
+      ]"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import L from 'leaflet'
+import CtaSection from '../components/CtaSection.vue'
 
 const mapContainer = ref<HTMLElement>()
 let map: L.Map | null = null

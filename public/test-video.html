@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Vídeo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .video-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        video {
+            width: 100%;
+            height: auto;
+            border: 2px solid #333;
+        }
+        .info {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f0f0f0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Teste de Vídeo - GeoQuantum</h1>
+    
+    <div class="video-container">
+        <h2>Vídeo de Fundo</h2>
+        <video 
+            autoplay 
+            muted 
+            loop 
+            playsinline 
+            controls
+            preload="auto"
+            onerror="handleError(event)"
+            onloadeddata="handleLoaded()"
+            oncanplay="handleCanPlay()"
+            onplaying="handlePlaying()"
+        >
+            <source src="/videos/video-background.mp4" type="video/mp4">
+            Seu navegador não suporta vídeos.
+        </video>
+        
+        <div class="info">
+            <h3>Status do Vídeo:</h3>
+            <p id="status">Carregando...</p>
+            <p id="error"></p>
+        </div>
+    </div>
+
+    <script>
+        const video = document.querySelector('video');
+        const status = document.getElementById('status');
+        const error = document.getElementById('error');
+
+        function handleLoaded() {
+            status.textContent = '✅ Vídeo carregou dados com sucesso';
+            console.log('Vídeo carregou dados');
+        }
+
+        function handleCanPlay() {
+            status.textContent = '✅ Vídeo pode ser reproduzido';
+            console.log('Vídeo pode ser reproduzido');
+        }
+
+        function handlePlaying() {
+            status.textContent = '✅ Vídeo está reproduzindo';
+            console.log('Vídeo está reproduzindo');
+        }
+
+        function handleError(event) {
+            status.textContent = '❌ Erro no vídeo';
+            error.textContent = 'Detalhes do erro: ' + JSON.stringify(event);
+            console.error('Erro no vídeo:', event);
+        }
+
+        // Verificar se o vídeo está funcionando
+        video.addEventListener('loadstart', () => {
+            status.textContent = '🔄 Vídeo começou a carregar...';
+        });
+
+        video.addEventListener('progress', () => {
+            status.textContent = '🔄 Vídeo carregando...';
+        });
+
+        // Tentar reproduzir automaticamente
+        video.play().then(() => {
+            console.log('Vídeo iniciado automaticamente');
+        }).catch(err => {
+            console.error('Erro ao iniciar vídeo:', err);
+            error.textContent = 'Erro ao iniciar: ' + err.message;
+        });
+    </script>
+</body>
+</html> 

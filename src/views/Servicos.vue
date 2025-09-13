@@ -208,18 +208,26 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section">
-      <div class="container">
-        <div class="cta-content">
-          <h2>Pronto para Transformar seus Dados?</h2>
-          <p>Entre em contato e descubra como podemos ajudar seu projeto</p>
-          <router-link to="/contato" class="cta-button">
-            Solicitar Orçamento
-            <i class="mdi mdi-arrow-right"></i>
-          </router-link>
-        </div>
-      </div>
-    </section>
+    <CtaSection
+      :title="'Pronto para Transformar seus Dados?'"
+      :subtitle="'Entre em contato e descubra como podemos ajudar seu projeto'"
+      :stats="[
+        { number: '24h', label: 'Resposta Rápida' },
+        { number: '100%', label: 'Satisfação' },
+        { number: '10+', label: 'Anos de Experiência' },
+      ]"
+      :primary="{
+        to: '/contato',
+        label: 'Solicitar Orçamento',
+        icon: 'mdi-phone',
+        color: 'accent',
+      }"
+      :secondary="{ to: '/servicos', label: 'Nossos Serviços', icon: 'mdi-cog' }"
+      :contactChips="[
+        { icon: 'mdi-email', text: 'contato@geoquantum.com' },
+        { icon: 'mdi-phone', text: '+55 (11) 99999-9999' },
+      ]"
+    />
   </div>
 </template>
 
@@ -227,6 +235,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import L from 'leaflet'
 import ServiceCard from '@/components/ServiceCard.vue'
+import CtaSection from '../components/CtaSection.vue'
 
 interface Service {
   id: number

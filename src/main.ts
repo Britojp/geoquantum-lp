@@ -16,6 +16,7 @@ import 'leaflet/dist/leaflet.css'
 
 // Estilos responsivos
 import './assets/styles/responsive.scss'
+import './assets/styles/animations.scss'
 
 // Diretivas responsivas
 import { registerResponsiveDirectives } from './directives/responsive'
@@ -28,7 +29,7 @@ const vuetify = createVuetify({
     themes: {
       light: {
         colors: {
-          primary: '#0B5FA5',
+          primary: '#1a365d',
           secondary: '#1FA7A1',
           accent: '#D4A574',
           dark: '#2E3A47',

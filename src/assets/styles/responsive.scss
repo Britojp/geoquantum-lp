@@ -306,3 +306,306 @@
     line-height: 1.7;
   }
 }
+
+/* Classes Específicas para Página Home */
+.home-responsive {
+  /* Mobile First */
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+@media (min-width: 600px) {
+  .home-responsive {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+}
+
+@media (min-width: 960px) {
+  .home-responsive {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+}
+
+/* Breakpoints Específicos para Home */
+@media (max-width: 599.98px) {
+  .home-mobile {
+    padding: 1rem;
+    margin: 0.5rem 0;
+  }
+  
+  .home-mobile-text {
+    font-size: 0.875rem;
+    line-height: 1.3;
+  }
+  
+  .home-mobile-title {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 959.98px) {
+  .home-tablet {
+    padding: 1.5rem;
+    margin: 1rem 0;
+  }
+  
+  .home-tablet-text {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+  
+  .home-tablet-title {
+    font-size: 2rem;
+    line-height: 1.3;
+  }
+}
+
+@media (min-width: 960px) {
+  .home-desktop {
+    padding: 2rem;
+    margin: 1.5rem 0;
+  }
+  
+  .home-desktop-text {
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+  
+  .home-desktop-title {
+    font-size: 2.5rem;
+    line-height: 1.4;
+  }
+}
+
+/* Classes de Layout Responsivo para Home */
+.home-grid-mobile {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.home-grid-tablet {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.home-grid-desktop {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 599.98px) {
+  .home-grid-tablet,
+  .home-grid-desktop {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 959.98px) {
+  .home-grid-mobile,
+  .home-grid-desktop {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 960px) {
+  .home-grid-mobile,
+  .home-grid-tablet {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Classes de Espaçamento Responsivo para Home */
+.home-spacing-xs {
+  padding: 0.5rem;
+  margin: 0.25rem 0;
+}
+
+.home-spacing-sm {
+  padding: 1rem;
+  margin: 0.5rem 0;
+}
+
+.home-spacing-md {
+  padding: 1.5rem;
+  margin: 1rem 0;
+}
+
+.home-spacing-lg {
+  padding: 2rem;
+  margin: 1.5rem 0;
+}
+
+.home-spacing-xl {
+  padding: 3rem;
+  margin: 2rem 0;
+}
+
+@media (max-width: 599.98px) {
+  .home-spacing-sm,
+  .home-spacing-md,
+  .home-spacing-lg,
+  .home-spacing-xl {
+    padding: 1rem;
+    margin: 0.5rem 0;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 959.98px) {
+  .home-spacing-xs,
+  .home-spacing-sm {
+    padding: 1.5rem;
+    margin: 1rem 0;
+  }
+  
+  .home-spacing-lg,
+  .home-spacing-xl {
+    padding: 2rem;
+    margin: 1.5rem 0;
+  }
+}
+
+@media (min-width: 960px) {
+  .home-spacing-xs,
+  .home-spacing-sm {
+    padding: 2rem;
+    margin: 1.5rem 0;
+  }
+  
+  .home-spacing-md {
+    padding: 2.5rem;
+    margin: 2rem 0;
+  }
+  
+  .home-spacing-lg {
+    padding: 3rem;
+    margin: 2.5rem 0;
+  }
+  
+  .home-spacing-xl {
+    padding: 4rem;
+    margin: 3rem 0;
+  }
+}
+
+/* Estilos Específicos para Mobile */
+@media (max-width: 599.98px) {
+  /* Melhorias para touch */
+  .touch-optimized {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Melhorias para botões */
+  .mobile-btn {
+    min-height: 48px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 8px;
+    width: 100%;
+  }
+
+  /* Melhorias para cards */
+  .mobile-card {
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    transition: all 0.2s ease;
+  }
+
+  .mobile-card:active {
+    transform: scale(0.98);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Melhorias para tipografia */
+  .mobile-title {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  .mobile-subtitle {
+    font-size: 1.25rem;
+    line-height: 1.3;
+    font-weight: 600;
+  }
+
+  .mobile-text {
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+
+  .mobile-caption {
+    font-size: 0.75rem;
+    line-height: 1.3;
+  }
+
+  /* Melhorias para espaçamento */
+  .mobile-padding {
+    padding: 1rem;
+  }
+
+  .mobile-margin {
+    margin: 0.75rem 0;
+  }
+
+  .mobile-gap {
+    gap: 0.75rem;
+  }
+
+  /* Melhorias para grid */
+  .mobile-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Melhorias para flexbox */
+  .mobile-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  /* Melhorias para navegação */
+  .mobile-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+  }
+
+  /* Melhorias para scroll */
+  .mobile-scroll {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Melhorias para acessibilidade */
+  .mobile-focus:focus {
+    outline: 2px solid #1a365d;
+    outline-offset: 2px;
+  }
+
+  /* Melhorias para performance */
+  .mobile-optimized {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+}

@@ -281,9 +281,7 @@ const contactChips = props.contactChips ?? [
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  background: rgba(255, 255, 255, 0.1);
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 6px 10px;
   border-radius: 999px;
   font-size: 0.85rem;

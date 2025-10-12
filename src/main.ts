@@ -14,7 +14,7 @@ import '@mdi/font/css/materialdesignicons.css'
 // Leaflet CSS
 import 'leaflet/dist/leaflet.css'
 
-// Estilos responsivos
+// Estilos responsivos e animações
 import './assets/styles/responsive.scss'
 import './assets/styles/animations.scss'
 

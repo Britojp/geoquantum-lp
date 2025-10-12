@@ -10,10 +10,36 @@
         <v-container>
           <v-row class="text-center">
             <v-col cols="12" md="8" class="mx-auto">
-              <h1 class="text-h2 text-h3-sm font-weight-bold text-white mb-4 text-shadow">Blog</h1>
-              <p class="text-h6 text-grey-lighten-2 mb-6">
-                Fique por dentro das últimas novidades em geoprocessamento e tecnologia geoespacial.
+              <div class="hero-badge mb-4">
+                <i class="mdi mdi-newspaper-variant-outline"></i>
+                <span>Blog & Insights</span>
+              </div>
+              <h1
+                class="text-h2 text-h3-sm font-weight-bold text-white mb-4 text-shadow animate-fade-in-down"
+              >
+                Conhecimento em Geoprocessamento
+              </h1>
+              <p class="text-h6 text-grey-lighten-2 mb-6 animate-fade-in-up animate-delay-300">
+                Artigos, tutoriais e insights sobre tecnologias geoespaciais, análise de dados e
+                tendências do setor
               </p>
+              <div class="hero-stats animate-fade-in-up animate-delay-600">
+                <div class="stat-item">
+                  <i class="mdi mdi-post"></i>
+                  <span class="stat-number">{{ posts.length }}+</span>
+                  <span class="stat-label">Artigos</span>
+                </div>
+                <div class="stat-item">
+                  <i class="mdi mdi-account-group"></i>
+                  <span class="stat-number">{{ uniqueAuthors }}</span>
+                  <span class="stat-label">Autores</span>
+                </div>
+                <div class="stat-item">
+                  <i class="mdi mdi-tag-multiple"></i>
+                  <span class="stat-number">{{ tags.length }}</span>
+                  <span class="stat-label">Categorias</span>
+                </div>
+              </div>
             </v-col>
           </v-row>
         </v-container>
@@ -286,7 +312,12 @@
     </section>
 
     <!-- Modal de Leitura do Post -->
-    <v-dialog v-model="showPostModal" max-width="1000" @click:outside="closePostModal">
+    <v-dialog
+      v-model="showPostModal"
+      max-width="1000"
+      @click:outside="closePostModal"
+      :z-index="2000"
+    >
       <v-card v-if="selectedPost" class="post-modal" @click.stop>
         <!-- Header do Modal -->
         <div class="modal-header">
@@ -707,6 +738,11 @@ const totalPages = computed(() => {
   return Math.ceil(filteredPosts.value.length / 6)
 })
 
+const uniqueAuthors = computed(() => {
+  const authors = new Set(posts.map((post) => post.author.name))
+  return authors.size
+})
+
 const emailRules = [
   (v: string) => !!v || 'E-mail é obrigatório',
   (v: string) => /.+@.+\..+/.test(v) || 'E-mail deve ser válido',
@@ -956,21 +992,141 @@ const formatDate = (dateString: string) => {
   background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
 }
 
+.hero-section {
+  position: relative;
+  height: 60vh;
+  min-height: 450px;
+  overflow: hidden;
+}
+
+.map-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(26, 54, 93, 0.88) 0%, rgba(45, 90, 135, 0.88) 100%);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  padding: 2rem 0;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 10px 24px;
+  border-radius: 30px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.hero-badge i {
+  font-size: 20px;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 20px 30px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stat-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.stat-item i {
+  font-size: 28px;
+  color: white;
+}
+
+.stat-number {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
 .featured-post-card,
 .post-card {
-  border-radius: 12px;
+  border-radius: 20px;
   overflow: hidden;
-  transition: all 0.3s ease;
-  background: #ffffff;
-  border: 1px solid rgba(26, 54, 93, 0.1);
-  box-shadow: 0 4px 20px rgba(26, 54, 93, 0.08);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid rgba(26, 54, 93, 0.08);
+  box-shadow:
+    0 4px 20px rgba(26, 54, 93, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.featured-post-card::before,
+.post-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #1a365d 0%, #2d5a87 50%, #1fa7a1 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+}
+
+.featured-post-card:hover::before,
+.post-card:hover::before {
+  transform: scaleX(1);
 }
 
 .featured-post-card:hover,
 .post-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(26, 54, 93, 0.3);
-  box-shadow: 0 20px 40px rgba(26, 54, 93, 0.15);
+  transform: translateY(-12px) scale(1.02);
+  border-color: rgba(26, 54, 93, 0.2);
+  box-shadow:
+    0 20px 40px rgba(26, 54, 93, 0.15),
+    0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .post-image {

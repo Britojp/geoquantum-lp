@@ -5,15 +5,26 @@
       <!-- Mapa Interativo -->
       <div ref="mapContainer" class="map-container"></div>
 
+      <!-- Elementos Flutuantes Animados -->
+      <div class="floating-elements">
+        <div class="floating-circle circle-1 animate-float"></div>
+        <div class="floating-circle circle-2 animate-float" style="animation-delay: 2s"></div>
+        <div class="floating-circle circle-3 animate-float" style="animation-delay: 4s"></div>
+      </div>
+
       <!-- Overlay com Filtro Azul e Conteúdo -->
       <div class="hero-overlay">
         <v-container>
           <v-row class="text-center">
             <v-col cols="12" md="8" class="mx-auto">
-              <h1 class="text-h2 text-h3-sm font-weight-bold text-white mb-4 text-shadow">
+              <h1
+                class="hero-title text-h2 text-h3-sm font-weight-bold text-white mb-4 text-shadow animate-fade-in-down"
+              >
                 Nossos Serviços
               </h1>
-              <p class="text-h6 text-grey-lighten-2 mb-6">
+              <p
+                class="hero-subtitle text-h6 text-grey-lighten-2 mb-6 animate-fade-in-up animate-delay-300"
+              >
                 Soluções completas em geoprocessamento e análise geoespacial para diversos setores e
                 aplicações.
               </p>
@@ -23,189 +34,46 @@
       </div>
     </section>
 
+    <!-- Como Trabalhamos -->
+    <WorkflowSection :steps="workflowSteps" />
+
     <!-- Serviços Principais -->
     <section class="services-section">
-      <div class="container">
-        <div class="section-header">
-          <h2>Serviços Especializados</h2>
-          <p>Oferecemos soluções completas em geoprocessamento e análise espacial</p>
-        </div>
-
-        <div class="services-grid">
-          <ServiceCard v-for="service in services" :key="service.id" :service="service" />
-        </div>
-      </div>
-    </section>
-
-    <!-- Como Trabalhamos -->
-    <section class="workflow-section py-16">
-      <v-container>
-        <div class="text-center mb-12">
-          <h2 class="text-h3 font-weight-bold text-primary mb-4">Como Trabalhamos</h2>
-          <p class="text-h6 text-grey-darken-1 max-width-600 mx-auto">
-            Metodologia comprovada para entregar resultados excepcionais em geoprocessamento
+      <v-container class="mobile-padding">
+        <div class="text-center mb-12 mb-sm-8 mb-md-12 scroll-reveal" data-animation="fade-in-up">
+          <h2 class="text-h3 text-h4-sm text-h3-md font-weight-bold text-primary mb-4 mobile-title">
+            Serviços Especializados
+          </h2>
+          <p
+            class="text-h6 text-body-1-sm text-h6-md text-grey-darken-1 max-width-600 mx-auto mobile-text"
+          >
+            Oferecemos soluções completas em geoprocessamento e análise espacial para diversos
+            setores e aplicações.
           </p>
         </div>
 
-        <!-- Timeline Horizontal -->
-        <div class="timeline-container">
-          <div class="timeline-line"></div>
-
-          <!-- Passo 1: Análise de Requisitos -->
-          <div class="timeline-step">
-            <div class="step-number">1</div>
-            <div class="step-title">Análise de Requisitos</div>
-            <div class="step-description">Definir escopo e objetivos</div>
-            <div class="step-content">
-              <div class="step-icon">
-                <i class="mdi mdi-clipboard-text"></i>
-              </div>
-              <p class="step-details">
-                Compreendemos suas necessidades específicas, analisamos os objetivos do projeto,
-                definimos o escopo detalhado e estabelecemos os critérios de sucesso para garantir
-                que a solução atenda exatamente às suas expectativas.
-              </p>
-            </div>
-          </div>
-
-          <!-- Passo 2: Planejamento -->
-          <div class="timeline-step">
-            <div class="step-number">2</div>
-            <div class="step-title">Planejamento</div>
-            <div class="step-description">Estratégia e cronograma</div>
-            <div class="step-content">
-              <div class="step-icon">
-                <i class="mdi mdi-chart-timeline-variant"></i>
-              </div>
-              <p class="step-details">
-                Desenvolvemos uma estratégia completa com cronograma detalhado, alocação de
-                recursos, definição de marcos importantes e plano de execução para garantir que o
-                projeto seja entregue no prazo e dentro do orçamento estabelecido.
-              </p>
-            </div>
-          </div>
-
-          <!-- Passo 3: Coleta de Dados -->
-          <div class="timeline-step">
-            <div class="step-number">3</div>
-            <div class="step-title">Coleta de Dados</div>
-            <div class="step-description">Organizar dados geoespaciais</div>
-            <div class="step-content">
-              <div class="step-icon">
-                <i class="mdi mdi-database"></i>
-              </div>
-              <p class="step-details">
-                Gerenciamos e organizamos dados geoespaciais de múltiplas fontes, incluindo imagens
-                de satélite, dados cartográficos, informações cadastrais e levantamentos de campo,
-                garantindo qualidade e consistência para o processamento posterior.
-              </p>
-            </div>
-          </div>
-
-          <!-- Passo 4: Processamento -->
-          <div class="timeline-step">
-            <div class="step-number">4</div>
-            <div class="step-title">Processamento</div>
-            <div class="step-description">Análise e geoprocessamento</div>
-            <div class="step-content">
-              <div class="step-icon">
-                <i class="mdi mdi-cog"></i>
-              </div>
-              <p class="step-details">
-                Aplicamos técnicas avançadas de geoprocessamento, análise espacial e modelagem
-                geoespacial utilizando as melhores ferramentas do mercado para transformar dados
-                brutos em informações valiosas e insights acionáveis para sua tomada de decisão.
-              </p>
-            </div>
-          </div>
-
-          <!-- Passo 5: Entrega -->
-          <div class="timeline-step">
-            <div class="step-number">5</div>
-            <div class="step-title">Entrega</div>
-            <div class="step-description">Resultados e documentação</div>
-            <div class="step-content">
-              <div class="step-icon">
-                <i class="mdi mdi-check-circle"></i>
-              </div>
-              <p class="step-details">
-                Entregamos resultados finais com documentação técnica completa, relatórios
-                detalhados, mapas temáticos, arquivos digitais e suporte pós-entrega para garantir
-                que você possa utilizar efetivamente todas as soluções desenvolvidas.
-              </p>
-            </div>
-          </div>
-        </div>
+        <v-row class="mobile-grid">
+          <v-col
+            v-for="(service, index) in services"
+            :key="service.id"
+            cols="12"
+            sm="6"
+            lg="4"
+            class="mb-6 mb-sm-4 mb-md-6 d-flex scroll-reveal"
+            :data-animation="'scale-in'"
+            :data-delay="index * 100"
+          >
+            <ServiceCard :service="service" class="flex-grow-1 mobile-card touch-optimized" />
+          </v-col>
+        </v-row>
       </v-container>
     </section>
 
-    <!-- Tecnologias Utilizadas -->
-    <section class="technologies-section">
-      <div class="container">
-        <div class="section-header">
-          <h2>Tecnologias e Ferramentas</h2>
-          <p>Utilizamos as melhores tecnologias do mercado para garantir qualidade e precisão</p>
-        </div>
-
-        <div class="technologies-grid">
-          <div class="tech-item" v-for="tech in technologies" :key="tech.name">
-            <div class="tech-icon">
-              <i :class="tech.icon"></i>
-            </div>
-            <h4>{{ tech.name }}</h4>
-            <p>{{ tech.description }}</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Setores de Atuação -->
-    <section class="sectors-section">
-      <div class="container">
-        <div class="section-header">
-          <h2>Setores de Atuação</h2>
-          <p>Atendemos diversos setores com soluções personalizadas</p>
-        </div>
-
-        <div class="sectors-grid">
-          <div class="sector-card" v-for="sector in sectors" :key="sector.name">
-            <div class="sector-icon">
-              <i :class="sector.icon"></i>
-            </div>
-            <h4>{{ sector.name }}</h4>
-            <p>{{ sector.description }}</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <SectorsSection :sectors="sectors" />
 
     <!-- Casos de Sucesso -->
-    <section class="success-cases-section">
-      <div class="container">
-        <div class="section-header">
-          <h2>Casos de Sucesso</h2>
-          <p>Projetos que demonstram nossa expertise e resultados</p>
-        </div>
-
-        <div class="cases-grid">
-          <div class="case-card" v-for="successCase in successCases" :key="successCase.title">
-            <div class="case-image">
-              <i :class="successCase.icon"></i>
-            </div>
-            <div class="case-content">
-              <h4>{{ successCase.title }}</h4>
-              <p>{{ successCase.description }}</p>
-              <div class="case-results">
-                <span class="result-item">
-                  <i class="mdi mdi-check-circle"></i>
-                  {{ successCase.results }}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <SuccessCasesSection :success-cases="successCases" />
 
     <!-- CTA Section -->
     <CtaSection
@@ -236,6 +104,12 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import L from 'leaflet'
 import ServiceCard from '@/components/ServiceCard.vue'
 import CtaSection from '../components/CtaSection.vue'
+import StatsSection from '@/components/StatsSection.vue'
+import TechnologiesSection from '@/components/TechnologiesSection.vue'
+import SectorsSection from '@/components/SectorsSection.vue'
+import SuccessCasesSection from '@/components/SuccessCasesSection.vue'
+import WorkflowSection from '@/components/WorkflowSection.vue'
+import { useScrollAnimations, animationUtils } from '@/composables/useAnimations'
 
 interface Service {
   id: number
@@ -243,6 +117,8 @@ interface Service {
   description: string
   fullDescription: string
   features?: string[]
+  image?: string
+  icon?: string
 }
 
 const services = ref<Service[]>([
@@ -260,6 +136,9 @@ const services = ref<Service[]>([
       'Sensoriamento remoto',
       'Estimativa de área e produtividade',
     ],
+    image:
+      'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=600&fit=crop&crop=center',
+    icon: 'mdi-map-marker-outline',
   },
   {
     id: 2,
@@ -275,6 +154,9 @@ const services = ref<Service[]>([
       'Análise de ocupação do solo',
       'Organização do espaço geográfico',
     ],
+    image:
+      'https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=800&h=600&fit=crop&crop=center',
+    icon: 'mdi-earth',
   },
   {
     id: 3,
@@ -289,6 +171,9 @@ const services = ref<Service[]>([
       'Processos repetitivos',
       'Redução de erros',
     ],
+    image:
+      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center',
+    icon: 'mdi-cog-outline',
   },
   {
     id: 4,
@@ -304,6 +189,9 @@ const services = ref<Service[]>([
       'Manipulação de arquivos',
       'Flexibilidade de desenvolvimento',
     ],
+    image:
+      'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&h=600&fit=crop&crop=center',
+    icon: 'mdi-language-python',
   },
   {
     id: 5,
@@ -319,6 +207,9 @@ const services = ref<Service[]>([
       'Formação contínua',
       'Desenvolvimento de habilidades',
     ],
+    image:
+      'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop&crop=center',
+    icon: 'mdi-school-outline',
   },
   {
     id: 6,
@@ -333,6 +224,9 @@ const services = ref<Service[]>([
       'Operações geoespaciais',
       'Automação de processos',
     ],
+    image:
+      'https://images.unsplash.com/photo-1473773508845-188df298d2d1?w=800&h=600&fit=crop&crop=center',
+    icon: 'mdi-vector-polygon',
   },
   {
     id: 7,
@@ -347,6 +241,9 @@ const services = ref<Service[]>([
       'Análise de mercado',
       'Tomada de decisão',
     ],
+    image:
+      'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop&crop=center',
+    icon: 'mdi-chart-line',
   },
   {
     id: 8,
@@ -361,29 +258,47 @@ const services = ref<Service[]>([
       'Sustentabilidade',
       'Compliance ambiental',
     ],
+    image:
+      'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop&crop=center',
+    icon: 'mdi-leaf-outline',
   },
 ])
 
-const workProcess = ref([
+const workflowSteps = ref([
   {
     title: 'Análise de Requisitos',
-    description: 'Entendemos suas necessidades e objetivos para definir a melhor abordagem',
+    description: 'Definir escopo e objetivos',
+    icon: 'mdi mdi-clipboard-text',
+    details:
+      'Compreendemos suas necessidades específicas, analisamos os objetivos do projeto, definimos o escopo detalhado e estabelecemos os critérios de sucesso para garantir que a solução atenda exatamente às suas expectativas.',
   },
   {
-    title: 'Planejamento e Estratégia',
-    description: 'Desenvolvemos um plano detalhado com cronograma e recursos necessários',
+    title: 'Planejamento',
+    description: 'Estratégia e cronograma',
+    icon: 'mdi mdi-chart-timeline-variant',
+    details:
+      'Desenvolvemos uma estratégia completa com cronograma detalhado, alocação de recursos, definição de marcos importantes e plano de execução para garantir que o projeto seja entregue no prazo e dentro do orçamento estabelecido.',
   },
   {
-    title: 'Execução e Desenvolvimento',
-    description: 'Implementamos a solução com as melhores práticas e tecnologias',
+    title: 'Coleta de Dados',
+    description: 'Organizar dados geoespaciais',
+    icon: 'mdi mdi-database',
+    details:
+      'Gerenciamos e organizamos dados geoespaciais de múltiplas fontes, incluindo imagens de satélite, dados cartográficos, informações cadastrais e levantamentos de campo, garantindo qualidade e consistência para o processamento posterior.',
   },
   {
-    title: 'Testes e Validação',
-    description: 'Garantimos a qualidade e precisão dos resultados obtidos',
+    title: 'Processamento',
+    description: 'Análise e geoprocessamento',
+    icon: 'mdi mdi-cog',
+    details:
+      'Aplicamos técnicas avançadas de geoprocessamento, análise espacial e modelagem geoespacial utilizando as melhores ferramentas do mercado para transformar dados brutos em informações valiosas e insights acionáveis para sua tomada de decisão.',
   },
   {
-    title: 'Entrega e Suporte',
-    description: 'Entregamos o projeto e oferecemos suporte contínuo',
+    title: 'Entrega',
+    description: 'Resultados e documentação',
+    icon: 'mdi mdi-check-circle',
+    details:
+      'Entregamos resultados finais com documentação técnica completa, relatórios detalhados, mapas temáticos, arquivos digitais e suporte pós-entrega para garantir que você possa utilizar efetivamente todas as soluções desenvolvidas.',
   },
 ])
 
@@ -391,32 +306,32 @@ const technologies = ref([
   {
     name: 'QGIS',
     icon: 'mdi mdi-map',
-    description: 'Sistema de Informação Geográfica de código aberto',
+    description: 'SIG de código aberto',
   },
   {
     name: 'Python',
     icon: 'mdi mdi-language-python',
-    description: 'Linguagem de programação para automação e análise',
+    description: 'Automação e análise',
   },
   {
-    name: 'PostgreSQL/PostGIS',
+    name: 'PostgreSQL',
     icon: 'mdi mdi-database',
-    description: 'Banco de dados espacial robusto e confiável',
+    description: 'Banco espacial',
   },
   {
-    name: 'Leaflet/OpenLayers',
+    name: 'Leaflet',
     icon: 'mdi mdi-web',
-    description: 'Bibliotecas para visualização de mapas web',
+    description: 'Mapas web',
   },
   {
     name: 'GDAL/OGR',
     icon: 'mdi mdi-file-multiple',
-    description: 'Bibliotecas para processamento de dados geoespaciais',
+    description: 'Processamento',
   },
   {
     name: 'R',
     icon: 'mdi mdi-chart-line',
-    description: 'Linguagem para análise estatística e visualização',
+    description: 'Análise estatística',
   },
 ])
 
@@ -425,31 +340,49 @@ const sectors = ref([
     name: 'Agricultura',
     icon: 'mdi mdi-sprout',
     description: 'Mapeamento agrícola, análise de produtividade e gestão de talhões',
+    image:
+      'https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&h=600&fit=crop&crop=center',
+    projects: '150+',
   },
   {
     name: 'Meio Ambiente',
     icon: 'mdi mdi-leaf',
     description: 'Projetos ambientais, análise de cobertura vegetal e impactos',
+    image:
+      'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&h=600&fit=crop&crop=center',
+    projects: '80+',
   },
   {
     name: 'Mineração',
     icon: 'mdi mdi-pickaxe',
     description: 'Análise de áreas de mineração e gestão de recursos',
+    image:
+      'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop&crop=center',
+    projects: '45+',
   },
   {
     name: 'Urbanismo',
     icon: 'mdi mdi-city',
     description: 'Planejamento urbano, análise de uso do solo e infraestrutura',
+    image:
+      'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&h=600&fit=crop&crop=center',
+    projects: '120+',
   },
   {
     name: 'Logística',
     icon: 'mdi mdi-truck-delivery',
     description: 'Otimização de rotas e análise de localização',
+    image:
+      'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop&crop=center',
+    projects: '60+',
   },
   {
     name: 'Energia',
     icon: 'mdi mdi-lightning-bolt',
     description: 'Análise de recursos energéticos e infraestrutura',
+    image:
+      'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&h=600&fit=crop&crop=center',
+    projects: '35+',
   },
 ])
 
@@ -457,27 +390,73 @@ const successCases = ref([
   {
     title: 'Mapeamento Agrícola - Goiás',
     description: 'Levantamento completo de 50.000 hectares para análise de produtividade',
-    icon: 'mdi mdi-map-marker-multiple',
+    image:
+      'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&h=600&fit=crop&crop=center',
     results: 'Aumento de 25% na eficiência de gestão',
+    icon: 'mdi-sprout',
+    category: 'Agricultura',
   },
   {
     title: 'Automação QGIS - Empresa de Mineração',
     description: 'Desenvolvimento de fluxos automatizados para análise de dados geoespaciais',
-    icon: 'mdi mdi-cog',
+    image:
+      'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=800&h=600&fit=crop&crop=center',
     results: 'Redução de 80% no tempo de processamento',
+    icon: 'mdi-pickaxe',
+    category: 'Mineração',
   },
   {
     title: 'Projeto Ambiental - Bacia Hidrográfica',
     description: 'Análise de cobertura vegetal e impactos ambientais em área de 100.000 hectares',
-    icon: 'mdi mdi-leaf',
+    image:
+      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&crop=center',
     results: 'Identificação de 15 áreas prioritárias para conservação',
+    icon: 'mdi-leaf',
+    category: 'Meio Ambiente',
+  },
+  {
+    title: 'Planejamento Urbano - São Paulo',
+    description: 'Sistema de análise espacial para otimização de infraestrutura urbana',
+    image:
+      'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop&crop=center',
+    results: 'Otimização de 40% das rotas de transporte público',
+    icon: 'mdi-city',
+    category: 'Urbanismo',
+  },
+  {
+    title: 'Energia Renovável - Bahia',
+    description: 'Mapeamento de potencial eólico e solar para projetos de energia limpa',
+    image:
+      'https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=800&h=600&fit=crop&crop=center',
+    results: 'Identificação de 12 áreas de alto potencial',
+    icon: 'mdi-lightning-bolt',
+    category: 'Energia',
+  },
+  {
+    title: 'Análise de Logística - Minas Gerais',
+    description: 'Otimização de rotas de distribuição para rede varejista',
+    image:
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop&crop=center',
+    results: 'Redução de 35% nos custos de transporte',
+    icon: 'mdi-truck-delivery',
+    category: 'Logística',
   },
 ])
 
 const mapContainer = ref<HTMLElement>()
 let map: L.Map | null = null
 
+const { initScrollAnimations, addStaggeredAnimation } = useScrollAnimations()
+
 onMounted(() => {
+  // Inicializar animações de scroll
+  initScrollAnimations()
+
+  // Adicionar animação escalonada aos cards de serviço
+  setTimeout(() => {
+    addStaggeredAnimation('.service-card', 150)
+  }, 500)
+
   if (mapContainer.value) {
     // Inicializar mapa focado na região do Brasil
     map = L.map(mapContainer.value, {
@@ -606,6 +585,25 @@ onUnmounted(() => {
     map.remove()
     map = null
   }
+  window.removeEventListener('scroll', handleScroll)
+})
+
+// Controle de animações baseadas no scroll
+const handleScroll = () => {
+  const elements = document.querySelectorAll('.animate-on-scroll')
+  elements.forEach((element) => {
+    const elementTop = element.getBoundingClientRect().top
+    const elementVisible = 150
+
+    if (elementTop < window.innerHeight - elementVisible) {
+      element.classList.add('animate')
+    }
+  })
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+  handleScroll() // Executa uma vez para elementos já visíveis
 })
 </script>
 
@@ -646,6 +644,95 @@ onUnmounted(() => {
 
 .text-shadow {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Elementos flutuantes animados */
+.floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floating-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.circle-1 {
+  width: 120px;
+  height: 120px;
+  top: 15%;
+  right: 10%;
+  animation-duration: 8s;
+}
+
+.circle-2 {
+  width: 80px;
+  height: 80px;
+  bottom: 20%;
+  left: 15%;
+  animation-duration: 10s;
+}
+
+.circle-3 {
+  width: 60px;
+  height: 60px;
+  top: 40%;
+  left: 20%;
+  animation-duration: 12s;
+}
+
+/* Hero stats */
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.stat-item {
+  text-align: center;
+  color: white;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+  .hero-stats {
+    gap: 2rem;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+  }
+
+  .floating-circle {
+    display: none;
+  }
 }
 
 .hero-content {
@@ -730,16 +817,7 @@ onUnmounted(() => {
 
 /* Services Section */
 .services-section {
-  padding: 80px 0;
-  background: #f8f9fa;
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
-  align-items: stretch;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
 }
 
 /* Work Process Section */
@@ -819,209 +897,9 @@ onUnmounted(() => {
   flex: 1;
   display: -webkit-box;
   -webkit-line-clamp: 4;
+  line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
-}
-
-/* Technologies Section */
-.technologies-section {
-  padding: 80px 0;
-  background: #f8f9fa;
-}
-
-.technologies-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 30px;
-  margin-top: 40px;
-  align-items: stretch;
-  justify-items: center;
-}
-
-.tech-item {
-  text-align: center;
-  padding: 25px 15px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-  height: 200px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.tech-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(26, 54, 93, 0.15);
-}
-
-.tech-icon {
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, rgba(26, 54, 93, 0.1) 0%, rgba(45, 90, 135, 0.1) 100%);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  flex-shrink: 0;
-}
-
-.tech-icon i {
-  font-size: 28px;
-  color: #1a365d;
-}
-
-.tech-item h4 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #2e3a47;
-  margin: 0 0 10px 0;
-  flex-shrink: 0;
-}
-
-.tech-item p {
-  color: #6c757d;
-  font-size: 0.85rem;
-  line-height: 1.4;
-  margin: 0;
-  flex: 1;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* Sectors Section */
-.sectors-section {
-  padding: 80px 0;
-  background: white;
-}
-
-.sectors-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
-}
-
-.sector-card {
-  padding: 30px;
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  border-radius: 8px;
-  border: 1px solid rgba(11, 95, 165, 0.1);
-  transition: all 0.3s ease;
-}
-
-.sector-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(26, 54, 93, 0.3);
-  box-shadow: 0 15px 40px rgba(26, 54, 93, 0.1);
-}
-
-.sector-icon {
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.sector-icon i {
-  font-size: 28px;
-  color: white;
-}
-
-.sector-card h4 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #2e3a47;
-  margin-bottom: 12px;
-}
-
-.sector-card p {
-  color: #6c757d;
-  line-height: 1.6;
-}
-
-/* Success Cases Section */
-.success-cases-section {
-  padding: 80px 0;
-  background: #f8f9fa;
-}
-
-.cases-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
-}
-
-.case-card {
-  background: white;
-  border-radius: 8px;
-  padding: 30px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-}
-
-.case-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(26, 54, 93, 0.15);
-}
-
-.case-image {
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.case-image i {
-  font-size: 36px;
-  color: white;
-}
-
-.case-content h4 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #2e3a47;
-  margin-bottom: 12px;
-}
-
-.case-content p {
-  color: #6c757d;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.case-results {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.result-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #2d5a87;
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-.result-item i {
-  font-size: 16px;
 }
 
 /* CTA Section */
@@ -1081,117 +959,106 @@ onUnmounted(() => {
   transform: translateX(5px);
 }
 
-/* Timeline Horizontal */
-.timeline-container {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-top: 60px;
-  padding: 0 20px;
+/* Classes de Responsividade */
+.max-width-600 {
+  max-width: 600px;
 }
 
-.timeline-line {
-  position: absolute;
-  top: 40px;
-  left: 50px;
-  right: 50px;
-  height: 3px;
-  background: linear-gradient(90deg, #1a365d 0%, #2d5a87 100%);
-  z-index: 1;
+.mobile-padding {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
-.timeline-step {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  flex: 1;
-  max-width: 200px;
-  z-index: 2;
+@media (min-width: 600px) {
+  .mobile-padding {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 
-.step-number {
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 15px;
-  box-shadow: 0 8px 25px rgba(26, 54, 93, 0.3);
-  transition: all 0.3s ease;
+@media (min-width: 960px) {
+  .mobile-padding {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
 }
 
-.timeline-step:hover .step-number {
-  transform: scale(1.1);
-  box-shadow: 0 12px 35px rgba(26, 54, 93, 0.4);
-}
-
-.step-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #2e3a47;
-  margin-bottom: 15px;
-  line-height: 1.3;
-  text-align: center;
-}
-
-.step-description {
-  font-size: 0.85rem;
-  color: #6c757d;
-  margin-bottom: 15px;
-  text-align: center;
-  line-height: 1.3;
-}
-
-.step-content {
-  padding: 0 10px;
-}
-
-.step-icon {
-  width: 50px;
-  height: 50px;
-  background: rgba(11, 95, 165, 0.1);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  color: #0b5fa5;
-  font-size: 1.5rem;
-}
-
-.step-content p {
+.mobile-grid {
   margin: 0;
 }
 
-.step-details {
-  font-size: 0.85rem;
-  color: #6c757d;
-  margin-top: 15px;
-  line-height: 1.4;
-  text-align: center;
-  padding: 0 5px;
+.mobile-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.touch-optimized {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Animações */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-on-scroll.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* Responsive */
 @media (max-width: 1200px) {
-  .technologies-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    align-items: stretch;
-    justify-items: center;
-  }
-
   .tech-item {
     height: 180px;
-    width: 100%;
   }
 }
 
@@ -1208,112 +1075,8 @@ onUnmounted(() => {
     font-size: 2rem;
   }
 
-  .services-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .technologies-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    align-items: stretch;
-    justify-items: center;
-  }
-
-  .tech-item {
-    height: 160px;
-    width: 100%;
-  }
-
-  .sectors-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .cases-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
   .cta-content h2 {
     font-size: 2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .process-steps {
-    grid-template-columns: 1fr;
-    gap: 25px;
-  }
-}
-
-/* Responsivo para timeline */
-@media (max-width: 1200px) {
-  .timeline-container {
-    padding: 0 10px;
-  }
-
-  .timeline-step {
-    max-width: 180px;
-  }
-
-  .step-number {
-    width: 70px;
-    height: 70px;
-    font-size: 1.8rem;
-  }
-
-  .step-title {
-    font-size: 1rem;
-  }
-
-  .step-description {
-    font-size: 0.85rem;
-  }
-
-  .step-details {
-    font-size: 0.8rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .timeline-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-    margin-top: 40px;
-  }
-
-  .timeline-line {
-    display: none;
-  }
-
-  .timeline-step {
-    max-width: 100%;
-    width: 100%;
-  }
-
-  .step-number {
-    width: 60px;
-    height: 60px;
-    font-size: 1.5rem;
-  }
-
-  .step-title {
-    font-size: 1.1rem;
-  }
-
-  .step-description {
-    font-size: 1rem;
-  }
-
-  .step-details {
-    font-size: 0.9rem;
-    padding: 0 20px;
-  }
-
-  .step-content {
-    padding: 0 20px;
   }
 }
 </style>

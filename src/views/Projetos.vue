@@ -5,18 +5,43 @@
       <!-- Mapa Interativo -->
       <div ref="mapContainer" class="map-container"></div>
 
+      <!-- Elementos Flutuantes Animados -->
+      <div class="floating-elements">
+        <div class="floating-shape shape-1 animate-float"></div>
+        <div class="floating-shape shape-2 animate-float" style="animation-delay: 1.5s"></div>
+        <div class="floating-shape shape-3 animate-float" style="animation-delay: 3s"></div>
+      </div>
+
       <!-- Overlay com Filtro Azul e Conteúdo -->
       <div class="hero-overlay">
         <v-container>
           <v-row class="text-center">
             <v-col cols="12" md="8" class="mx-auto">
-              <h1 class="text-h2 text-h3-sm font-weight-bold text-white mb-4 text-shadow">
+              <h1
+                class="hero-title text-h2 text-h3-sm font-weight-bold text-white mb-4 text-shadow animate-fade-in-down"
+              >
                 Nossos Projetos
               </h1>
-              <p class="text-h6 text-grey-lighten-2 mb-6">
+              <p
+                class="hero-subtitle text-h6 text-grey-lighten-2 mb-6 animate-fade-in-up animate-delay-300"
+              >
                 Conheça alguns dos projetos que desenvolvemos em geoprocessamento e análise
                 geoespacial.
               </p>
+              <div class="hero-badges animate-fade-in-up animate-delay-600">
+                <div class="badge-item">
+                  <i class="mdi mdi-briefcase-check"></i>
+                  <span>500+ Projetos</span>
+                </div>
+                <div class="badge-item">
+                  <i class="mdi mdi-earth"></i>
+                  <span>Todo Brasil</span>
+                </div>
+                <div class="badge-item">
+                  <i class="mdi mdi-trophy"></i>
+                  <span>99% Sucesso</span>
+                </div>
+              </div>
             </v-col>
           </v-row>
         </v-container>
@@ -24,55 +49,42 @@
     </section>
 
     <!-- Filtros e Busca -->
-    <section class="filters-section py-8">
+    <ProjectFilters
+      :categories="categories"
+      :technologies="technologies"
+      :search-query="searchQuery"
+      :selected-category="selectedCategory"
+      :selected-technology="selectedTechnology"
+      @update:search-query="handleSearchUpdate"
+      @update:selected-category="handleCategoryUpdate"
+      @update:selected-technology="handleTechnologyUpdate"
+      @reset="resetFilters"
+    />
+
+    <!-- Estatísticas de Impacto -->
+    <section class="impact-stats-section py-16">
       <v-container>
-        <v-row align="center">
-          <v-col cols="12" sm="6" md="4">
-            <v-text-field
-              v-model="searchQuery"
-              label="Buscar projetos..."
-              prepend-inner-icon="mdi-magnify"
-              variant="outlined"
-              clearable
-              @input="filterProjects"
-              class="search-input"
-            ></v-text-field>
-          </v-col>
+        <div class="section-header text-center mb-12">
+          <div class="section-icon-wrapper mx-auto mb-4">
+            <i class="mdi mdi-chart-line"></i>
+          </div>
+          <h2 class="section-title text-h3 font-weight-bold mb-3">Impacto dos Nossos Projetos</h2>
+          <p class="section-subtitle text-h6 text-grey-darken-1 max-width-800 mx-auto">
+            Resultados concretos que transformam dados geoespaciais em soluções estratégicas
+          </p>
+        </div>
 
-          <v-col cols="12" sm="6" md="3">
-            <v-select
-              v-model="selectedCategory"
-              label="Categoria"
-              :items="categories"
-              variant="outlined"
-              clearable
-              @update:model-value="filterProjects"
-              class="category-select"
-            ></v-select>
-          </v-col>
-
-          <v-col cols="12" sm="6" md="3">
-            <v-select
-              v-model="selectedTechnology"
-              label="Tecnologia"
-              :items="technologies"
-              variant="outlined"
-              clearable
-              @update:model-value="filterProjects"
-              class="tech-select"
-            ></v-select>
-          </v-col>
-
-          <v-col cols="12" sm="6" md="2">
-            <v-btn
-              color="primary"
-              variant="elevated"
-              @click="resetFilters"
-              block
-              class="reset-filters-btn"
-            >
-              Limpar
-            </v-btn>
+        <v-row>
+          <v-col v-for="stat in impactStats" :key="stat.id" cols="12" sm="6" md="3">
+            <div class="impact-card">
+              <div class="impact-icon-wrapper">
+                <div class="pulse-ring"></div>
+                <i :class="stat.icon"></i>
+              </div>
+              <h3 class="impact-number">{{ stat.value }}</h3>
+              <p class="impact-label">{{ stat.label }}</p>
+              <p class="impact-description">{{ stat.description }}</p>
+            </div>
           </v-col>
         </v-row>
       </v-container>
@@ -81,101 +93,45 @@
     <!-- Galeria de Projetos -->
     <section class="projects-section py-16">
       <v-container>
-        <div v-if="filteredProjects.length === 0" class="text-center py-12">
-          <v-icon icon="mdi-magnify" size="64" color="grey" class="mb-4"></v-icon>
-          <h3 class="text-h5 text-grey-darken-1 mb-2">Nenhum projeto encontrado</h3>
-          <p class="text-body-1 text-grey">Tente ajustar os filtros de busca.</p>
+        <div class="section-header text-center mb-12">
+          <div class="section-icon-wrapper mx-auto mb-4">
+            <i class="mdi mdi-folder-multiple"></i>
+          </div>
+          <h2 class="section-title text-h3 font-weight-bold mb-3">Portfólio de Projetos</h2>
+          <p class="section-subtitle text-h6 text-grey-darken-1 max-width-800 mx-auto">
+            Explore nossa experiência em diferentes setores e aplicações geoespaciais
+          </p>
         </div>
 
-        <v-row v-else>
+        <div v-if="filteredProjects.length === 0" class="empty-state text-center py-12">
+          <div class="empty-icon-wrapper mx-auto mb-4">
+            <i class="mdi mdi-magnify"></i>
+          </div>
+          <h3 class="text-h5 text-grey-darken-1 mb-2">Nenhum projeto encontrado</h3>
+          <p class="text-body-1 text-grey mb-4">Tente ajustar os filtros de busca.</p>
+          <v-btn color="primary" variant="elevated" @click="resetFilters">
+            <i class="mdi mdi-refresh mr-2"></i>
+            Limpar Filtros
+          </v-btn>
+        </div>
+
+        <v-row v-else class="mobile-grid">
           <v-col
-            v-for="project in filteredProjects"
+            v-for="(project, index) in filteredProjects"
             :key="project.id"
             cols="12"
             sm="6"
             lg="4"
-            class="mb-6"
+            class="mb-6 mb-sm-4 mb-md-6 scroll-reveal"
+            :data-animation="'scale-in'"
+            :data-delay="index * 100"
           >
-            <v-card class="project-card h-100" elevation="4">
-              <v-img :src="project.image" height="250" cover class="project-image">
-                <div class="project-overlay">
-                  <div class="project-year">{{ project.year }}</div>
-                  <v-chip :color="project.category.color" size="small" class="category-chip">
-                    {{ project.category.name }}
-                  </v-chip>
-                </div>
-              </v-img>
-
-              <v-card-item class="pa-6">
-                <v-card-title class="text-h6 font-weight-bold mb-2">
-                  {{ project.title }}
-                </v-card-title>
-                <v-card-text class="text-body-2 text-grey-darken-1 mb-3">
-                  {{ project.description }}
-                </v-card-text>
-
-                <div class="mb-3">
-                  <h6 class="text-subtitle-2 font-weight-bold mb-2">Cliente:</h6>
-                  <p class="text-body-2">{{ project.client }}</p>
-                </div>
-
-                <div class="mb-3">
-                  <h6 class="text-subtitle-2 font-weight-bold mb-2">Serviços:</h6>
-                  <div class="d-flex flex-wrap gap-2">
-                    <v-chip
-                      v-for="service in project.services"
-                      :key="service"
-                      size="small"
-                      color="primary"
-                      variant="outlined"
-                      class="service-chip"
-                    >
-                      {{ service }}
-                    </v-chip>
-                  </div>
-                </div>
-
-                <div class="mb-3">
-                  <h6 class="text-subtitle-2 font-weight-bold mb-2">Tecnologias:</h6>
-                  <div class="d-flex flex-wrap gap-2">
-                    <v-chip
-                      v-for="tech in project.technologies"
-                      :key="tech"
-                      size="small"
-                      color="secondary"
-                      variant="outlined"
-                      class="tech-chip"
-                    >
-                      {{ tech }}
-                    </v-chip>
-                  </div>
-                </div>
-
-                <div class="mb-3">
-                  <h6 class="text-subtitle-2 font-weight-bold mb-2">Resultados:</h6>
-                  <ul class="text-body-2">
-                    <li v-for="result in project.results" :key="result" class="mb-1">
-                      {{ result }}
-                    </li>
-                  </ul>
-                </div>
-
-                <v-btn
-                  color="primary"
-                  variant="outlined"
-                  block
-                  @click="showProjectDetails(project)"
-                  class="project-details-btn"
-                >
-                  Ver Detalhes
-                </v-btn>
-              </v-card-item>
-            </v-card>
+            <ProjectCard :project="project" @click="showProjectDetails" />
           </v-col>
         </v-row>
 
         <!-- Paginação -->
-        <div class="text-center mt-8">
+        <div class="text-center mt-8" v-if="filteredProjects.length > 0">
           <v-pagination
             v-model="currentPage"
             :length="totalPages"
@@ -225,7 +181,7 @@
     />
 
     <!-- Modal de Detalhes do Projeto -->
-    <v-dialog v-model="showDetails" max-width="800">
+    <v-dialog v-model="showDetails" max-width="800" :z-index="2000">
       <v-card v-if="selectedProject">
         <v-img :src="selectedProject.image" height="300" cover></v-img>
 
@@ -305,6 +261,8 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import L from 'leaflet'
 import CtaSection from '../components/CtaSection.vue'
+import ProjectFilters from '@/components/ProjectFilters.vue'
+import ProjectCard from '@/components/ProjectCard.vue'
 
 const router = useRouter()
 
@@ -313,7 +271,9 @@ const selectedCategory = ref('')
 const selectedTechnology = ref('')
 const currentPage = ref(1)
 const showDetails = ref(false)
+const mapContainer = ref<HTMLElement>()
 const projectsMapContainer = ref<HTMLElement>()
+let heroMap: L.Map | null = null
 let projectsMap: L.Map | null = null
 
 interface Project {
@@ -330,10 +290,42 @@ interface Project {
   challenges: string[]
   results: string[]
   technologies: string[]
+  services: string[]
   location: { lat: number; lng: number }
 }
 
 const selectedProject = ref<Project | null>(null)
+
+const impactStats = [
+  {
+    id: 1,
+    icon: 'mdi mdi-map-marker-radius',
+    value: '2.5M+',
+    label: 'Km² Mapeados',
+    description: 'Área total coberta em projetos de mapeamento',
+  },
+  {
+    id: 2,
+    icon: 'mdi mdi-account-group',
+    value: '150+',
+    label: 'Clientes Atendidos',
+    description: 'Empresas e órgãos públicos em todo Brasil',
+  },
+  {
+    id: 3,
+    icon: 'mdi mdi-chart-timeline-variant',
+    value: '98%',
+    label: 'Taxa de Precisão',
+    description: 'Acurácia média nas análises geoespaciais',
+  },
+  {
+    id: 4,
+    icon: 'mdi mdi-clock-fast',
+    value: '40%',
+    label: 'Redução de Tempo',
+    description: 'Ganho médio de eficiência operacional',
+  },
+]
 
 const projects = [
   {
@@ -360,7 +352,8 @@ const projects = [
       'Desenvolvimento de interface intuitiva',
       'Processamento de grandes volumes de dados',
     ],
-    image: '/api/placeholder/400/300',
+    image:
+      'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&h=600&fit=crop&crop=center',
     location: { lat: -23.5505, lng: -46.6333 },
   },
   {
@@ -387,7 +380,8 @@ const projects = [
       'Processamento de dados em tempo real',
       'Treinamento de usuários rurais',
     ],
-    image: '/api/placeholder/400/300',
+    image:
+      'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&h=600&fit=crop&crop=center',
     location: { lat: -15.601, lng: -56.097 },
   },
   {
@@ -414,7 +408,8 @@ const projects = [
       'Análise de grandes áreas geográficas',
       'Integração com dados de campo',
     ],
-    image: '/api/placeholder/400/300',
+    image:
+      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&crop=center',
     location: { lat: -3.119, lng: -60.021 },
   },
   {
@@ -441,7 +436,8 @@ const projects = [
       'Processamento de dados em tempo real',
       'Conformidade com regulamentações portuárias',
     ],
-    image: '/api/placeholder/400/300',
+    image:
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop&crop=center',
     location: { lat: -23.982, lng: -46.299 },
   },
   {
@@ -468,7 +464,8 @@ const projects = [
       'Modelagem 3D de jazidas',
       'Análise de riscos geotécnicos',
     ],
-    image: '/api/placeholder/400/300',
+    image:
+      'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=800&h=600&fit=crop&crop=center',
     location: { lat: -19.916, lng: -43.934 },
   },
   {
@@ -495,7 +492,8 @@ const projects = [
       'Integração com sistemas municipais',
       'Treinamento de servidores públicos',
     ],
-    image: '/api/placeholder/400/300',
+    image:
+      'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop&crop=center',
     location: { lat: -25.428, lng: -49.273 },
   },
 ]
@@ -540,6 +538,21 @@ const totalPages = computed(() => {
 
 const filterProjects = () => {
   currentPage.value = 1
+}
+
+const handleSearchUpdate = (value: string) => {
+  searchQuery.value = value
+  filterProjects()
+}
+
+const handleCategoryUpdate = (value: string) => {
+  selectedCategory.value = value
+  filterProjects()
+}
+
+const handleTechnologyUpdate = (value: string) => {
+  selectedTechnology.value = value
+  filterProjects()
 }
 
 const resetFilters = () => {
@@ -679,23 +692,55 @@ const showProjectDetailsFromMap = (projectId: number) => {
   }
 }
 
-// Lifecycle hooks
+const initializeHeroMap = () => {
+  if (mapContainer.value && !heroMap) {
+    heroMap = L.map(mapContainer.value, {
+      center: [-15.6014, -47.7308],
+      zoom: 5,
+      zoomControl: false,
+      attributionControl: false,
+      minZoom: 4,
+      maxZoom: 10,
+      dragging: false,
+      scrollWheelZoom: false,
+    })
+
+    L.tileLayer(
+      'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+      {
+        attribution: '© Esri',
+        maxZoom: 10,
+      },
+    ).addTo(heroMap)
+
+    L.tileLayer(
+      'https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',
+      {
+        attribution: '© Esri',
+        maxZoom: 10,
+        opacity: 0.3,
+      },
+    ).addTo(heroMap)
+  }
+}
+
 onMounted(() => {
-  // Aguardar um pouco para garantir que o DOM esteja pronto
   setTimeout(() => {
+    initializeHeroMap()
     initializeProjectsMap()
   }, 100)
-
-  // Expor função global para o popup do mapa
   ;(window as any).showProjectDetailsFromMap = showProjectDetailsFromMap
 })
 
 onUnmounted(() => {
+  if (heroMap) {
+    heroMap.remove()
+    heroMap = null
+  }
   if (projectsMap) {
     projectsMap.remove()
     projectsMap = null
   }
-  // Remover função global
   delete (window as any).showProjectDetailsFromMap
 })
 </script>
@@ -709,123 +754,164 @@ onUnmounted(() => {
   max-width: 600px;
 }
 
-.bg-gradient-primary {
+.max-width-800 {
+  max-width: 800px;
+}
+
+.section-header {
+  margin-bottom: 3rem;
+}
+
+.section-icon-wrapper {
+  width: 70px;
+  height: 70px;
   background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
-}
-
-.project-card {
-  border-radius: 12px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  background: #ffffff;
-  border: 1px solid rgba(26, 54, 93, 0.1);
-  box-shadow: 0 4px 20px rgba(26, 54, 93, 0.08);
-}
-
-.project-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(26, 54, 93, 0.3);
-  box-shadow: 0 20px 40px rgba(26, 54, 93, 0.15);
-}
-
-.project-image {
-  position: relative;
-}
-
-.project-overlay {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  right: 16px;
-  z-index: 2;
+  border-radius: 50%;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px rgba(26, 54, 93, 0.3);
 }
 
-.project-year {
-  background: #1a365d;
+.section-icon-wrapper i {
+  font-size: 36px;
   color: white;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  box-shadow: 0 2px 8px rgba(26, 54, 93, 0.2);
 }
 
-.category-chip {
+.section-title {
+  color: #1a202c;
+}
+
+.section-subtitle {
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+.impact-stats-section {
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.impact-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 24px;
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow:
+    0 4px 20px rgba(26, 54, 93, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(26, 54, 93, 0.08);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.impact-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #1a365d 0%, #2d5a87 50%, #1fa7a1 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.impact-card:hover::before {
+  transform: scaleX(1);
+}
+
+.impact-card:hover {
+  transform: translateY(-12px);
+  box-shadow:
+    0 20px 40px rgba(26, 54, 93, 0.15),
+    0 5px 15px rgba(0, 0, 0, 0.1);
+  border-color: rgba(26, 54, 93, 0.2);
+}
+
+.impact-icon-wrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  background: rgba(26, 54, 93, 0.08);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pulse-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid #1fa7a1;
+  border-radius: 50%;
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.impact-icon-wrapper i {
+  font-size: 42px;
+  color: #1a365d;
+  position: relative;
+  z-index: 1;
+}
+
+.impact-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a365d;
+  margin: 12px 0 8px;
+  line-height: 1;
+  background: linear-gradient(135deg, #1a365d 0%, #1fa7a1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.impact-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a202c;
+  margin: 0 0 8px;
+}
+
+.impact-description {
+  font-size: 0.9rem;
+  color: #6b7280;
   margin: 0;
+  line-height: 1.5;
 }
 
-/* Custom chip styles */
-:deep(.service-chip) {
-  border-color: #1a365d !important;
-  color: #1a365d !important;
+.empty-state {
+  padding: 60px 20px;
 }
 
-:deep(.service-chip:hover) {
-  background-color: rgba(26, 54, 93, 0.1) !important;
+.empty-icon-wrapper {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, rgba(26, 54, 93, 0.08) 0%, rgba(45, 90, 135, 0.08) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-:deep(.tech-chip) {
-  border-color: #2d5a87 !important;
-  color: #2d5a87 !important;
-}
-
-:deep(.tech-chip:hover) {
-  background-color: rgba(45, 90, 135, 0.1) !important;
-}
-
-/* Project details button */
-:deep(.project-details-btn) {
-  border-color: #1a365d !important;
-  color: #1a365d !important;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-:deep(.project-details-btn:hover) {
-  background-color: #1a365d !important;
-  color: white !important;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.2);
-}
-
-/* Reset filters button */
-:deep(.reset-filters-btn) {
-  background-color: #1a365d !important;
-  color: white !important;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-:deep(.reset-filters-btn:hover) {
-  background-color: #2d5a87 !important;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.2);
-}
-
-/* Filters section */
-.filters-section {
-  background: #f8f9fa;
-}
-
-:deep(.search-input .v-field),
-:deep(.category-select .v-field),
-:deep(.tech-select .v-field) {
-  border-color: rgba(26, 54, 93, 0.2) !important;
-}
-
-:deep(.search-input .v-field:hover),
-:deep(.category-select .v-field:hover),
-:deep(.tech-select .v-field:hover) {
-  border-color: rgba(26, 54, 93, 0.4) !important;
-}
-
-:deep(.search-input .v-field--focused),
-:deep(.category-select .v-field--focused),
-:deep(.tech-select .v-field--focused) {
-  border-color: #1a365d !important;
+.empty-icon-wrapper i {
+  font-size: 64px;
+  color: #9ca3af;
 }
 
 .map-card {
@@ -867,7 +953,7 @@ onUnmounted(() => {
 .hero-section {
   position: relative;
   height: 60vh;
-  min-height: 400px;
+  min-height: 450px;
   overflow: hidden;
 }
 
@@ -880,13 +966,55 @@ onUnmounted(() => {
   z-index: 1;
 }
 
+.floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floating-shape {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.shape-1 {
+  width: 140px;
+  height: 140px;
+  top: 12%;
+  right: 8%;
+  animation-duration: 9s;
+}
+
+.shape-2 {
+  width: 100px;
+  height: 100px;
+  bottom: 15%;
+  left: 10%;
+  animation-duration: 11s;
+}
+
+.shape-3 {
+  width: 70px;
+  height: 70px;
+  top: 45%;
+  left: 25%;
+  animation-duration: 13s;
+}
+
 .hero-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(26, 54, 93, 0.85) 0%, rgba(45, 90, 135, 0.85) 100%);
+  background: linear-gradient(135deg, rgba(26, 54, 93, 0.88) 0%, rgba(45, 90, 135, 0.88) 100%);
   z-index: 2;
   display: flex;
   align-items: center;
@@ -897,66 +1025,91 @@ onUnmounted(() => {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.border-white {
-  border-color: white !important;
+.hero-badges {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-top: 2rem;
 }
 
-.h-100 {
-  height: 100%;
+.badge-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: white;
 }
 
-/* Custom marker styles */
-:deep(.custom-marker) {
-  background: transparent;
+.badge-item i {
+  font-size: 2.5rem;
+  opacity: 0.9;
 }
 
-:deep(.marker-icon) {
-  width: 30px;
-  height: 30px;
-  border: 3px solid #1a365d;
-  border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(26, 54, 93, 0.3);
-  position: relative;
-  background: #2d5a87;
+.badge-item span {
+  font-size: 0.95rem;
+  font-weight: 600;
+  opacity: 0.95;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-:deep(.marker-icon)::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 8px solid #1a365d;
+.mobile-grid {
+  margin: 0;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .hero-section {
+    height: 55vh;
+    min-height: 380px;
+  }
+
+  .hero-badges {
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .badge-item i {
+    font-size: 2rem;
+  }
+
+  .badge-item span {
+    font-size: 0.85rem;
+  }
+
+  .floating-shape {
+    display: none;
+  }
+
+  .projects-map-container {
+    height: 400px;
+  }
+}
+
+@media (max-width: 599.98px) {
+  .hero-section {
     height: 50vh;
     min-height: 350px;
   }
 
-  .hero-overlay {
-    padding: 2rem 1rem;
+  .hero-badges {
+    gap: 1rem;
   }
 
-  .text-h2 {
-    font-size: 2rem;
+  .badge-item {
+    gap: 6px;
   }
 
-  .text-h6 {
-    font-size: 1rem;
+  .badge-item i {
+    font-size: 1.8rem;
   }
 
-  .filters-section,
-  .projects-section,
-  .map-section,
-  .cta-section {
-    padding: 3rem 0;
+  .badge-item span {
+    font-size: 0.75rem;
+  }
+
+  .projects-map-container {
+    height: 350px;
   }
 }
 </style>

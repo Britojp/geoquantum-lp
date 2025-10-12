@@ -391,10 +391,11 @@ const navigateToDocuments = () => {
   router.push('/documentos')
 }
 
-// Função para animar contagem crescente
+// Função para animar contagem crescente - Otimizada
 const animateCount = (element: HTMLElement, target: number, duration: number = 2000) => {
   let start = 0
   const increment = target / (duration / 16) // 60fps
+  const originalText = element.textContent || ''
 
   // Adiciona classe de animação
   element.classList.add('animating')
@@ -410,15 +411,16 @@ const animateCount = (element: HTMLElement, target: number, duration: number = 2
       element.classList.add('completed')
     }
 
-    // Formata o número baseado no tipo
-    if (target.toString().includes('+')) {
-      element.textContent = Math.floor(start) + '+'
-    } else if (target.toString().includes('%')) {
-      element.textContent = Math.floor(start) + '%'
-    } else if (target.toString().includes('h')) {
-      element.textContent = Math.floor(start) + 'h'
+    // Formata o número baseado no tipo - Otimizado
+    const currentValue = Math.floor(start)
+    if (originalText.includes('+')) {
+      element.textContent = currentValue + '+'
+    } else if (originalText.includes('%')) {
+      element.textContent = currentValue + '%'
+    } else if (originalText.includes('h')) {
+      element.textContent = currentValue + 'h'
     } else {
-      element.textContent = Math.floor(start).toString()
+      element.textContent = currentValue.toString()
     }
   }, 16)
 }
@@ -582,20 +584,30 @@ const openProjectModal = (project: any) => {
   router.push('/projetos')
 }
 
-// Controle de animações baseadas no scroll
+// Controle de animações baseadas no scroll - Otimizado com throttling
+let scrollTimeout: number | null = null
+
 const handleScroll = () => {
-  const elements = document.querySelectorAll('.animate-on-scroll')
-  elements.forEach((element) => {
-    const elementTop = element.getBoundingClientRect().top
+  if (scrollTimeout) return
+
+  scrollTimeout = window.setTimeout(() => {
+    const elements = document.querySelectorAll('.animate-on-scroll:not(.animate)')
+    const windowHeight = window.innerHeight
     const elementVisible = 150
 
-    if (elementTop < window.innerHeight - elementVisible) {
-      element.classList.add('animate')
-    }
-  })
+    elements.forEach((element) => {
+      const elementTop = element.getBoundingClientRect().top
 
-  // Verifica e inicia animações de contagem
-  startCountAnimations()
+      if (elementTop < windowHeight - elementVisible) {
+        element.classList.add('animate')
+      }
+    })
+
+    // Verifica e inicia animações de contagem
+    startCountAnimations()
+
+    scrollTimeout = null
+  }, 16) // ~60fps
 }
 
 onMounted(() => {
@@ -685,9 +697,7 @@ onUnmounted(() => {
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem;
-  background: rgba(26, 54, 93, 0.05);
   border-radius: 8px;
-  border: 1px solid rgba(26, 54, 93, 0.1);
   transition: all 0.3s ease;
 }
 
@@ -837,18 +847,6 @@ onUnmounted(() => {
   animation: logoGlow 4s ease-in-out infinite;
 }
 
-@keyframes logoGlow {
-  0%,
-  100% {
-    opacity: 0.3;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    opacity: 0.6;
-    transform: translate(-50%, -50%) scale(1.1);
-  }
-}
-
 /* Elementos decorativos tecnológicos */
 .tech-decoration {
   position: absolute;
@@ -893,30 +891,6 @@ onUnmounted(() => {
   background: linear-gradient(90deg, #1a365d, transparent);
   transform: rotate(-45deg);
   animation: techLine 3s ease-in-out infinite;
-}
-
-@keyframes techPulse {
-  0%,
-  100% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-}
-
-@keyframes techLine {
-  0%,
-  100% {
-    opacity: 0.4;
-    transform: rotate(-45deg) scaleX(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: rotate(-45deg) scaleX(1.2);
-  }
 }
 
 /* Responsividade para a seção sobre */
@@ -1158,6 +1132,7 @@ onUnmounted(() => {
   flex: 1;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -1232,6 +1207,75 @@ onUnmounted(() => {
   }
 }
 
+@keyframes techPulse {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes techLine {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: rotate(-45deg) scaleX(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: rotate(-45deg) scaleX(1.2);
+  }
+}
+
+@keyframes logoGlow {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+@keyframes ctaPulse {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes ctaLine {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: rotate(-45deg) scaleX(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: rotate(-45deg) scaleX(1.2);
+  }
+}
+
+@keyframes numberPulse {
+  0% {
+    text-shadow: 0 0 20px rgba(212, 165, 116, 0.6);
+  }
+  100% {
+    text-shadow: 0 0 30px rgba(212, 165, 116, 0.8);
+  }
+}
+
 /* Classes de animação globais são importadas via assets/styles/animations.scss */
 
 .animate-count-up {
@@ -1246,20 +1290,23 @@ onUnmounted(() => {
   animation: pulse 2s ease-in-out infinite;
 }
 
-/* Hover Animations */
+/* Hover Animations - Otimizado com will-change */
 .service-card:hover,
 .project-card:hover {
   transform: translateY(-8px) scale(1.02);
+  will-change: transform;
 }
 
 .stat-item:hover {
   transform: scale(1.05);
   transition: transform 0.3s ease;
+  will-change: transform;
 }
 
-/* Animações para botões */
+/* Animações para botões - Otimizado */
 .v-btn {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
 }
 
 .v-btn:hover {
@@ -1267,19 +1314,21 @@ onUnmounted(() => {
   box-shadow: 0 8px 25px rgba(26, 54, 93, 0.3);
 }
 
-/* Animações para imagens */
+/* Animações para imagens - Otimizado */
 .project-image-container img {
   transition: transform 0.5s ease;
+  will-change: transform;
 }
 
 .project-card:hover .project-image-container img {
   transform: scale(1.1);
 }
 
-/* Animações para chips */
+/* Animações para chips - Otimizado */
 .tech-chip,
 .category-chip {
   transition: all 0.3s ease;
+  will-change: transform, box-shadow;
 }
 
 .tech-chip:hover,
@@ -1288,13 +1337,14 @@ onUnmounted(() => {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Scroll Animations */
+/* Scroll Animations - Otimizado */
 .services-section.animate,
 .stats-section.animate,
 .about-section.animate,
 .featured-projects.animate {
   opacity: 1;
   transform: translateY(0);
+  will-change: auto;
 }
 
 .bg-gradient-primary {
@@ -1388,6 +1438,7 @@ onUnmounted(() => {
     line-height: 1.4;
     margin-bottom: 12px;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
   }
 
   .project-number {
@@ -2165,30 +2216,6 @@ onUnmounted(() => {
   animation: ctaLine 3s ease-in-out infinite;
 }
 
-@keyframes ctaPulse {
-  0%,
-  100% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-}
-
-@keyframes ctaLine {
-  0%,
-  100% {
-    opacity: 0.4;
-    transform: rotate(-45deg) scaleX(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: rotate(-45deg) scaleX(1.2);
-  }
-}
-
 /* Conteúdo principal */
 .cta-content {
   position: relative;
@@ -2432,9 +2459,10 @@ onUnmounted(() => {
   }
 }
 
-/* Estilos para animação de contagem */
+/* Estilos para animação de contagem - Otimizado */
 .stat-number {
   transition: all 0.3s ease;
+  will-change: transform, color;
 }
 
 .stat-number.animating {
@@ -2444,6 +2472,7 @@ onUnmounted(() => {
 
 .stat-number.completed {
   transform: scale(1);
+  will-change: auto;
 }
 
 /* Melhorias para números em destaque */
@@ -2477,14 +2506,5 @@ onUnmounted(() => {
 .stat-number.animating {
   text-shadow: 0 0 20px rgba(212, 165, 116, 0.6);
   animation: numberPulse 0.5s ease-in-out infinite alternate;
-}
-
-@keyframes numberPulse {
-  0% {
-    text-shadow: 0 0 20px rgba(212, 165, 116, 0.6);
-  }
-  100% {
-    text-shadow: 0 0 30px rgba(212, 165, 116, 0.8);
-  }
 }
 </style>

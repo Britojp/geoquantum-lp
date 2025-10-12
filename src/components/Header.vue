@@ -356,8 +356,8 @@ onUnmounted(() => {
   border: none;
   cursor: pointer;
   padding: 12px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1002;
 }
 

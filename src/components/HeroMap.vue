@@ -403,7 +403,12 @@ const downloadPDF = () => {
   }
 
   .hero-overlay {
-    background: linear-gradient(135deg, rgba(26, 54, 93, 0.8) 0%, rgba(45, 90, 135, 0.8) 50%, rgba(26, 54, 93, 0.9) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba(26, 54, 93, 0.8) 0%,
+      rgba(45, 90, 135, 0.8) 50%,
+      rgba(26, 54, 93, 0.9) 100%
+    );
   }
 
   .background-video {

@@ -17,6 +17,7 @@ import 'leaflet/dist/leaflet.css'
 // Estilos responsivos e animações
 import './assets/styles/responsive.scss'
 import './assets/styles/animations.scss'
+import './assets/styles/buttons.scss'
 
 // Diretivas responsivas
 import { registerResponsiveDirectives } from './directives/responsive'

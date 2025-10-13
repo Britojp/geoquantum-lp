@@ -104,12 +104,10 @@
     <!-- Posts em Destaque -->
     <section class="featured-posts py-16" v-if="featuredPosts.length > 0">
       <v-container>
-        <div class="text-center mb-12">
-          <h2 class="text-h3 font-weight-bold text-primary mb-4">Artigos em Destaque</h2>
-          <p class="text-h6 text-grey-darken-1 max-width-600 mx-auto">
-            Os artigos mais populares e relevantes sobre geoprocessamento.
-          </p>
-        </div>
+        <SectionTitle
+          title="Artigos em Destaque"
+          subtitle="Os artigos mais populares e relevantes sobre geoprocessamento."
+        />
 
         <v-row>
           <v-col v-for="post in featuredPosts" :key="post.id" cols="12" md="6" lg="4" class="mb-6">
@@ -237,11 +235,10 @@
       <v-container>
         <v-row class="text-center">
           <v-col cols="12" md="8" class="mx-auto">
-            <h2 class="text-h3 font-weight-bold text-primary mb-4">Fique por Dentro</h2>
-            <p class="text-h6 text-grey-darken-1 max-width-600 mx-auto mb-6">
-              Inscreva-se em nossa newsletter para receber os melhores artigos sobre
-              geoprocessamento e tecnologia geoespacial.
-            </p>
+            <SectionTitle
+              title="Fique por Dentro"
+              subtitle="Inscreva-se em nossa newsletter para receber os melhores artigos sobre geoprocessamento e tecnologia geoespacial."
+            />
 
             <v-form @submit.prevent="subscribeNewsletter">
               <v-row justify="center">
@@ -519,6 +516,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import L from 'leaflet'
 import { useRouter } from 'vue-router'
+import SectionTitle from '../components/SectionTitle.vue'
 
 const router = useRouter()
 

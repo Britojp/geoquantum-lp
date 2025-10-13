@@ -242,6 +242,7 @@
 import { ref, onMounted } from 'vue'
 import ContactForm from '../components/ContactForm.vue'
 import L from 'leaflet'
+import SectionTitle from '../components/SectionTitle.vue'
 
 const mapContainer = ref<HTMLElement>()
 let map: L.Map | null = null

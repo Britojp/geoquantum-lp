@@ -26,12 +26,10 @@
     <!-- Equipe Principal -->
     <section class="team-section py-16">
       <v-container>
-        <div class="text-center mb-12">
-          <h2 class="text-h3 font-weight-bold text-primary mb-4">Equipe de Liderança</h2>
-          <p class="text-h6 text-grey-darken-1 max-width-600 mx-auto">
-            Nossos líderes que guiam a empresa com visão estratégica e expertise técnica.
-          </p>
-        </div>
+        <SectionTitle
+          title="Equipe de Liderança"
+          subtitle="Nossos líderes que guiam a empresa com visão estratégica e expertise técnica."
+        />
 
         <v-row>
           <v-col
@@ -75,12 +73,10 @@
     <!-- Equipe Técnica -->
     <section class="technical-team py-16 bg-grey-lighten-4">
       <v-container>
-        <div class="text-center mb-12">
-          <h2 class="text-h3 font-weight-bold text-primary mb-4">Equipe Técnica</h2>
-          <p class="text-h6 text-grey-darken-1 max-width-600 mx-auto">
-            Especialistas em geoprocessamento, desenvolvimento e análise geoespacial.
-          </p>
-        </div>
+        <SectionTitle
+          title="Equipe Técnica"
+          subtitle="Especialistas em geoprocessamento, desenvolvimento e análise geoespacial."
+        />
 
         <v-row>
           <v-col
@@ -177,6 +173,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import L from 'leaflet'
 import CtaSection from '../components/CtaSection.vue'
+import SectionTitle from '../components/SectionTitle.vue'
 
 const mapContainer = ref<HTMLElement>()
 let map: L.Map | null = null

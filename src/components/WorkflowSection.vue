@@ -1,38 +1,46 @@
 <template>
-  <section class="workflow-section py-16 py-sm-12 py-md-16 bg-grey-lighten-4 animate-on-scroll">
-    <v-container class="mobile-padding">
-      <div class="text-center mb-12 mb-sm-8 mb-md-12 animate-fade-in-up">
-        <h2
-          class="text-h3 text-h4-sm text-h3-md font-weight-bold text-primary mb-4 animate-slide-in-left mobile-title"
-        >
-          {{ title }}
-        </h2>
-        <p
-          class="text-h6 text-body-1-sm text-h6-md text-grey-darken-1 max-width-600 mx-auto animate-slide-in-right mobile-text"
-        >
-          {{ subtitle }}
-        </p>
+  <section class="workflow-section">
+    <div class="workflow-container">
+      <div class="section-header">
+        <div class="header-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+          </svg>
+          <span>Processo Estruturado</span>
+        </div>
+        <h2 class="section-title">{{ title }}</h2>
+        <div class="title-underline"></div>
+        <p class="section-subtitle">{{ subtitle }}</p>
       </div>
 
-      <!-- Timeline Horizontal -->
-      <div class="timeline-container">
-        <div class="timeline-line"></div>
-
-        <div v-for="(step, index) in steps" :key="index" class="timeline-step">
-          <div class="step-number">{{ index + 1 }}</div>
-          <div class="step-title">{{ step.title }}</div>
-          <div class="step-description">{{ step.description }}</div>
-          <div class="step-content">
+      <div class="workflow-grid">
+        <div
+          v-for="(step, index) in steps"
+          :key="index"
+          class="workflow-step"
+          :style="{ '--delay': `${index * 0.15}s` }"
+        >
+          <div class="step-header">
+            <div class="step-number">{{ index + 1 }}</div>
             <div class="step-icon">
               <i :class="step.icon"></i>
             </div>
-            <p class="step-details">
-              {{ step.details }}
-            </p>
+          </div>
+
+          <div class="step-content">
+            <h3 class="step-title">{{ step.title }}</h3>
+            <p class="step-description">{{ step.description }}</p>
+            <p v-if="step.details" class="step-details">{{ step.details }}</p>
+          </div>
+
+          <div v-if="index < steps.length - 1" class="step-connector">
+            <svg width="40" height="24" viewBox="0 0 40 24" fill="none">
+              <path d="M0 12H40M40 12L30 2M40 12L30 22" stroke="currentColor" stroke-width="2"/>
+            </svg>
           </div>
         </div>
       </div>
-    </v-container>
+    </div>
   </section>
 </template>
 
@@ -41,7 +49,7 @@ interface WorkflowStep {
   title: string
   description: string
   icon: string
-  details: string
+  details?: string
 }
 
 interface Props {
@@ -52,177 +60,200 @@ interface Props {
 
 withDefaults(defineProps<Props>(), {
   title: 'Como Trabalhamos',
-  subtitle: 'Metodologia comprovada para entregar resultados excepcionais em geoprocessamento',
+  subtitle: 'Metodologia estruturada para garantir excelência em cada projeto',
 })
 </script>
 
 <style scoped>
-/* Timeline Horizontal */
-.timeline-container {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-top: 60px;
-  padding: 0 20px;
+.workflow-section {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
 }
 
-.timeline-line {
-  position: absolute;
-  top: 40px;
-  left: 50px;
-  right: 50px;
-  height: 3px;
-  background: linear-gradient(90deg, #1a365d 0%, #2d5a87 100%);
-  z-index: 1;
+.workflow-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
-.timeline-step {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.section-header {
   text-align: center;
-  flex: 1;
-  max-width: 200px;
-  z-index: 2;
+  margin-bottom: 3rem;
+}
+
+.header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(31, 167, 161, 0.1);
+  border: 1px solid rgba(31, 167, 161, 0.25);
+  border-radius: 1.5rem;
+  color: #1a365d;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.25rem;
+}
+
+.header-badge svg {
+  stroke: #1fa7a1;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a365d;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.title-underline {
+  width: 4rem;
+  height: 3px;
+  background: linear-gradient(90deg, #1fa7a1 0%, #2d5a87 100%);
+  border-radius: 2px;
+  margin: 0 auto 1.25rem;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #4a5568;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.workflow-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.workflow-step {
+  background: #ffffff;
+  border: 1px solid rgba(26, 54, 93, 0.08);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  animation: fadeInUp 0.6s ease-out backwards;
+  animation-delay: var(--delay);
+}
+
+.workflow-step::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #1a365d 0%, #1fa7a1 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.workflow-step:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(26, 54, 93, 0.1);
+  border-color: rgba(26, 54, 93, 0.15);
+}
+
+.workflow-step:hover::before {
+  transform: scaleX(1);
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .step-number {
-  width: 80px;
-  height: 80px;
+  width: 3rem;
+  height: 3rem;
   background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
-  border-radius: 50%;
+  border-radius: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 15px;
-  box-shadow: 0 8px 25px rgba(26, 54, 93, 0.3);
+  color: #ffffff;
+  font-size: 1.375rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.2);
   transition: all 0.3s ease;
 }
 
-.timeline-step:hover .step-number {
-  transform: scale(1.1);
-  box-shadow: 0 12px 35px rgba(26, 54, 93, 0.4);
-}
-
-.step-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #2e3a47;
-  margin-bottom: 15px;
-  line-height: 1.3;
-  text-align: center;
-}
-
-.step-description {
-  font-size: 0.85rem;
-  color: #6c757d;
-  margin-bottom: 15px;
-  text-align: center;
-  line-height: 1.3;
-}
-
-.step-content {
-  padding: 0 10px;
+.workflow-step:hover .step-number {
+  transform: scale(1.05);
 }
 
 .step-icon {
-  width: 50px;
-  height: 50px;
-  background: rgba(11, 95, 165, 0.1);
-  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  background: rgba(26, 54, 93, 0.06);
+  border-radius: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
-  color: #0b5fa5;
-  font-size: 1.5rem;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
 }
 
-.step-content p {
-  margin: 0;
+.workflow-step:hover .step-icon {
+  background: rgba(31, 167, 161, 0.1);
+}
+
+.step-icon i {
+  font-size: 1.5rem;
+  color: #1a365d;
+  transition: color 0.3s ease;
+}
+
+.workflow-step:hover .step-icon i {
+  color: #1fa7a1;
+}
+
+.step-content {
+  flex: 1;
+}
+
+.step-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a365d;
+  margin-bottom: 0.625rem;
+  line-height: 1.3;
+}
+
+.step-description {
+  font-size: 0.9375rem;
+  color: #2e3a47;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
 }
 
 .step-details {
-  font-size: 0.85rem;
-  color: #6c757d;
-  margin-top: 15px;
-  line-height: 1.4;
-  text-align: center;
-  padding: 0 5px;
-}
-
-/* Classes de Responsividade */
-.max-width-600 {
-  max-width: 600px;
-}
-
-.mobile-padding {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-@media (min-width: 600px) {
-  .mobile-padding {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-@media (min-width: 960px) {
-  .mobile-padding {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-}
-
-.mobile-grid {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: #4a5568;
   margin: 0;
 }
 
-.mobile-card {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.touch-optimized {
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-}
-
-/* Animações */
-.animate-on-scroll {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.animate-on-scroll.animate {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-.animate-slide-in-left {
-  animation: slideInLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-.animate-slide-in-right {
-  animation: slideInRight 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+.step-connector {
+  display: none;
 }
 
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -230,95 +261,118 @@ withDefaults(defineProps<Props>(), {
   }
 }
 
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
+@media (min-width: 768px) {
+  .workflow-section {
+    padding: 5rem 0;
   }
-  to {
-    opacity: 1;
-    transform: translateX(0);
+
+  .workflow-container {
+    padding: 0 2rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.125rem;
+  }
+
+  .workflow-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+
+  .workflow-step {
+    padding: 2.5rem;
   }
 }
 
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Responsivo para timeline */
-@media (max-width: 1200px) {
-  .timeline-container {
-    padding: 0 10px;
+@media (min-width: 1024px) {
+  .workflow-section {
+    padding: 6rem 0;
   }
 
-  .timeline-step {
-    max-width: 180px;
+  .section-title {
+    font-size: 2.75rem;
   }
 
-  .step-number {
-    width: 70px;
-    height: 70px;
-    font-size: 1.8rem;
+  .workflow-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    position: relative;
   }
 
-  .step-title {
-    font-size: 1rem;
-  }
-
-  .step-description {
-    font-size: 0.85rem;
-  }
-
-  .step-details {
-    font-size: 0.8rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .timeline-container {
-    flex-direction: column;
+  .step-connector {
+    display: flex;
     align-items: center;
-    gap: 40px;
-    margin-top: 40px;
+    justify-content: center;
+    position: absolute;
+    right: -2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(26, 54, 93, 0.2);
   }
 
-  .timeline-line {
+  .workflow-step:last-child .step-connector {
     display: none;
   }
+}
 
-  .timeline-step {
-    max-width: 100%;
-    width: 100%;
+@media (max-width: 479px) {
+  .workflow-section {
+    padding: 3rem 0;
+  }
+
+  .section-header {
+    margin-bottom: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.9375rem;
+  }
+
+  .workflow-step {
+    padding: 1.5rem;
+  }
+
+  .step-header {
+    gap: 1rem;
+    margin-bottom: 1.25rem;
   }
 
   .step-number {
-    width: 60px;
-    height: 60px;
-    font-size: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.125rem;
+  }
+
+  .step-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .step-icon i {
+    font-size: 1.25rem;
   }
 
   .step-title {
-    font-size: 1.1rem;
+    font-size: 1.125rem;
   }
 
-  .step-description {
-    font-size: 1rem;
-  }
-
+  .step-description,
   .step-details {
-    font-size: 0.9rem;
-    padding: 0 20px;
+    font-size: 0.875rem;
   }
+}
 
-  .step-content {
-    padding: 0 20px;
+@media (prefers-reduced-motion: reduce) {
+  .workflow-step {
+    animation: none;
   }
 }
 </style>

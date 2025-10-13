@@ -1,56 +1,44 @@
 <template>
-  <section
-    class="stats-section py-16 py-sm-12 py-md-16 bg-gradient-primary scroll-reveal"
-    data-animation="fade-in-up"
-  >
-    <v-container class="mobile-padding">
-      <div class="text-center mb-12 mb-sm-8 mb-md-12 scroll-reveal" data-animation="fade-in-down">
-        <h2 class="text-h3 text-h4-sm text-h3-md font-weight-bold text-white mb-4 mobile-title">
-          {{ title }}
-        </h2>
-        <p
-          class="text-h6 text-body-1-sm text-h6-md text-grey-lighten-2 max-width-600 mx-auto mobile-text"
-        >
-          {{ subtitle }}
-        </p>
+  <section class="stats-section">
+    <div class="stats-background">
+      <div class="stats-pattern"></div>
+    </div>
+
+    <div class="stats-container">
+      <div class="stats-header">
+        <h2 class="stats-title">{{ title }}</h2>
+        <p v-if="subtitle" class="stats-subtitle">{{ subtitle }}</p>
       </div>
 
-      <v-row class="mobile-grid">
-        <v-col
+      <div class="stats-grid">
+        <div
           v-for="(stat, index) in stats"
           :key="index"
-          cols="6"
-          md="3"
-          class="mb-6 mb-sm-4 mb-md-6"
+          class="stat-item"
+          :style="{ '--delay': `${index * 0.1}s` }"
         >
-          <div
-            class="stat-card scroll-reveal hover-lift hover-glow ripple-effect mobile-card touch-optimized will-change-transform"
-            :data-animation="'bounce-in'"
-            :data-delay="index * 150"
-            @click="handleCardClick"
-          >
-            <div class="stat-icon animate-float">
-              <i :class="stat.icon"></i>
-            </div>
-            <div class="stat-number" ref="statNumbers">
-              {{ displayNumbers[index] || stat.number }}
-            </div>
-            <div class="stat-label">{{ stat.label }}</div>
+          <div class="stat-icon">
+            <i :class="stat.icon"></i>
           </div>
-        </v-col>
-      </v-row>
-    </v-container>
+          <div class="stat-content">
+            <div class="stat-value">{{ stat.value }}</div>
+            <div class="stat-label">{{ stat.label }}</div>
+            <p v-if="stat.description" class="stat-description">
+              {{ stat.description }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { useScrollAnimations, animationUtils } from '@/composables/useAnimations'
-
 interface Stat {
-  number: string
+  value: string
   label: string
   icon: string
+  description?: string
 }
 
 interface Props {
@@ -59,196 +47,145 @@ interface Props {
   stats: Stat[]
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  title: 'Nossos Números',
-  subtitle: 'Resultados que comprovam nossa excelência',
-})
-
-const { initScrollAnimations, triggerRippleEffect } = useScrollAnimations()
-const statNumbers = ref<HTMLElement[]>([])
-const displayNumbers = ref<string[]>([])
-
-const extractNumber = (numberString: string): number => {
-  const match = numberString.match(/\d+/)
-  return match ? parseInt(match[0]) : 0
-}
-
-const animateCounters = () => {
-  props.stats.forEach((stat, index) => {
-    const targetNumber = extractNumber(stat.number)
-    const element = statNumbers.value[index]
-
-    if (element && targetNumber > 0) {
-      displayNumbers.value[index] = '0'
-
-      setTimeout(() => {
-        animationUtils.animateCounter(element, 0, targetNumber, 2000)
-      }, index * 200)
-    }
-  })
-}
-
-const handleCardClick = (event: MouseEvent) => {
-  const element = event.currentTarget as HTMLElement
-  triggerRippleEffect(event, element)
-}
-
-onMounted(() => {
-  initScrollAnimations()
-
-  // Observar quando a seção fica visível para animar os contadores
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            animateCounters()
-          }, 500)
-          observer.unobserve(entry.target)
-        }
-      })
-    },
-    { threshold: 0.3 },
-  )
-
-  const section = document.querySelector('.stats-section')
-  if (section) {
-    observer.observe(section)
-  }
+withDefaults(defineProps<Props>(), {
+  title: 'Resultados que Comprovam',
+  subtitle: undefined,
 })
 </script>
 
 <style scoped>
-/* Stats Section */
 .stats-section {
-  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
+  padding: 4rem 0;
   position: relative;
   overflow: hidden;
 }
 
-.bg-gradient-primary {
+.stats-background {
+  position: absolute;
+  inset: 0;
   background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
 }
 
-.stat-card {
-  text-align: center;
-  padding: 2rem 1rem;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  height: 100%;
+.stats-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.5;
 }
 
-.stat-card:hover {
-  transform: translateY(-8px);
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
+.stats-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.stats-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.stats-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.stats-subtitle {
+  font-size: 1.0625rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.stat-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.6s ease-out backwards;
+  animation-delay: var(--delay);
+}
+
+.stat-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-4px);
 }
 
 .stat-icon {
-  width: 60px;
-  height: 60px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
+  flex-shrink: 0;
+  width: 3.5rem;
+  height: 3.5rem;
+  background: rgba(31, 167, 161, 0.15);
+  border: 2px solid rgba(31, 167, 161, 0.3);
+  border-radius: 0.875rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 1rem;
-  color: #ffffff;
-  font-size: 1.8rem;
   transition: all 0.3s ease;
 }
 
-.stat-card:hover .stat-icon {
-  transform: scale(1.1);
-  background: rgba(255, 255, 255, 0.3);
+.stat-item:hover .stat-icon {
+  background: rgba(31, 167, 161, 0.25);
+  transform: scale(1.05);
 }
 
-.stat-number {
-  font-size: 2.5rem;
-  font-weight: 700;
+.stat-icon i {
+  font-size: 1.75rem;
   color: #ffffff;
+}
+
+.stat-content {
+  flex: 1;
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1;
   margin-bottom: 0.5rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .stat-label {
   font-size: 1rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 0.5rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.05em;
 }
 
-/* Classes de Responsividade */
-.max-width-600 {
-  max-width: 600px;
-}
-
-.mobile-padding {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-@media (min-width: 600px) {
-  .mobile-padding {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-@media (min-width: 960px) {
-  .mobile-padding {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-}
-
-.mobile-grid {
+.stat-description {
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
   margin: 0;
-}
-
-.mobile-card {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.touch-optimized {
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-}
-
-/* Animações */
-.animate-on-scroll {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.animate-on-scroll.animate {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-.animate-slide-in-left {
-  animation: slideInLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-.animate-slide-in-right {
-  animation: slideInRight 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -256,46 +193,95 @@ onMounted(() => {
   }
 }
 
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
+@media (min-width: 768px) {
+  .stats-section {
+    padding: 5rem 0;
   }
-  to {
-    opacity: 1;
-    transform: translateX(0);
+
+  .stats-container {
+    padding: 0 2rem;
+  }
+
+  .stats-title {
+    font-size: 2.5rem;
+  }
+
+  .stats-subtitle {
+    font-size: 1.125rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .stat-item {
+    padding: 2.5rem;
   }
 }
 
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
+@media (min-width: 1024px) {
+  .stats-section {
+    padding: 6rem 0;
   }
-  to {
-    opacity: 1;
-    transform: translateX(0);
+
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .stats-title {
+    font-size: 2.75rem;
   }
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .stat-number {
+@media (max-width: 479px) {
+  .stats-section {
+    padding: 3rem 0;
+  }
+
+  .stats-header {
+    margin-bottom: 2rem;
+  }
+
+  .stats-title {
+    font-size: 1.75rem;
+  }
+
+  .stats-subtitle {
+    font-size: 1rem;
+  }
+
+  .stat-item {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+
+  .stat-icon {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .stat-icon i {
+    font-size: 1.5rem;
+  }
+
+  .stat-value {
     font-size: 2rem;
   }
 
-  .stat-card {
-    padding: 1.5rem 1rem;
+  .stat-label {
+    font-size: 0.875rem;
+  }
+
+  .stat-description {
+    font-size: 0.875rem;
   }
 }
 
-@media (max-width: 480px) {
-  .stat-number {
-    font-size: 1.8rem;
-  }
-
-  .stat-card {
-    padding: 1rem 0.5rem;
+@media (prefers-reduced-motion: reduce) {
+  .stat-item {
+    animation: none;
   }
 }
 </style>
+

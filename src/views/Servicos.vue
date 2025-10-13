@@ -40,16 +40,11 @@
     <!-- Serviços Principais -->
     <section class="services-section">
       <v-container class="mobile-padding">
-        <div class="text-center mb-12 mb-sm-8 mb-md-12 scroll-reveal" data-animation="fade-in-up">
-          <h2 class="text-h3 text-h4-sm text-h3-md font-weight-bold text-primary mb-4 mobile-title">
-            Serviços Especializados
-          </h2>
-          <p
-            class="text-h6 text-body-1-sm text-h6-md text-grey-darken-1 max-width-600 mx-auto mobile-text"
-          >
-            Oferecemos soluções completas em geoprocessamento e análise espacial para diversos
-            setores e aplicações.
-          </p>
+        <div class="scroll-reveal" data-animation="fade-in-up">
+          <SectionTitle
+            title="Serviços Especializados"
+            subtitle="Oferecemos soluções completas em geoprocessamento e análise espacial para diversos setores e aplicações."
+          />
         </div>
 
         <v-row class="mobile-grid">
@@ -109,6 +104,7 @@ import TechnologiesSection from '@/components/TechnologiesSection.vue'
 import SectorsSection from '@/components/SectorsSection.vue'
 import SuccessCasesSection from '@/components/SuccessCasesSection.vue'
 import WorkflowSection from '@/components/WorkflowSection.vue'
+import SectionTitle from '@/components/SectionTitle.vue'
 import { useScrollAnimations, animationUtils } from '@/composables/useAnimations'
 
 interface Service {

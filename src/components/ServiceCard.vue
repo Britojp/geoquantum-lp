@@ -1,544 +1,324 @@
 <template>
-  <div class="service-card" @click="openModal">
-    <div class="card-header">
-      <div class="service-icon">
-        <i :class="getServiceIcon(service.id)"></i>
+  <article class="service-card">
+    <div class="card-image">
+      <img 
+        v-if="service.image && !imageError" 
+        :src="service.image" 
+        :alt="service.title"
+        loading="lazy"
+        @error="handleImageError"
+        @load="handleImageLoad"
+      />
+      <div v-if="!service.image || imageError" class="image-placeholder">
+        <i :class="service.icon || 'mdi-image'"></i>
       </div>
-      <div class="service-number">{{ service.id.toString().padStart(2, '0') }}</div>
+      <div class="image-overlay"></div>
+      <div class="card-icon">
+        <i :class="service.icon || 'mdi-cog'"></i>
+      </div>
     </div>
-    <div class="service-content">
-      <h3 class="service-title">{{ service.title }}</h3>
-      <p class="service-description">{{ service.description }}</p>
-    </div>
-    <div class="service-overlay">
-      <span class="learn-more">Saiba Mais</span>
-    </div>
-  </div>
 
-  <!-- Modal Customizado -->
-  <div v-if="isModalOpen" class="service-modal-overlay" @click="closeModal">
-    <div class="service-modal" @click.stop>
-      <div class="modal-header">
-        <h2>{{ service.title }}</h2>
-        <button class="close-btn" @click="closeModal">
-          <i class="mdi mdi-close"></i>
-        </button>
-      </div>
-      <div class="modal-content">
-        <div class="service-number-large">{{ service.id.toString().padStart(2, '0') }}</div>
-        <p class="modal-description">{{ service.fullDescription }}</p>
-        <div class="modal-features" v-if="service.features">
-          <h4>Características:</h4>
-          <ul>
-            <li v-for="feature in service.features" :key="feature">{{ feature }}</li>
-          </ul>
+    <div class="card-content">
+      <h3 class="card-title">{{ service.title }}</h3>
+      <p class="card-description">{{ service.description }}</p>
+
+      <div v-if="service.features" class="card-features">
+        <div
+          v-for="(feature, index) in service.features?.slice(0, 3)"
+          :key="index"
+          class="feature-tag"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>{{ feature }}</span>
         </div>
       </div>
-      <div class="modal-footer">
-        <button class="contact-btn" @click="goToContact">
-          <i class="mdi mdi-email"></i>
-          Solicitar Orçamento
-        </button>
-      </div>
+
+      <router-link to="/servicos" class="card-link">
+        <span>Saiba Mais</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </router-link>
     </div>
-  </div>
+  </article>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 
 interface Service {
   id: number
   title: string
   description: string
-  fullDescription: string
+  image?: string
+  icon?: string
   features?: string[]
 }
 
-interface Props {
+defineProps<{
   service: Service
+}>()
+
+const imageLoaded = ref(false)
+const imageError = ref(false)
+
+const handleImageError = () => {
+  imageError.value = true
+  imageLoaded.value = false
 }
 
-const props = defineProps<Props>()
-const router = useRouter()
-const isModalOpen = ref(false)
-
-const getServiceIcon = (id: number): string => {
-  const icons: { [key: number]: string } = {
-    1: 'mdi mdi-map-marker-multiple',
-    2: 'mdi mdi-chart-areaspline',
-    3: 'mdi mdi-earth',
-    4: 'mdi mdi-cog',
-    5: 'mdi mdi-language-python',
-    6: 'mdi mdi-school',
-    7: 'mdi mdi-vector-polygon',
-    8: 'mdi mdi-target',
-    9: 'mdi mdi-leaf',
-  }
-  return icons[id] || 'mdi mdi-cog'
-}
-
-const openModal = () => {
-  isModalOpen.value = true
-  document.body.style.overflow = 'hidden'
-}
-
-const closeModal = () => {
-  isModalOpen.value = false
-  document.body.style.overflow = 'auto'
-}
-
-const goToContact = () => {
-  closeModal()
-  router.push({
-    path: '/contato',
-    query: { service: props.service.title.toLowerCase().replace(/\s+/g, '-') },
-  })
+const handleImageLoad = () => {
+  imageLoaded.value = true
+  imageError.value = false
 }
 </script>
 
 <style scoped>
 .service-card {
-  position: relative;
   background: #ffffff;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 4px 20px rgba(26, 54, 93, 0.08);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
+  border: 1px solid rgba(26, 54, 93, 0.08);
+  border-radius: 1rem;
   overflow: hidden;
-  border: 1px solid rgba(26, 54, 93, 0.1);
-  height: 280px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
+  height: 100%;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #1a365d 0%, #1fa7a1 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .service-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(26, 54, 93, 0.15);
-  border-color: rgba(26, 54, 93, 0.3);
+  box-shadow: 0 20px 60px rgba(26, 54, 93, 0.12);
+  border-color: rgba(26, 54, 93, 0.15);
 }
 
-.service-card:hover .service-overlay {
-  opacity: 1;
-  transform: translateY(0);
+.service-card:hover::before {
+  transform: scaleX(1);
 }
 
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 20px;
+.card-image {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(26, 54, 93, 0.05) 0%, rgba(45, 90, 135, 0.05) 100%);
 }
 
-.service-icon {
-  width: 60px;
-  height: 60px;
-  background: #1a365d;
-  border-radius: 8px;
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  display: block;
+}
+
+.service-card:hover .card-image img {
+  transform: scale(1.05);
+}
+
+.image-placeholder {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: linear-gradient(135deg, rgba(26, 54, 93, 0.08) 0%, rgba(45, 90, 135, 0.08) 100%);
+}
+
+.image-placeholder i {
+  font-size: 4rem;
+  color: rgba(26, 54, 93, 0.2);
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(26, 54, 93, 0.3) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.service-card:hover .image-overlay {
+  opacity: 1;
+}
+
+.card-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 3rem;
+  height: 3rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  flex-shrink: 0;
 }
 
-.service-icon i {
-  font-size: 28px;
-  color: white;
+.service-card:hover .card-icon {
+  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
 }
 
-.service-card:hover .service-icon {
-  transform: scale(1.1) rotate(5deg);
+.card-icon i {
+  font-size: 1.5rem;
+  color: #1a365d;
+  transition: color 0.3s ease;
 }
 
-.service-number {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: rgba(26, 54, 93, 0.1);
-  font-family: 'Courier New', monospace;
-  line-height: 1;
-  flex-shrink: 0;
+.service-card:hover .card-icon i {
+  color: #ffffff;
 }
 
-.service-content {
+.card-content {
+  padding: 1.5rem;
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 0;
 }
 
-.service-title {
+.card-title {
   font-size: 1.25rem;
-  font-weight: 600;
-  color: #1a202c;
-  margin: 0 0 12px 0;
+  font-weight: 700;
+  color: #1a365d;
+  margin-bottom: 0.75rem;
   line-height: 1.3;
 }
 
-.service-description {
-  color: #4a5568;
+.card-description {
+  font-size: 0.9375rem;
   line-height: 1.6;
-  margin: 0;
-  font-size: 0.95rem;
+  color: #4a5568;
+  margin-bottom: 1.25rem;
   flex: 1;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
+}
+
+.card-features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.feature-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #2e3a47;
+  font-weight: 500;
+}
+
+.feature-tag svg {
+  flex-shrink: 0;
+  stroke: #1fa7a1;
+}
+
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: transparent;
+  border: 2px solid #1a365d;
+  color: #1a365d;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  align-self: flex-start;
+  position: relative;
   overflow: hidden;
 }
 
-.service-overlay {
+.card-link::after {
+  content: '';
   position: absolute;
   bottom: 0;
   left: 0;
-  right: 0;
-  background: #1a365d;
-  color: white;
-  padding: 16px;
-  text-align: center;
-  opacity: 0;
-  transform: translateY(100%);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 10;
-}
-
-.learn-more {
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-
-/* Modal Styles */
-.service-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  padding: 20px;
-  backdrop-filter: blur(8px);
-}
-
-.service-modal {
-  background: white;
-  border-radius: 20px;
-  max-width: 600px;
   width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
-  animation: modalSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@keyframes modalSlideIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9) translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-.modal-header {
-  padding: 24px 24px 16px;
-  border-bottom: 1px solid #e9ecef;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.modal-header h2 {
-  margin: 0;
-  color: #1a202c;
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-
-.close-btn {
-  background: none;
-  border: none;
-  font-size: 24px;
-  color: #4a5568;
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 50%;
-  transition: all 0.2s ease;
-}
-
-.close-btn:hover {
-  background: #f8f9fa;
-  color: #1a202c;
-}
-
-.modal-content {
-  padding: 24px;
-}
-
-.service-number-large {
-  font-size: 4rem;
-  font-weight: 700;
-  color: rgba(26, 54, 93, 0.1);
-  font-family: 'Courier New', monospace;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.modal-description {
-  color: #1a202c;
-  line-height: 1.7;
-  font-size: 1.1rem;
-  margin-bottom: 24px;
-}
-
-.modal-features h4 {
-  color: #1a365d;
-  margin-bottom: 12px;
-  font-size: 1.1rem;
-}
-
-.modal-features ul {
-  list-style: none;
-  padding: 0;
-}
-
-.modal-features li {
-  padding: 8px 0;
-  color: #1a202c;
-  position: relative;
-  padding-left: 20px;
-}
-
-.modal-features li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: #2d5a87;
-  font-weight: bold;
-}
-
-.modal-footer {
-  padding: 16px 24px 24px;
-  border-top: 1px solid #e9ecef;
-  text-align: center;
-}
-
-.contact-btn {
+  height: 3px;
   background: #1a365d;
-  color: white;
-  border: none;
-  padding: 14px 28px;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 2px 8px rgba(26, 54, 93, 0.2);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.contact-btn:hover {
-  background: #2d5a87;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(26, 54, 93, 0.3);
+.card-link:hover::after {
+  transform: scaleX(1);
 }
 
-.contact-btn:active {
-  transform: translateY(0);
-  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.3);
+.card-link:hover {
+  background: rgba(26, 54, 93, 0.05);
 }
 
-.contact-btn i {
-  font-size: 18px;
+.card-link svg {
+  transition: transform 0.3s ease;
 }
 
-/* Responsive */
-@media (max-width: 599.98px) {
-  .service-card {
-    padding: 16px;
-    height: 240px;
-    margin-bottom: 1rem;
+.card-link:hover svg {
+  transform: translateX(0.25rem);
+}
+
+@media (min-width: 768px) {
+  .card-image {
+    height: 220px;
   }
 
-  .service-icon {
-    width: 45px;
-    height: 45px;
+  .card-content {
+    padding: 2rem;
   }
 
-  .service-icon i {
-    font-size: 20px;
+  .card-title {
+    font-size: 1.375rem;
   }
 
-  .service-title {
+  .card-description {
     font-size: 1rem;
-    margin-bottom: 8px;
-    line-height: 1.2;
+  }
+}
+
+@media (max-width: 479px) {
+  .card-image {
+    height: 180px;
   }
 
-  .service-description {
+  .card-content {
+    padding: 1.25rem;
+  }
+
+  .card-title {
+    font-size: 1.125rem;
+  }
+
+  .card-description {
     font-size: 0.875rem;
-    line-height: 1.4;
-    -webkit-line-clamp: 3;
   }
 
-  .service-number {
-    font-size: 1.75rem;
-  }
-
-  .service-modal {
-    margin: 16px;
-    max-height: calc(100vh - 32px);
-    border-radius: 16px;
-    width: calc(100% - 32px);
-  }
-
-  .modal-header,
-  .modal-content,
-  .modal-footer {
-    padding: 16px;
-  }
-
-  .modal-header h2 {
-    font-size: 1.25rem;
-    line-height: 1.2;
-  }
-
-  .service-number-large {
-    font-size: 3rem;
-    margin-bottom: 16px;
-  }
-
-  .modal-description {
-    font-size: 1rem;
-    line-height: 1.5;
-    margin-bottom: 20px;
-  }
-
-  .modal-features h4 {
-    font-size: 1rem;
-    margin-bottom: 12px;
-  }
-
-  .modal-features li {
-    font-size: 0.875rem;
-    padding: 6px 0;
-    padding-left: 16px;
-  }
-
-  .contact-btn {
-    padding: 12px 24px;
-    font-size: 0.95rem;
+  .card-link {
     width: 100%;
     justify-content: center;
-    height: 48px;
-  }
-
-  .contact-btn i {
-    font-size: 16px;
-  }
-
-  .card-header {
-    margin-bottom: 12px;
-  }
-
-  .service-content {
-    gap: 8px;
-  }
-}
-
-@media (min-width: 600px) and (max-width: 959.98px) {
-  .service-card {
-    padding: 20px;
-    height: 260px;
-  }
-
-  .service-icon {
-    width: 50px;
-    height: 50px;
-  }
-
-  .service-icon i {
-    font-size: 24px;
-  }
-
-  .service-title {
-    font-size: 1.1rem;
-  }
-
-  .service-number {
-    font-size: 2rem;
-  }
-
-  .service-modal {
-    margin: 20px;
-    max-height: calc(100vh - 40px);
-  }
-
-  .modal-header,
-  .modal-content,
-  .modal-footer {
-    padding: 20px;
-  }
-}
-
-@media (min-width: 960px) {
-  .service-card {
-    padding: 24px;
-    height: 280px;
-  }
-
-  .service-icon {
-    width: 60px;
-    height: 60px;
-  }
-
-  .service-icon i {
-    font-size: 28px;
-  }
-
-  .service-title {
-    font-size: 1.25rem;
-  }
-
-  .service-number {
-    font-size: 2.5rem;
-  }
-
-  .service-modal {
-    margin: 20px;
-    max-height: 90vh;
-  }
-
-  .modal-header,
-  .modal-content,
-  .modal-footer {
-    padding: 24px;
-  }
-}
-
-/* Melhorias para Touch */
-@media (hover: none) and (pointer: coarse) {
-  .service-card:hover {
-    transform: none;
-  }
-
-  .service-card:hover .service-icon {
-    transform: none;
-  }
-
-  .service-card:hover .service-overlay {
-    opacity: 0;
-    transform: translateY(100%);
   }
 }
 </style>

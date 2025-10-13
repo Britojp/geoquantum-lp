@@ -1,289 +1,430 @@
 <template>
-  <section class="cta-section py-16 py-sm-12 py-md-16 bg-gradient-primary">
-    <div class="cta-background-overlay"></div>
-    <v-container class="mobile-padding">
-      <v-row class="text-center justify-center">
-        <v-col cols="12" lg="10" class="mx-auto">
-          <div class="cta-decoration">
-            <div class="cta-dot" :style="{ animationDelay: '0.1s' }"></div>
-            <div class="cta-dot" :style="{ animationDelay: '0.3s' }"></div>
-            <div class="cta-dot" :style="{ animationDelay: '0.5s' }"></div>
-            <div class="cta-line" :style="{ animationDelay: '0.7s' }"></div>
-          </div>
+  <section class="cta-section">
+    <div class="cta-background">
+      <div class="cta-pattern"></div>
+      <div class="cta-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+      </div>
+    </div>
 
-          <div class="cta-content animate-fade-in-up" :style="{ animationDelay: '0.2s' }">
-            <h2
-              class="text-h2 text-h3-sm text-h2-md font-weight-bold text-white mb-4 mobile-title text-shadow"
-            >
-              {{ title }}
-            </h2>
-            <p
-              class="text-h5 text-h6-sm text-h5-md text-grey-lighten-2 mb-8 mobile-text max-width-800 mx-auto"
-            >
-              {{ subtitle }}
-            </p>
+    <div class="cta-container">
+      <div class="cta-content">
+        <div v-if="badge" class="cta-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+          </svg>
+          <span>{{ badge }}</span>
+        </div>
 
-            <div
-              class="cta-stats mb-8 animate-fade-in-up"
-              :style="{ animationDelay: '0.4s' }"
-              v-if="stats && stats.length"
-            >
-              <div class="stats-row">
-                <div v-for="(s, idx) in stats" :key="idx" class="stat-item-cta">
-                  <div class="stat-number">{{ s.number }}</div>
-                  <div class="stat-label">{{ s.label }}</div>
-                </div>
-              </div>
-            </div>
+        <h2 class="cta-title">{{ title }}</h2>
+        <p class="cta-subtitle">{{ subtitle }}</p>
 
-            <div class="cta-actions animate-fade-in-up" :style="{ animationDelay: '0.6s' }">
-              <div class="d-flex flex-column flex-sm-row gap-4 gap-sm-6 justify-center mobile-flex">
-                <v-btn
-                  :color="primary.color"
-                  size="x-large"
-                  size-sm="large"
-                  variant="elevated"
-                  :to="primary.to"
-                  class="text-dark font-weight-bold w-full w-sm-auto mobile-btn touch-optimized cta-primary-btn"
-                >
-                  <v-icon start size="24">{{ primary.icon }}</v-icon>
-                  {{ primary.label }}
-                </v-btn>
+        <div class="cta-actions">
+          <router-link 
+            :to="primary.to" 
+            class="btn-cta primary"
+          >
+            <span>{{ primary.label }}</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </router-link>
 
-                <v-btn
-                  size="x-large"
-                  size-sm="large"
-                  variant="outlined"
-                  :to="secondary.to"
-                  class="text-white border-white documents-btn w-full w-sm-auto mobile-btn touch-optimized cta-secondary-btn"
-                >
-                  <v-icon start size="24">{{ secondary.icon }}</v-icon>
-                  {{ secondary.label }}
-                </v-btn>
-              </div>
-            </div>
+          <router-link 
+            v-if="secondary"
+            :to="secondary.to" 
+            class="btn-cta secondary"
+          >
+            <span>{{ secondary.label }}</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </router-link>
+        </div>
 
-            <div class="cta-quick-contact" v-if="contactChips && contactChips.length">
-              <span class="chip" v-for="(c, idx) in contactChips" :key="idx">
-                <v-icon size="18">{{ c.icon }}</v-icon>
-                {{ c.text }}
-              </span>
-            </div>
-          </div>
-        </v-col>
-      </v-row>
-    </v-container>
+        <div v-if="contactChips" class="cta-contacts">
+          <a
+            v-for="(chip, index) in contactChips"
+            :key="index"
+            :href="chip.icon === 'mdi-email' ? `mailto:${chip.text}` : `tel:${chip.text}`"
+            class="contact-chip"
+          >
+            <i :class="chip.icon"></i>
+            <span>{{ chip.text }}</span>
+          </a>
+        </div>
+      </div>
+
+      <div v-if="stats" class="cta-stats">
+        <div
+          v-for="(stat, index) in stats"
+          :key="index"
+          class="cta-stat-item"
+        >
+          <div class="cta-stat-value">{{ stat.number }}</div>
+          <div class="cta-stat-label">{{ stat.label }}</div>
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
 <script setup lang="ts">
-type StatItem = { number: string | number; label: string }
-type ChipItem = { icon: string; text: string }
-type ButtonConf = { to: string; label: string; icon: string; color?: string }
-
-const props = defineProps<{
-  title?: string
-  subtitle?: string
-  stats?: StatItem[]
-  contactChips?: ChipItem[]
-  primary?: ButtonConf
-  secondary?: ButtonConf
-}>()
-
-const title = props.title ?? 'Pronto para Iniciar Seu Projeto?'
-const subtitle =
-  props.subtitle ??
-  'Entre em contato conosco e descubra como podemos ajudar você a transformar seus dados geoespaciais em insights valiosos para o seu negócio.'
-const stats = props.stats ?? [
-  { number: '24', label: 'Resposta Rápida' },
-  { number: '100%', label: 'Satisfação' },
-  { number: '10', label: 'Anos de Experiência' },
-]
-
-const primary = props.primary ?? {
-  to: '/contato',
-  label: 'Solicitar Orçamento',
-  icon: 'mdi-phone',
-  color: 'accent',
+interface CtaButton {
+  to: string
+  label: string
+  icon?: string
 }
-const secondary = props.secondary ?? {
-  to: '/documentos',
-  label: 'Ver Documentação',
-  icon: 'mdi-file-document-outline',
+
+interface CtaStat {
+  number: string
+  label: string
 }
-const contactChips = props.contactChips ?? [
-  { icon: 'mdi-email', text: 'contato@geoquantum.com' },
-  { icon: 'mdi-phone', text: '+55 (11) 99999-9999' },
-  { icon: 'mdi-clock', text: 'Seg-Sex: 8h às 18h' },
-]
+
+interface ContactChip {
+  icon: string
+  text: string
+}
+
+interface Props {
+  title: string
+  subtitle: string
+  primary: CtaButton
+  secondary?: CtaButton
+  badge?: string
+  stats?: CtaStat[]
+  contactChips?: ContactChip[]
+}
+
+defineProps<Props>()
 </script>
 
 <style scoped>
 .cta-section {
-  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
+  padding: 4rem 0;
   position: relative;
   overflow: hidden;
 }
 
-.cta-background-overlay {
+.cta-background {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('/src/assets/home/andes-2975217_1280.jpg') center/cover;
-  opacity: 0.1;
-  z-index: 1;
+  inset: 0;
+  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 50%, #1a365d 100%);
 }
 
-.cta-section .v-container {
-  position: relative;
-  z-index: 2;
+.cta-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
 }
 
-.cta-decoration {
+.cta-shapes {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  z-index: 1;
+  inset: 0;
+  overflow: hidden;
 }
 
-.cta-dot {
+.shape {
   position: absolute;
-  width: 8px;
-  height: 8px;
-  background: #d4a574;
   border-radius: 50%;
-  animation: ctaPulse 2s ease-in-out infinite;
+  background: rgba(31, 167, 161, 0.08);
+  filter: blur(40px);
 }
 
-.cta-dot:nth-child(1) {
-  top: 20%;
-  left: 10%;
-}
-.cta-dot:nth-child(2) {
-  top: 60%;
-  right: 15%;
-}
-.cta-dot:nth-child(3) {
-  bottom: 30%;
-  left: 20%;
+.shape-1 {
+  width: 300px;
+  height: 300px;
+  top: -150px;
+  right: 10%;
 }
 
-.cta-line {
-  position: absolute;
-  top: 40%;
+.shape-2 {
+  width: 400px;
+  height: 400px;
+  bottom: -200px;
   left: 5%;
-  width: 60px;
-  height: 2px;
-  background: linear-gradient(90deg, #d4a574, transparent);
-  transform: rotate(-45deg);
-  animation: ctaLine 3s ease-in-out infinite;
 }
 
-@keyframes ctaPulse {
-  0%,
-  100% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-}
-
-@keyframes ctaLine {
-  0%,
-  100% {
-    opacity: 0.4;
-    transform: rotate(-45deg) scaleX(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: rotate(-45deg) scaleX(1.2);
-  }
+.cta-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .cta-content {
-  position: relative;
-  z-index: 2;
-}
-.max-width-800 {
+  text-align: center;
   max-width: 800px;
+  margin: 0 auto;
 }
 
-.stats-row {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.stat-number {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #d4a574;
-  margin-bottom: 0.5rem;
-}
-.stat-label {
+.cta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(31, 167, 161, 0.15);
+  border: 1px solid rgba(31, 167, 161, 0.3);
+  border-radius: 2rem;
+  color: #ffffff;
   font-size: 0.875rem;
-  color: #e2e8f0;
-  font-weight: 500;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.cta-badge svg {
+  color: #1fa7a1;
+}
+
+.cta-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.cta-subtitle {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2.5rem;
 }
 
 .cta-actions {
-  margin-bottom: 2rem;
-}
-.cta-actions .d-flex {
-  gap: 12px;
-}
-@media (min-width: 600px) {
-  .cta-actions .d-flex {
-    gap: 16px;
-  }
-}
-.cta-primary-btn {
-  background: #d4a574 !important;
-  color: #2e3a47 !important;
-  font-weight: 700 !important;
-  box-shadow: 0 4px 20px rgba(212, 165, 116, 0.3);
-  transition: all 0.3s ease;
-}
-.cta-primary-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(212, 165, 116, 0.4);
-}
-.cta-secondary-btn {
-  border: 2px solid white !important;
-  background: transparent !important;
-  color: white !important;
-  font-weight: 600 !important;
-  transition: all 0.3s ease;
-}
-.cta-secondary-btn:hover {
-  background: rgba(255, 255, 255, 0.1) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.2);
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
 }
 
-.cta-quick-contact {
-  display: flex;
-  justify-content: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  margin-top: 0.5rem;
-}
-.cta-quick-contact .chip {
+.btn-cta {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.625rem;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-cta::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #2d5a87;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-cta:hover::after {
+  transform: scaleX(1);
+}
+
+.btn-cta.primary {
+  background: #ffffff;
+  color: #1a365d;
+}
+
+.btn-cta.primary:hover {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.btn-cta.secondary {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
   color: #ffffff;
-  padding: 6px 10px;
-  border-radius: 999px;
-  font-size: 0.85rem;
+}
+
+.btn-cta.secondary:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.cta-contacts {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contact-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.contact-chip:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.contact-chip i {
+  font-size: 1.125rem;
+}
+
+.cta-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cta-stat-item {
+  text-align: center;
+}
+
+.cta-stat-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.cta-stat-label {
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+@media (min-width: 768px) {
+  .cta-section {
+    padding: 5rem 0;
+  }
+
+  .cta-container {
+    padding: 0 2rem;
+  }
+
+  .cta-badge {
+    font-size: 1rem;
+    padding: 0.625rem 1.25rem;
+  }
+
+  .cta-title {
+    font-size: 2.5rem;
+  }
+
+  .cta-subtitle {
+    font-size: 1.125rem;
+  }
+
+  .btn-cta {
+    padding: 1.125rem 2.5rem;
+    font-size: 1.0625rem;
+  }
+
+  .cta-stats {
+    gap: 2rem;
+  }
+
+  .cta-stat-value {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cta-section {
+    padding: 6rem 0;
+  }
+
+  .cta-title {
+    font-size: 3rem;
+  }
+
+  .cta-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 479px) {
+  .cta-section {
+    padding: 3rem 0;
+  }
+
+  .cta-badge {
+    font-size: 0.8125rem;
+    padding: 0.5rem 0.875rem;
+  }
+
+  .cta-title {
+    font-size: 1.75rem;
+  }
+
+  .cta-subtitle {
+    font-size: 0.9375rem;
+  }
+
+  .cta-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-cta {
+    width: 100%;
+    justify-content: center;
+    padding: 1rem 1.5rem;
+  }
+
+  .cta-contacts {
+    flex-direction: column;
+  }
+
+  .contact-chip {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cta-stats {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+  }
+
+  .cta-stat-value {
+    font-size: 2rem;
+  }
+
+  .cta-stat-label {
+    font-size: 0.875rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 </style>

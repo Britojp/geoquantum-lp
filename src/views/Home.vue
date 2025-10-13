@@ -5,18 +5,11 @@
     <!-- Seção de Serviços -->
     <section class="services-section py-16 py-sm-12 py-md-16 animate-on-scroll">
       <v-container class="mobile-padding">
-        <div class="text-center mb-12 mb-sm-8 mb-md-12 animate-fade-in-up">
-          <h2
-            class="text-h3 text-h4-sm text-h3-md font-weight-bold text-primary mb-4 animate-slide-in-left mobile-title"
-          >
-            Nossos Serviços
-          </h2>
-          <p
-            class="text-h6 text-body-1-sm text-h6-md text-grey-darken-1 max-width-600 mx-auto animate-slide-in-right mobile-text"
-          >
-            Oferecemos soluções completas em geoprocessamento e análise geoespacial para diversos
-            setores e aplicações.
-          </p>
+        <div class="animate-fade-in-up">
+          <SectionTitle
+            title="Nossos Serviços"
+            subtitle="Oferecemos soluções completas em geoprocessamento e análise geoespacial para diversos setores e aplicações."
+          />
         </div>
 
         <v-row class="mobile-grid">
@@ -34,128 +27,26 @@
       </v-container>
     </section>
 
-    <!-- Seção de Estatísticas -->
-    <section class="stats-section py-16 py-sm-12 py-md-16 bg-primary animate-on-scroll">
-      <v-container class="mobile-padding">
-        <v-row class="text-center justify-center mobile-grid">
-          <v-col cols="12" sm="6" lg="4" class="mb-6 mb-sm-4 mb-md-6">
-            <div
-              class="stat-item animate-fade-in-up mobile-card touch-optimized"
-              :style="{ animationDelay: '0.1s' }"
-            >
-              <div
-                class="text-h2 text-h3-sm text-h2-md font-weight-bold text-white mb-2 stat-number"
-              >
-                20+
-              </div>
-              <div class="text-h6 text-body-1-sm text-h6-md text-grey-lighten-2 mobile-text">
-                Clientes Fidelizados
-              </div>
-            </div>
-          </v-col>
-          <v-col cols="12" sm="6" lg="4" class="mb-6 mb-sm-4 mb-md-6">
-            <div
-              class="stat-item animate-fade-in-up mobile-card touch-optimized"
-              :style="{ animationDelay: '0.3s' }"
-            >
-              <div
-                class="text-h2 text-h3-sm text-h2-md font-weight-bold text-white mb-2 stat-number"
-              >
-                1
-              </div>
-              <div class="text-h6 text-body-1-sm text-h6-md text-grey-lighten-2 mobile-text">
-                Ano de Atuação
-              </div>
-            </div>
-          </v-col>
-          <v-col cols="12" sm="6" lg="4" class="mb-6 mb-sm-4 mb-md-6">
-            <div
-              class="stat-item animate-fade-in-up mobile-card touch-optimized"
-              :style="{ animationDelay: '0.5s' }"
-            >
-              <div
-                class="text-h2 text-h3-sm text-h2-md font-weight-bold text-white mb-2 stat-number"
-              >
-                9
-              </div>
-              <div class="text-h6 text-body-1-sm text-h6-md text-grey-lighten-2 mobile-text">
-                Serviços Especializados
-              </div>
-            </div>
-          </v-col>
-        </v-row>
-      </v-container>
-    </section>
-
     <!-- Seção Sobre -->
     <section class="about-section py-16 py-sm-12 py-md-16 animate-on-scroll">
       <v-container class="mobile-padding">
         <v-row align="center">
           <v-col cols="12" lg="6" class="mb-6 mb-sm-4 mb-md-6 order-2 order-lg-1">
-            <h2
-              class="text-h3 text-h4-sm text-h3-md font-weight-bold text-primary mb-4 animate-slide-in-left mobile-title"
-            >
-              Sobre a GeoQuantum
-            </h2>
-            <p
-              class="text-body-1 text-body-2-sm text-body-1-md mb-4 animate-fade-in-up mobile-text"
-              :style="{ animationDelay: '0.2s' }"
-            >
-              Somos uma empresa especializada em geoprocessamento e análise geoespacial, com mais de
-              10 anos de experiência no mercado. Nossa missão é fornecer soluções inovadoras que
-              contribuam para o desenvolvimento sustentável.
-            </p>
-            <p
-              class="text-body-1 text-body-2-sm text-body-1-md mb-6 animate-fade-in-up mobile-text"
-              :style="{ animationDelay: '0.4s' }"
-            >
-              Atuamos em diversos setores, desde engenharia civil e ambiental até agricultura de
-              precisão e planejamento urbano, sempre com foco na excelência técnica e na satisfação
-              do cliente.
-            </p>
+            <SectionTitle
+              title="Sobre a GeoQuantum"
+              subtitle="Somos uma empresa especializada em geoprocessamento e análise geoespacial, com mais de 10 anos de experiência no mercado. Nossa missão é fornecer soluções inovadoras que contribuam para o desenvolvimento sustentável."
+              />
 
-            <!-- Elementos visuais tecnológicos -->
-            <div class="tech-features mb-6 animate-fade-in-up" :style="{ animationDelay: '0.5s' }">
-              <div class="tech-grid">
-                <div class="tech-item">
-                  <div class="tech-icon">
-                    <v-icon color="primary" size="24">mdi-satellite-variant</v-icon>
-                  </div>
-                  <span class="tech-text">Sensoriamento Remoto</span>
-                </div>
-                <div class="tech-item">
-                  <div class="tech-icon">
-                    <v-icon color="primary" size="24">mdi-map-marker-multiple</v-icon>
-                  </div>
-                  <span class="tech-text">Sistemas GIS</span>
-                </div>
-                <div class="tech-item">
-                  <div class="tech-icon">
-                    <v-icon color="primary" size="24">mdi-chart-areaspline</v-icon>
-                  </div>
-                  <span class="tech-text">Análise Espacial</span>
-                </div>
-                <div class="tech-item">
-                  <div class="tech-icon">
-                    <v-icon color="primary" size="24">mdi-database</v-icon>
-                  </div>
-                  <span class="tech-text">Big Data Geo</span>
-                </div>
-              </div>
+
+            <div class="text-center animate-fade-in-up" :style="{ animationDelay: '0.6s' }">
+              <button href="/sobre" clbuttonss="btn-section">
+                <span>Conheça Nossa História</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
             </div>
-
-            <v-btn
-              color="primary"
-              size="large"
-              size-sm="default"
-              variant="elevated"
-              to="/sobre"
-              class="animate-fade-in-up w-full w-sm-auto mobile-btn touch-optimized"
-              :style="{ animationDelay: '0.6s' }"
-            >
-              Conheça Nossa História
-              <v-icon end>mdi-arrow-right</v-icon>
-            </v-btn>
           </v-col>
 
           <v-col cols="12" lg="6" class="order-1 order-lg-2">
@@ -268,85 +159,8 @@
       </v-container>
     </section>
 
-    <!-- Seção de Projetos em Destaque -->
-    <section class="featured-projects py-16 py-sm-12 py-md-16 bg-grey-lighten-4 animate-on-scroll">
-      <v-container class="mobile-padding">
-        <div class="text-center mb-12 mb-sm-8 mb-md-12 animate-fade-in-up">
-          <h2
-            class="text-h3 text-h4-sm text-h3-md font-weight-bold text-primary mb-4 animate-slide-in-left mobile-title"
-          >
-            Projetos em Destaque
-          </h2>
-          <p
-            class="text-h6 text-body-1-sm text-h6-md text-grey-darken-1 max-width-600 mx-auto animate-slide-in-right mobile-text"
-          >
-            Conheça alguns dos nossos projetos mais relevantes e as tecnologias utilizadas em cada
-            um deles.
-          </p>
-        </div>
-
-        <v-row class="mobile-grid">
-          <v-col
-            v-for="(project, index) in featuredProjects"
-            :key="project.title"
-            cols="12"
-            md="6"
-            lg="4"
-            class="mb-6 mb-sm-4 mb-md-6"
-          >
-            <div
-              class="project-card animate-on-scroll mobile-card touch-optimized"
-              @click="openProjectModal(project)"
-              :style="{ animationDelay: `${index * 0.2}s` }"
-            >
-              <div class="card-header">
-                <div class="project-image-container">
-                  <img :src="project.image" :alt="project.title" class="project-image" />
-                  <div class="project-category">
-                    <span
-                      class="category-chip"
-                      :style="{ backgroundColor: getCategoryColor(project.category.color) }"
-                    >
-                      {{ project.category.name }}
-                    </span>
-                  </div>
-                </div>
-                <div class="project-number">{{ getProjectNumber(index) }}</div>
-              </div>
-
-              <div class="project-content">
-                <h3 class="project-title">{{ project.title }}</h3>
-                <p class="project-description">{{ project.description }}...</p>
-
-                <div class="project-technologies">
-                  <span v-for="tech in project.technologies" :key="tech" class="tech-chip">
-                    {{ tech }}
-                  </span>
-                </div>
-              </div>
-
-              <div class="project-overlay">
-                <span class="learn-more">Ver Todos os Projetos</span>
-              </div>
-            </div>
-          </v-col>
-        </v-row>
-
-        <div class="text-center mt-8 mt-sm-6 mt-md-8">
-          <v-btn
-            color="primary"
-            size="large"
-            size-sm="default"
-            variant="elevated"
-            to="/projetos"
-            class="w-full w-sm-auto mobile-btn touch-optimized"
-          >
-            Ver Todos os Projetos
-            <v-icon end>mdi-arrow-right</v-icon>
-          </v-btn>
-        </div>
-      </v-container>
-    </section>
+    <!-- Seção de Resultados que Impressionam -->
+    <ReviewsShowcase />
 
     <!-- Seção CTA -->
     <CtaSection
@@ -361,7 +175,6 @@
         to: '/contato',
         label: 'Solicitar Orçamento',
         icon: 'mdi-phone',
-        color: 'accent',
       }"
       :secondary="{ to: '/documentos', label: 'Ver Documentação', icon: 'mdi-file-document' }"
       :contactChips="[
@@ -377,6 +190,8 @@
 import HeroMap from '../components/HeroMap.vue'
 import CtaSection from '../components/CtaSection.vue'
 import ServiceCard from '../components/ServiceCard.vue'
+import ReviewsShowcase from '../components/ReviewsShowcase.vue'
+import SectionTitle from '../components/SectionTitle.vue'
 import { useRouter } from 'vue-router'
 import { onMounted, onUnmounted, ref } from 'vue'
 
@@ -495,6 +310,8 @@ const services = [
       'Padrões cartográficos',
       'Sensoriamento remoto',
     ],
+    image: '/images/geoprocessing/agriculture-precision.jpg',
+    icon: 'mdi-map-marker-radius',
   },
   {
     id: 2,
@@ -508,6 +325,8 @@ const services = [
       'Operações geoespaciais',
       'Processos repetitivos',
     ],
+    image: '/images/geoprocessing/qgis-interface.jpg',
+    icon: 'mdi-cog-sync',
   },
   {
     id: 3,
@@ -522,6 +341,8 @@ const services = [
       'Inovações tecnológicas',
       'Formação contínua',
     ],
+    image: '/images/geoprocessing/team-collaboration.jpg',
+    icon: 'mdi-school',
   },
   {
     id: 4,
@@ -535,54 +356,11 @@ const services = [
       'Gestão ambiental',
       'Sustentabilidade',
     ],
+    image: '/images/geoprocessing/environmental-monitoring.jpg',
+    icon: 'mdi-leaf-circle',
   },
 ]
 
-const featuredProjects = [
-  {
-    title: 'Sistema de Planejamento Urbano - São Paulo',
-    description:
-      'Desenvolvemos mapas interativos e análises geoespaciais para otimizar o planejamento urbano da maior cidade do Brasil.',
-    image: 'src/assets/home/sistema-planejamento-urbano.png',
-    category: { name: 'Planejamento Urbano', color: 'primary' },
-    technologies: ['QGIS', 'PostgreSQL', 'GeoServer', 'Vue.js'],
-  },
-  {
-    title: 'Agricultura de Precisão - Mato Grosso',
-    description:
-      'Implementamos sensores IoT e análise de dados para maximizar a produtividade agrícola em grandes propriedades rurais.',
-    image: 'src/assets/home/agricultura-precisao.jpg',
-    category: { name: 'Agricultura', color: 'success' },
-    technologies: ['ArcGIS', 'Python', 'Machine Learning', 'IoT'],
-  },
-  {
-    title: 'Monitoramento Ambiental - Amazônia',
-    description:
-      'Criamos sistema de vigilância contínua para proteger áreas de preservação usando satélites e IA.',
-    image: 'src/assets/home/monitoramento-ambiental.jpg',
-    category: { name: 'Meio Ambiente', color: 'info' },
-    technologies: ['Google Earth Engine', 'JavaScript', 'Cloud Computing'],
-  },
-]
-
-const getCategoryColor = (color: string): string => {
-  const colorMap: { [key: string]: string } = {
-    primary: '#1a365d',
-    success: '#38a169',
-    info: '#3182ce',
-    warning: '#d69e2e',
-    error: '#e53e3e',
-  }
-  return colorMap[color] || '#1a365d'
-}
-
-const getProjectNumber = (index: number): string => {
-  return (index + 1).toString().padStart(2, '0')
-}
-
-const openProjectModal = (project: any) => {
-  router.push('/projetos')
-}
 
 // Controle de animações baseadas no scroll - Otimizado com throttling
 let scrollTimeout: number | null = null
@@ -632,41 +410,6 @@ onUnmounted(() => {
 
 .services-section {
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-}
-
-.stats-section {
-  background:
-    linear-gradient(135deg, rgba(26, 54, 93, 0.9) 0%, rgba(45, 90, 135, 0.9) 100%),
-    url('/src/assets/home/andes-2975217_1280.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-}
-
-.stat-item {
-  text-align: center;
-  padding: 20px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.stat-item .text-h2 {
-  color: #ffffff !important;
-  font-weight: 700;
-  font-size: 3rem !important;
-  margin-bottom: 8px;
-  line-height: 1;
-}
-
-.stat-item .text-h6 {
-  color: #e2e8f0 !important;
-  font-size: 1rem !important;
-  font-weight: 500;
-  line-height: 1.4;
 }
 
 .about-card {
@@ -1027,66 +770,7 @@ onUnmounted(() => {
   }
 }
 
-.project-card {
-  position: relative;
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 4px 20px rgba(26, 54, 93, 0.08);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  overflow: hidden;
-  border: 1px solid rgba(26, 54, 93, 0.1);
-  height: 320px;
-  display: flex;
-  flex-direction: column;
-}
 
-.project-card:hover .project-overlay {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 20px;
-}
-
-.project-image-container {
-  position: relative;
-  width: 100%;
-  height: 120px;
-  border-radius: 8px;
-  overflow: hidden;
-  flex: 1;
-}
-
-.project-image-container::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(26, 54, 93, 0.3) 0%, rgba(45, 90, 135, 0.2) 100%);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.project-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.project-category {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  z-index: 3;
-}
 
 .category-chip {
   display: inline-block;
@@ -1291,8 +975,7 @@ onUnmounted(() => {
 }
 
 /* Hover Animations - Otimizado com will-change */
-.service-card:hover,
-.project-card:hover {
+.service-card:hover {
   transform: translateY(-8px) scale(1.02);
   will-change: transform;
 }
@@ -1320,9 +1003,6 @@ onUnmounted(() => {
   will-change: transform;
 }
 
-.project-card:hover .project-image-container img {
-  transform: scale(1.1);
-}
 
 /* Animações para chips - Otimizado */
 .tech-chip,
@@ -1340,8 +1020,7 @@ onUnmounted(() => {
 /* Scroll Animations - Otimizado */
 .services-section.animate,
 .stats-section.animate,
-.about-section.animate,
-.featured-projects.animate {
+.about-section.animate {
   opacity: 1;
   transform: translateY(0);
   will-change: auto;
@@ -1391,9 +1070,9 @@ onUnmounted(() => {
     font-size: 14px;
   }
 
+
   .services-section,
-  .about-section,
-  .featured-projects {
+  .about-section {
     padding: 2rem 0;
   }
 
@@ -1416,11 +1095,6 @@ onUnmounted(() => {
     line-height: 1.3;
   }
 
-  .project-card {
-    padding: 16px;
-    height: 260px;
-    margin-bottom: 1rem;
-  }
 
   .project-image-container {
     height: 80px;
@@ -1652,8 +1326,7 @@ onUnmounted(() => {
   }
 
   .services-section,
-  .about-section,
-  .featured-projects {
+  .about-section {
     padding: 3.5rem 0;
   }
 
@@ -1665,9 +1338,6 @@ onUnmounted(() => {
     padding: 18px;
   }
 
-  .project-card {
-    height: 300px;
-  }
 
   .about-logo {
     max-width: 350px;
@@ -1697,8 +1367,7 @@ onUnmounted(() => {
   }
 
   .services-section,
-  .about-section,
-  .featured-projects {
+  .about-section {
     padding: 4rem 0;
   }
 
@@ -1710,9 +1379,6 @@ onUnmounted(() => {
     padding: 20px;
   }
 
-  .project-card {
-    height: 320px;
-  }
 
   .about-logo {
     max-width: 400px;
@@ -1731,8 +1397,7 @@ onUnmounted(() => {
     padding-right: 2rem;
   }
 
-  .services-section .text-center,
-  .featured-projects .text-center {
+  .services-section .text-center {
     padding-left: 2rem;
     padding-right: 2rem;
   }
@@ -1752,8 +1417,7 @@ onUnmounted(() => {
     padding-right: 3rem;
   }
 
-  .services-section .text-center,
-  .featured-projects .text-center {
+  .services-section .text-center {
     padding-left: 3rem;
     padding-right: 3rem;
   }
@@ -1778,8 +1442,7 @@ onUnmounted(() => {
     padding-right: 4rem;
   }
 
-  .services-section .text-center,
-  .featured-projects .text-center {
+  .services-section .text-center {
     padding-left: 4rem;
     padding-right: 4rem;
   }
@@ -1942,9 +1605,6 @@ onUnmounted(() => {
 
 /* Melhorias para Touch */
 @media (hover: none) and (pointer: coarse) {
-  .project-card:hover {
-    transform: none;
-  }
 
   .v-btn:hover {
     transform: none;
@@ -1957,9 +1617,6 @@ onUnmounted(() => {
 
 /* Melhorias para Mobile */
 @media (max-width: 599.98px) {
-  .project-card {
-    margin-bottom: 1rem;
-  }
 
   .stat-item {
     margin-bottom: 1rem;
@@ -1992,19 +1649,14 @@ onUnmounted(() => {
     background: #ffffff;
   }
 
-  .featured-projects {
-    background: #f5f5f5;
-  }
 
   /* Melhorias para cards */
-  .project-card,
   .service-card {
     border-radius: 12px;
     box-shadow: 0 2px 12px rgba(26, 54, 93, 0.1);
     border: 1px solid rgba(26, 54, 93, 0.08);
   }
 
-  .project-card:active,
   .service-card:active {
     transform: scale(0.98);
     transition: transform 0.1s ease;
@@ -2015,6 +1667,7 @@ onUnmounted(() => {
     transform: scale(0.95);
     transition: transform 0.1s ease;
   }
+
 
   /* Melhorias para navegação */
   .v-container {
@@ -2049,7 +1702,6 @@ onUnmounted(() => {
   }
 
   /* Melhorias para hover em mobile */
-  .project-card:hover,
   .service-card:hover {
     transform: none;
   }
@@ -2063,12 +1715,12 @@ onUnmounted(() => {
   }
 
   /* Melhorias para acessibilidade */
-  .project-card:focus,
   .service-card:focus,
   .v-btn:focus {
     outline: 2px solid #1a365d;
     outline-offset: 2px;
   }
+
 
   /* Melhorias para scroll */
   .home-page {
@@ -2101,14 +1753,6 @@ onUnmounted(() => {
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
   }
 
-  /* Melhorias para seção de projetos */
-  .featured-projects .project-card {
-    transition: all 0.3s ease;
-  }
-
-  .featured-projects .project-card:active {
-    background: #f8f9fa;
-  }
 
   /* Melhorias para responsividade */
   .max-width-600 {
@@ -2467,7 +2111,6 @@ onUnmounted(() => {
 
 .stat-number.animating {
   transform: scale(1.1);
-  color: #d4a574 !important;
 }
 
 .stat-number.completed {
@@ -2492,7 +2135,6 @@ onUnmounted(() => {
   left: 0;
   width: 0;
   height: 2px;
-  background: #d4a574;
   transition: width 0.5s ease;
 }
 
@@ -2504,7 +2146,6 @@ onUnmounted(() => {
 
 /* Efeito de destaque durante animação */
 .stat-number.animating {
-  text-shadow: 0 0 20px rgba(212, 165, 116, 0.6);
   animation: numberPulse 0.5s ease-in-out infinite alternate;
 }
 </style>

@@ -145,12 +145,10 @@
     <!-- Mapa de Projetos -->
     <section class="map-section py-16 bg-grey-lighten-4">
       <v-container>
-        <div class="text-center mb-8">
-          <h2 class="text-h3 font-weight-bold text-primary mb-4">Localização dos Projetos</h2>
-          <p class="text-h6 text-grey-darken-1 max-width-600 mx-auto">
-            Visualize a distribuição geográfica dos nossos projetos pelo Brasil.
-          </p>
-        </div>
+        <SectionTitle
+          title="Localização dos Projetos"
+          subtitle="Visualize a distribuição geográfica dos nossos projetos pelo Brasil."
+        />
 
         <v-card elevation="4" class="map-card">
           <div ref="projectsMapContainer" class="projects-map-container"></div>
@@ -263,6 +261,7 @@ import L from 'leaflet'
 import CtaSection from '../components/CtaSection.vue'
 import ProjectFilters from '@/components/ProjectFilters.vue'
 import ProjectCard from '@/components/ProjectCard.vue'
+import SectionTitle from '../components/SectionTitle.vue'
 
 const router = useRouter()
 

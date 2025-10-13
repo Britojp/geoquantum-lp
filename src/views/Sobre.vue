@@ -309,17 +309,11 @@
     <!-- Missão, Visão e Valores -->
     <section class="values-section py-16 py-sm-12 py-md-16 bg-grey-lighten-4 animate-on-scroll">
       <v-container class="mobile-padding">
-        <div class="text-center mb-12 mb-sm-8 mb-md-12 animate-fade-in-up">
-          <h2
-            class="text-h3 text-h4-sm text-h3-md font-weight-bold text-primary mb-4 mobile-title animate-slide-in-left"
-          >
-            Missão, Visão e Valores
-          </h2>
-          <p
-            class="text-h6 text-body-1-sm text-h6-md text-grey-darken-1 max-width-600 mx-auto mobile-text animate-slide-in-right"
-          >
-            Os pilares que guiam nossas ações e decisões diárias.
-          </p>
+        <div class="animate-fade-in-up">
+          <SectionTitle
+            title="Missão, Visão e Valores"
+            subtitle="Os pilares que guiam nossas ações e decisões diárias."
+          />
         </div>
 
         <div class="values-grid">
@@ -344,17 +338,11 @@
     <!-- Equipe -->
     <section class="team-section py-16 py-sm-12 py-md-16 animate-on-scroll">
       <v-container class="mobile-padding">
-        <div class="text-center mb-12 mb-sm-8 mb-md-12 animate-fade-in-up">
-          <h2
-            class="text-h3 text-h4-sm text-h3-md font-weight-bold text-primary mb-4 mobile-title animate-slide-in-left"
-          >
-            Nossa Equipe
-          </h2>
-          <p
-            class="text-h6 text-body-1-sm text-h6-md text-grey-darken-1 max-width-600 mx-auto mobile-text animate-slide-in-right"
-          >
-            Conheça os profissionais que fazem a diferença na GeoQuantum.
-          </p>
+        <div class="animate-fade-in-up">
+          <SectionTitle
+            title="Nossa Equipe"
+            subtitle="Conheça os profissionais que fazem a diferença na GeoQuantum."
+          />
         </div>
 
         <div class="team-cards-container">
@@ -422,17 +410,11 @@
 
     <section class="tech-apps-section py-16 py-sm-12 py-md-16 animate-on-scroll">
       <v-container class="mobile-padding">
-        <div class="text-center mb-12 mb-sm-8 mb-md-12 animate-fade-in-up">
-          <h2
-            class="text-h3 text-h4-sm text-h3-md font-weight-bold text-primary mb-4 mobile-title animate-slide-in-left"
-          >
-            Tecnologias e Aplicações
-          </h2>
-          <p
-            class="text-h6 text-body-1-sm text-h6-md text-grey-darken-1 max-width-600 mx-auto mobile-text animate-slide-in-right"
-          >
-            Conheça áreas onde aplicamos nossas soluções com excelência.
-          </p>
+        <div class="animate-fade-in-up">
+          <SectionTitle
+            title="Tecnologias e Aplicações"
+            subtitle="Conheça áreas onde aplicamos nossas soluções com excelência."
+          />
         </div>
 
         <v-row class="mobile-grid">
@@ -579,7 +561,6 @@
         to: '/contato',
         label: 'Solicitar Orçamento',
         icon: 'mdi-phone',
-        color: 'accent',
       }"
       :secondary="{ to: '/servicos', label: 'Nossos Serviços', icon: 'mdi-cog' }"
       :contactChips="[

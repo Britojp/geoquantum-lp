@@ -23,12 +23,10 @@
     <!-- Seção de Downloads -->
     <section class="downloads-section py-16 bg-grey-lighten-4">
       <v-container>
-        <div class="text-center mb-12">
-          <h2 class="text-h3 font-weight-bold text-primary mb-4">Documentos para Download</h2>
-          <p class="text-h6 text-grey-darken-1 max-width-600 mx-auto">
-            Acesse nossos documentos institucionais e materiais técnicos.
-          </p>
-        </div>
+        <SectionTitle
+          title="Documentos para Download"
+          subtitle="Acesse nossos documentos institucionais e materiais técnicos."
+        />
 
         <v-row>
           <v-col
@@ -72,11 +70,10 @@
       <v-container>
         <v-row class="text-center">
           <v-col cols="12" md="8" class="mx-auto">
-            <h2 class="text-h3 font-weight-bold text-primary mb-4">Precisa de Mais Informações?</h2>
-            <p class="text-h6 text-grey-darken-1 max-width-600 mx-auto mb-6">
-              Entre em contato conosco para solicitar informações adicionais ou esclarecer dúvidas
-              sobre nossa documentação.
-            </p>
+            <SectionTitle
+              title="Precisa de Mais Informações?"
+              subtitle="Entre em contato conosco para solicitar informações adicionais ou esclarecer dúvidas sobre nossa documentação."
+            />
             <div class="d-flex flex-column flex-sm-row gap-4 justify-center">
               <v-btn color="primary" size="large" variant="elevated" to="/contato">
                 <v-icon start>mdi-email</v-icon>
@@ -121,6 +118,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import L from 'leaflet'
 import CtaSection from '../components/CtaSection.vue'
+import SectionTitle from '../components/SectionTitle.vue'
 
 const mapContainer = ref<HTMLElement>()
 let map: L.Map | null = null

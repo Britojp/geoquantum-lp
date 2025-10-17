@@ -26,6 +26,35 @@
         </v-row>
       </v-container>
     </section>
+    <section class="metrics-section py-12 py-sm-8 py-md-12">
+      <v-container class="mobile-padding">
+        <v-row class="justify-center">
+          <v-col cols="12" lg="10" class="mx-auto">
+            <div class="metrics-grid">
+              <div class="metric-item animate-fade-in-up" :style="{ animationDelay: '0.1s' }">
+                <div class="metric-number stat-number">1</div>
+                <div class="metric-label">Ano de Mercado</div>
+              </div>
+
+              <div class="metric-item animate-fade-in-up" :style="{ animationDelay: '0.3s' }">
+                <div class="metric-number stat-number">15+</div>
+                <div class="metric-label">Tecnologias Dominadas</div>
+              </div>
+
+              <div class="metric-item animate-fade-in-up" :style="{ animationDelay: '0.5s' }">
+                <div class="metric-number stat-number">100%</div>
+                <div class="metric-label">Dedicação</div>
+              </div>
+
+              <div class="metric-item animate-fade-in-up" :style="{ animationDelay: '0.7s' }">
+                <div class="metric-number stat-number">24h</div>
+                <div class="metric-label">Tempo de Resposta</div>
+              </div>
+            </div>
+          </v-col>
+        </v-row>
+      </v-container>
+    </section>
 
     <!-- Seção Sobre -->
     <section class="about-section py-16 py-sm-12 py-md-16 animate-on-scroll">
@@ -129,47 +158,17 @@
     </section>
 
     <!-- Seção de Métricas -->
-    <section class="metrics-section py-12 py-sm-8 py-md-12">
-      <v-container class="mobile-padding">
-        <v-row class="justify-center">
-          <v-col cols="12" lg="10" class="mx-auto">
-            <div class="metrics-grid">
-              <div class="metric-item animate-fade-in-up" :style="{ animationDelay: '0.1s' }">
-                <div class="metric-number stat-number">50+</div>
-                <div class="metric-label">Projetos Concluídos</div>
-              </div>
+   
 
-              <div class="metric-item animate-fade-in-up" :style="{ animationDelay: '0.3s' }">
-                <div class="metric-number stat-number">15+</div>
-                <div class="metric-label">Tecnologias Utilizadas</div>
-              </div>
-
-              <div class="metric-item animate-fade-in-up" :style="{ animationDelay: '0.5s' }">
-                <div class="metric-number stat-number">98%</div>
-                <div class="metric-label">Taxa de Sucesso</div>
-              </div>
-
-              <div class="metric-item animate-fade-in-up" :style="{ animationDelay: '0.7s' }">
-                <div class="metric-number stat-number">24h</div>
-                <div class="metric-label">Tempo de Resposta</div>
-              </div>
-            </div>
-          </v-col>
-        </v-row>
-      </v-container>
-    </section>
-
-    <!-- Seção de Resultados que Impressionam -->
-    <ReviewsShowcase />
 
     <!-- Seção CTA -->
     <CtaSection
       :title="'Pronto para Iniciar Seu Projeto?'"
-      :subtitle="'Entre em contato conosco e descubra como podemos ajudar você a transformar seus dados geoespaciais em insights valiosos para o seu negócio.'"
+      :subtitle="'Entre em contato conosco e descubra como nossa equipe especializada pode ajudar você a transformar seus dados geoespaciais em soluções inovadoras.'"
       :stats="[
         { number: '24h', label: 'Resposta Rápida' },
-        { number: '100%', label: 'Satisfação' },
-        { number: '10+', label: 'Anos de Experiência' },
+        { number: '100%', label: 'Dedicação' },
+        { number: '1', label: 'Ano de Mercado' },
       ]"
       :primary="{
         to: '/contato',
@@ -190,7 +189,6 @@
 import HeroMap from '../components/HeroMap.vue'
 import CtaSection from '../components/CtaSection.vue'
 import ServiceCard from '../components/ServiceCard.vue'
-import ReviewsShowcase from '../components/ReviewsShowcase.vue'
 import SectionTitle from '../components/SectionTitle.vue'
 import { useRouter } from 'vue-router'
 import { onMounted, onUnmounted, ref } from 'vue'

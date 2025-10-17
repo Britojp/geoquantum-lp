@@ -2,12 +2,6 @@
   <section class="workflow-section">
     <div class="workflow-container">
       <div class="section-header">
-        <div class="header-badge">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-          </svg>
-          <span>Processo Estruturado</span>
-        </div>
         <h2 class="section-title">{{ title }}</h2>
         <div class="title-underline"></div>
         <p class="section-subtitle">{{ subtitle }}</p>
@@ -34,8 +28,8 @@
           </div>
 
           <div v-if="index < steps.length - 1" class="step-connector">
-            <svg width="40" height="24" viewBox="0 0 40 24" fill="none">
-              <path d="M0 12H40M40 12L30 2M40 12L30 22" stroke="currentColor" stroke-width="2"/>
+            <svg width="24" height="16" viewBox="0 0 24 16" fill="none">
+              <path d="M0 8H24M24 8L18 2M24 8L18 14" stroke="currentColor" stroke-width="2"/>
             </svg>
           </div>
         </div>
@@ -127,9 +121,11 @@ withDefaults(defineProps<Props>(), {
 }
 
 .workflow-grid {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
 }
 
 .workflow-step {
@@ -279,8 +275,15 @@ withDefaults(defineProps<Props>(), {
   }
 
   .workflow-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2.5rem;
+    flex-direction: row;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding: 0 1rem 1rem;
+  }
+
+  .workflow-step {
+    flex: 0 0 280px;
+    min-width: 280px;
   }
 
   .workflow-step {
@@ -298,9 +301,15 @@ withDefaults(defineProps<Props>(), {
   }
 
   .workflow-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    position: relative;
+    flex-direction: row;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 0 1rem 1rem;
+  }
+
+  .workflow-step {
+    flex: 0 0 300px;
+    min-width: 300px;
   }
 
   .step-connector {
@@ -308,10 +317,11 @@ withDefaults(defineProps<Props>(), {
     align-items: center;
     justify-content: center;
     position: absolute;
-    right: -2rem;
+    right: -0.75rem;
     top: 50%;
     transform: translateY(-50%);
     color: rgba(26, 54, 93, 0.2);
+    z-index: 1;
   }
 
   .workflow-step:last-child .step-connector {
@@ -336,7 +346,16 @@ withDefaults(defineProps<Props>(), {
     font-size: 0.9375rem;
   }
 
+  .workflow-grid {
+    flex-direction: row;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 0 1rem 1rem;
+  }
+
   .workflow-step {
+    flex: 0 0 250px;
+    min-width: 250px;
     padding: 1.5rem;
   }
 
@@ -367,6 +386,18 @@ withDefaults(defineProps<Props>(), {
   .step-description,
   .step-details {
     font-size: 0.875rem;
+  }
+
+  .step-connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: -0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(26, 54, 93, 0.2);
+    z-index: 1;
   }
 }
 

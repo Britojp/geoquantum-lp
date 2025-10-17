@@ -2,10 +2,8 @@ import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import Home from '../views/Home.vue'
 import Sobre from '../views/Sobre.vue'
 import Servicos from '../views/Servicos.vue'
-import Projetos from '../views/Projetos.vue'
 import Documentos from '../views/Documentos.vue'
 import Blog from '../views/Blog.vue'
-import Equipe from '../views/Equipe.vue'
 import Contato from '../views/Contato.vue'
 
 const routes: RouteRecordRaw[] = [
@@ -40,16 +38,6 @@ const routes: RouteRecordRaw[] = [
     },
   },
   {
-    path: '/projetos',
-    name: 'projetos',
-    component: Projetos,
-    meta: {
-      title: 'Projetos - GeoQuantum',
-      description:
-        'Portfólio de projetos realizados pela GeoQuantum em diferentes setores e regiões do Brasil.',
-    },
-  },
-  {
     path: '/documentos',
     name: 'documentos',
     component: Documentos,
@@ -66,16 +54,6 @@ const routes: RouteRecordRaw[] = [
       title: 'Blog - GeoQuantum',
       description:
         'Artigos, notícias e insights sobre geoprocessamento, tecnologia geoespacial e projetos da GeoQuantum.',
-    },
-  },
-  {
-    path: '/equipe',
-    name: 'equipe',
-    component: Equipe,
-    meta: {
-      title: 'Equipe - GeoQuantum',
-      description:
-        'Conheça nossa equipe de especialistas em geoprocessamento e tecnologia geoespacial.',
     },
   },
   {

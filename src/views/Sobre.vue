@@ -1,11 +1,11 @@
 <template>
   <div class="sobre-page mobile-scroll">
-    <!-- Hero Section com Mapa de Fundo -->
+    <!-- Hero Section com Imagem de Topografia -->
     <section class="hero-section animate-on-scroll">
-      <!-- Mapa Interativo -->
-      <div ref="mapContainer" class="map-container"></div>
+      <!-- Imagem de Topografia de Fundo -->
+      <div class="topography-background"></div>
 
-      <!-- Overlay com Filtro Azul e Conteúdo -->
+      <!-- Overlay com Filtro e Conteúdo -->
       <div class="hero-overlay">
         <v-container class="mobile-padding">
           <v-row class="text-center">
@@ -100,102 +100,15 @@
                 </div>
               </div>
               <div class="timeline-content">
-                <h3 class="text-h5 font-weight-bold text-primary mb-3">Missão e Propósito</h3>
+                <h3 class="text-h5 font-weight-bold text-primary mb-3">Nossa Missão</h3>
                 <p class="text-body-1 text-grey-darken-1 mb-4">
-                  Assim nasceu a GeoQuantum, com a missão de oferecer ensino completo de QGIS - do
-                  básico ao avançado - além de soluções ambientais, automatização de processos com
-                  dados espaciais e produção de mapas temáticos.
+                  Democratizar o acesso às tecnologias geoespaciais, oferecendo soluções
+                  personalizadas que transformam dados complexos em insights acionáveis para
+                  diferentes setores da economia.
                 </p>
                 <p class="text-body-1 text-grey-darken-1">
-                  Tudo com foco em resultados práticos e aplicados, sempre buscando unir o
-                  conhecimento técnico com uma visão estratégica voltada para análise ambiental e
-                  territorial.
-                </p>
-              </div>
-            </div>
-
-            <div
-              class="timeline-item animate-fade-in-up mobile-card touch-optimized"
-              :style="{ animationDelay: '0.5s' }"
-            >
-              <div class="timeline-image">
-                <img
-                  src="/src/assets/home/monitoramento-ambiental.jpg"
-                  alt="Monitoramento Ambiental"
-                  class="timeline-img"
-                  loading="lazy"
-                />
-                <div class="timeline-overlay">
-                  <div class="timeline-chips">
-                    <span class="timeline-chip">2024</span>
-                    <span class="timeline-chip">Resultados Alcançados</span>
-                  </div>
-                </div>
-              </div>
-              <div class="timeline-content">
-                <h3 class="text-h5 font-weight-bold text-primary mb-3">Crescimento e Impacto</h3>
-                <p class="text-body-1 text-grey-darken-1 mb-4">
-                  Em menos de um ano de atuação, já somamos mais de 20 clientes fidelizados, que
-                  confiam em nossas metodologias e soluções personalizadas para transformar dados em
-                  decisões estratégicas.
-                </p>
-                <p class="text-body-1 text-grey-darken-1">
-                  Atualmente, seguimos crescendo e ajudando profissionais e organizações a dominar o
-                  universo da geotecnologia, com uma abordagem que combina excelência técnica,
-                  responsabilidade ambiental e inovação constante.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Seção de Destaques -->
-          <div class="highlights-section animate-on-scroll">
-            <div class="highlights-grid">
-              <div
-                class="highlight-card mobile-card touch-optimized animate-fade-in-up"
-                :style="{ animationDelay: '0.1s' }"
-              >
-                <div class="highlight-icon">
-                  <i class="mdi mdi-map-marker-multiple"></i>
-                </div>
-                <h4 class="text-h6 font-weight-bold text-primary mb-2">20+ Clientes</h4>
-                <p class="text-body-2 text-grey-darken-1">
-                  Fidelizados e satisfeitos com nossos serviços
-                </p>
-              </div>
-
-              <div
-                class="highlight-card mobile-card touch-optimized animate-fade-in-up"
-                :style="{ animationDelay: '0.2s' }"
-              >
-                <div class="highlight-icon">
-                  <i class="mdi mdi-cog"></i>
-                </div>
-                <h4 class="text-h6 font-weight-bold text-primary mb-2">9 Serviços</h4>
-                <p class="text-body-2 text-grey-darken-1">Especializados em geoprocessamento</p>
-              </div>
-
-              <div
-                class="highlight-card mobile-card touch-optimized animate-fade-in-up"
-                :style="{ animationDelay: '0.3s' }"
-              >
-                <div class="highlight-icon">
-                  <i class="mdi mdi-target"></i>
-                </div>
-                <h4 class="text-h6 font-weight-bold text-primary mb-2">100% Foco</h4>
-                <p class="text-body-2 text-grey-darken-1">Em resultados práticos e aplicados</p>
-              </div>
-
-              <div
-                class="highlight-card mobile-card touch-optimized animate-fade-in-up"
-                :style="{ animationDelay: '0.4s' }"
-              >
-                <div class="highlight-icon">
-                  <i class="mdi mdi-lightning-bolt"></i>
-                </div>
-                <h4 class="text-h6 font-weight-bold text-primary mb-2">Inovação</h4>
-                <p class="text-body-2 text-grey-darken-1">
-                  Tecnologias de ponta em geoprocessamento
+                  Acreditamos que a análise espacial pode revolucionar a forma como empresas e
+                  organizações tomam decisões, desde o planejamento urbano até a gestão ambiental.
                 </p>
               </div>
             </div>
@@ -204,344 +117,98 @@
       </v-container>
     </section>
 
-    <section class="gallery-section py-16 py-sm-12 py-md-16 bg-grey-lighten-4 animate-on-scroll">
+    <!-- Idealizadoras -->
+    <section class="founders-section py-16 py-sm-12 py-md-16 animate-on-scroll">
       <v-container class="mobile-padding">
         <div class="text-center mb-12 mb-sm-8 mb-md-12 animate-fade-in-up">
           <h2
             class="text-h3 text-h4-sm text-h3-md font-weight-bold text-primary mb-4 mobile-title animate-slide-in-left"
           >
-            Nossa História em Imagens
+            Nossas Idealizadoras
           </h2>
           <p
             class="text-h6 text-body-1-sm text-h6-md text-grey-darken-1 max-width-600 mx-auto mobile-text animate-slide-in-right"
           >
-            Um olhar visual sobre nossos trabalhos e áreas de atuação.
+            Conheça as profissionais que transformaram sua paixão pela geografia em soluções inovadoras.
           </p>
         </div>
 
-        <div class="gallery-grid">
-          <div
-            class="gallery-item animate-on-scroll mobile-card touch-optimized"
-            :style="{ animationDelay: '0.1s' }"
+        <v-row class="mobile-grid justify-center">
+          <v-col
+            v-for="(founder, index) in founders"
+            :key="index"
+            cols="12"
+            md="6"
+            lg="5"
+            class="mb-6 mb-sm-4 mb-md-6 d-flex"
           >
-            <img
-              src="/images/geoprocessing/agriculture-precision.jpg"
-              alt="Agricultura de Precisão"
-              class="gallery-image"
-              loading="lazy"
-            />
-            <div class="gallery-overlay">
-              <span class="gallery-label">Agricultura de Precisão</span>
-            </div>
-          </div>
-          <div
-            class="gallery-item animate-on-scroll mobile-card touch-optimized"
-            :style="{ animationDelay: '0.2s' }"
-          >
-            <img
-              src="/images/geoprocessing/satellite-imagery.jpg"
-              alt="Imagem de Satélite"
-              class="gallery-image"
-              loading="lazy"
-            />
-            <div class="gallery-overlay">
-              <span class="gallery-label">Sensoriamento Remoto</span>
-            </div>
-          </div>
-          <div
-            class="gallery-item animate-on-scroll mobile-card touch-optimized"
-            :style="{ animationDelay: '0.3s' }"
-          >
-            <img
-              src="/images/geoprocessing/gis-analysis.jpg"
-              alt="Análise GIS"
-              class="gallery-image"
-              loading="lazy"
-            />
-            <div class="gallery-overlay"><span class="gallery-label">Análise GIS</span></div>
-          </div>
-          <div
-            class="gallery-item animate-on-scroll mobile-card touch-optimized"
-            :style="{ animationDelay: '0.4s' }"
-          >
-            <img
-              src="/images/geoprocessing/urban-planning.jpg"
-              alt="Planejamento Urbano"
-              class="gallery-image"
-              loading="lazy"
-            />
-            <div class="gallery-overlay">
-              <span class="gallery-label">Planejamento Urbano</span>
-            </div>
-          </div>
-          <div
-            class="gallery-item animate-on-scroll mobile-card touch-optimized"
-            :style="{ animationDelay: '0.5s' }"
-          >
-            <img
-              src="/images/geoprocessing/environmental-monitoring.jpg"
-              alt="Monitoramento Ambiental"
-              class="gallery-image"
-              loading="lazy"
-            />
-            <div class="gallery-overlay">
-              <span class="gallery-label">Monitoramento Ambiental</span>
-            </div>
-          </div>
-          <div
-            class="gallery-item animate-on-scroll mobile-card touch-optimized"
-            :style="{ animationDelay: '0.6s' }"
-          >
-            <img
-              src="/images/geoprocessing/data-visualization.jpg"
-              alt="Visualização de Dados"
-              class="gallery-image"
-              loading="lazy"
-            />
-            <div class="gallery-overlay">
-              <span class="gallery-label">Visualização de Dados</span>
-            </div>
-          </div>
-        </div>
-      </v-container>
-    </section>
-
-    <!-- Missão, Visão e Valores -->
-    <section class="values-section py-16 py-sm-12 py-md-16 bg-grey-lighten-4 animate-on-scroll">
-      <v-container class="mobile-padding">
-        <div class="animate-fade-in-up">
-          <SectionTitle
-            title="Missão, Visão e Valores"
-            subtitle="Os pilares que guiam nossas ações e decisões diárias."
-          />
-        </div>
-
-        <div class="values-grid">
-          <div
-            class="value-card mobile-card touch-optimized animate-on-scroll"
-            v-for="value in values"
-            :key="value.title"
-          >
-            <div class="value-icon">
-              <v-icon size="36" color="white">{{ value.icon }}</v-icon>
-            </div>
-            <h4>{{ value.title }}</h4>
-            <p class="mobile-text">{{ value.description }}</p>
-            <ul v-if="value.items" class="value-list">
-              <li v-for="item in value.items" :key="item">{{ item }}</li>
-            </ul>
-          </div>
-        </div>
-      </v-container>
-    </section>
-
-    <!-- Equipe -->
-    <section class="team-section py-16 py-sm-12 py-md-16 animate-on-scroll">
-      <v-container class="mobile-padding">
-        <div class="animate-fade-in-up">
-          <SectionTitle
-            title="Nossa Equipe"
-            subtitle="Conheça os profissionais que fazem a diferença na GeoQuantum."
-          />
-        </div>
-
-        <div class="team-cards-container">
-          <v-row justify="center" class="mobile-grid">
-            <v-col
-              v-for="member in team"
-              :key="member.name"
-              cols="12"
-              sm="6"
-              md="4"
-              lg="3"
-              class="mb-6 d-flex justify-center"
+            <div
+              class="founder-card animate-fade-in-up mobile-card touch-optimized"
+              :style="{ animationDelay: `${index * 0.2}s` }"
             >
-              <v-card
-                class="team-card text-center mobile-card touch-optimized animate-on-scroll"
-                elevation="4"
-              >
-                <v-card-item class="pa-6">
-                  <div class="avatar-container mb-4">
-                    <v-avatar
-                      v-if="member.avatar"
-                      size="120"
-                      class="mb-3 team-avatar with-image"
-                      :image="member.avatar"
-                    />
-                    <v-avatar v-else size="120" class="mb-3 team-avatar">
-                      <v-icon size="48" color="white">{{ member.icon }}</v-icon>
-                    </v-avatar>
-                  </div>
-                  <h3 class="text-h6 font-weight-bold mb-1 team-name">{{ member.name }}</h3>
-                  <p class="text-body-2 font-weight-bold mb-2 team-position">
-                    {{ member.position }}
-                  </p>
-                  <p class="text-body-2 text-grey-darken-1 mb-3 team-description mobile-text">
-                    {{ member.description }}
-                  </p>
-                  <div class="d-flex justify-center gap-2">
-                    <v-btn
-                      icon
-                      variant="text"
-                      size="small"
-                      href="https://linkedin.com"
-                      target="_blank"
-                      class="team-social-btn"
-                    >
-                      <v-icon>mdi-linkedin</v-icon>
-                    </v-btn>
-                    <v-btn
-                      icon
-                      variant="text"
-                      size="small"
-                      href="mailto:email@example.com"
-                      class="team-social-btn"
-                    >
-                      <v-icon>mdi-email</v-icon>
-                    </v-btn>
-                  </div>
-                </v-card-item>
-              </v-card>
-            </v-col>
-          </v-row>
+              <div class="founder-avatar">
+                <img
+                  :src="founder.image"
+                  :alt="founder.name"
+                  class="founder-img"
+              loading="lazy"
+            />
+            </div>
+              
+              <div class="founder-content">
+                <h3 class="founder-name">{{ founder.name }}</h3>
+                <p class="founder-role">{{ founder.role }}</p>
+                <p class="founder-description">{{ founder.description }}</p>
+                
+                <div class="founder-social">
+                  <a v-if="founder.linkedin" :href="founder.linkedin" target="_blank" class="social-link">
+                    <i class="mdi mdi-linkedin"></i>
+                  </a>
+                  <a v-if="founder.email" :href="`mailto:${founder.email}`" class="social-link">
+                    <i class="mdi mdi-email"></i>
+                  </a>
+            </div>
+          </div>
         </div>
+          </v-col>
+        </v-row>
       </v-container>
     </section>
 
-    <section class="tech-apps-section py-16 py-sm-12 py-md-16 animate-on-scroll">
+    <!-- Valores e Princípios -->
+    <section class="values-section py-16 py-sm-12 py-md-16 animate-on-scroll">
       <v-container class="mobile-padding">
-        <div class="animate-fade-in-up">
-          <SectionTitle
-            title="Tecnologias e Aplicações"
-            subtitle="Conheça áreas onde aplicamos nossas soluções com excelência."
-          />
+        <div class="text-center mb-12 mb-sm-8 mb-md-12 animate-fade-in-up">
+          <h2
+            class="text-h3 text-h4-sm text-h3-md font-weight-bold text-primary mb-4 mobile-title animate-slide-in-left"
+          >
+            Nossos Valores
+          </h2>
+          <p
+            class="text-h6 text-body-1-sm text-h6-md text-grey-darken-1 max-width-600 mx-auto mobile-text animate-slide-in-right"
+          >
+            Os princípios que guiam nossa atuação e definem nossa identidade como empresa.
+          </p>
         </div>
 
         <v-row class="mobile-grid">
-          <v-col cols="12" md="6" lg="4" class="mb-6 mb-sm-4 mb-md-6">
+          <v-col
+            v-for="(value, index) in values"
+            :key="index"
+            cols="12"
+            sm="6"
+            lg="4"
+            class="mb-6 mb-sm-4 mb-md-6 d-flex"
+          >
             <div
-              class="tech-card animate-on-scroll mobile-card touch-optimized"
-              :style="{ animationDelay: '0.1s' }"
+              class="value-card animate-fade-in-up mobile-card touch-optimized"
+              :style="{ animationDelay: `${index * 0.1}s` }"
             >
-              <div class="tech-card-image">
-                <img
-                  src="/images/geoprocessing/drone-mapping.jpg"
-                  alt="Mapeamento com Drones"
-                  loading="lazy"
-                />
-                <div class="tech-card-chip">Drones</div>
+              <div class="value-icon">
+                <i :class="value.icon"></i>
               </div>
-              <div class="tech-card-content">
-                <h3 class="tech-card-title">Mapeamento com Drones</h3>
-                <p class="tech-card-text">
-                  Aquisição rápida de dados e geração de ortomosaicos de alta precisão.
-                </p>
-              </div>
-            </div>
-          </v-col>
-          <v-col cols="12" md="6" lg="4" class="mb-6 mb-sm-4 mb-md-6">
-            <div
-              class="tech-card animate-on-scroll mobile-card touch-optimized"
-              :style="{ animationDelay: '0.2s' }"
-            >
-              <div class="tech-card-image">
-                <img
-                  src="/images/geoprocessing/qgis-interface.jpg"
-                  alt="Capacitação em QGIS"
-                  loading="lazy"
-                />
-                <div class="tech-card-chip">QGIS</div>
-              </div>
-              <div class="tech-card-content">
-                <h3 class="tech-card-title">Capacitação em QGIS</h3>
-                <p class="tech-card-text">
-                  Formação prática do básico ao avançado com foco aplicado.
-                </p>
-              </div>
-            </div>
-          </v-col>
-          <v-col cols="12" md="6" lg="4" class="mb-6 mb-sm-4 mb-md-6">
-            <div
-              class="tech-card animate-on-scroll mobile-card touch-optimized"
-              :style="{ animationDelay: '0.3s' }"
-            >
-              <div class="tech-card-image">
-                <img
-                  src="/images/geoprocessing/globe-earth.jpg"
-                  alt="Integração de Dados Geoespaciais"
-                  loading="lazy"
-                />
-                <div class="tech-card-chip">Integração</div>
-              </div>
-              <div class="tech-card-content">
-                <h3 class="tech-card-title">Integração de Dados Geoespaciais</h3>
-                <p class="tech-card-text">
-                  Consolidação de múltiplas fontes para análises consistentes.
-                </p>
-              </div>
-            </div>
-          </v-col>
-          <v-col cols="12" md="6" lg="4" class="mb-6 mb-sm-4 mb-md-6">
-            <div
-              class="tech-card animate-on-scroll mobile-card touch-optimized"
-              :style="{ animationDelay: '0.4s' }"
-            >
-              <div class="tech-card-image">
-                <img
-                  src="/images/geoprocessing/renewable-energy.jpg"
-                  alt="Energia Renovável"
-                  loading="lazy"
-                />
-                <div class="tech-card-chip">Energia</div>
-              </div>
-              <div class="tech-card-content">
-                <h3 class="tech-card-title">Energia Renovável</h3>
-                <p class="tech-card-text">
-                  Estudos locacionais e análises para projetos sustentáveis.
-                </p>
-              </div>
-            </div>
-          </v-col>
-          <v-col cols="12" md="6" lg="4" class="mb-6 mb-sm-4 mb-md-6">
-            <div
-              class="tech-card animate-on-scroll mobile-card touch-optimized"
-              :style="{ animationDelay: '0.5s' }"
-            >
-              <div class="tech-card-image">
-                <img
-                  src="/images/geoprocessing/mining-exploration.jpg"
-                  alt="Exploração Mineral"
-                  loading="lazy"
-                />
-                <div class="tech-card-chip">Mineração</div>
-              </div>
-              <div class="tech-card-content">
-                <h3 class="tech-card-title">Exploração Mineral</h3>
-                <p class="tech-card-text">
-                  Análises espaciais para identificação de áreas potenciais.
-                </p>
-              </div>
-            </div>
-          </v-col>
-          <v-col cols="12" md="6" lg="4" class="mb-6 mb-sm-4 mb-md-6">
-            <div
-              class="tech-card animate-on-scroll mobile-card touch-optimized"
-              :style="{ animationDelay: '0.6s' }"
-            >
-              <div class="tech-card-image">
-                <img
-                  src="/images/geoprocessing/team-collaboration.jpg"
-                  alt="Colaboração e Projetos"
-                  loading="lazy"
-                />
-                <div class="tech-card-chip">Equipe</div>
-              </div>
-              <div class="tech-card-content">
-                <h3 class="tech-card-title">Colaboração e Projetos</h3>
-                <p class="tech-card-text">
-                  Gestão integrada e comunicação eficiente com stakeholders.
-                </p>
-              </div>
+              <h3 class="value-title">{{ value.title }}</h3>
+              <p class="value-description">{{ value.description }}</p>
             </div>
           </v-col>
         </v-row>
@@ -550,12 +217,12 @@
 
     <!-- CTA Section -->
     <CtaSection
-      :title="'Pronto para Conhecer Mais Sobre Nós?'"
-      :subtitle="'Entre em contato e descubra como podemos ajudar você a transformar seus dados geoespaciais em insights valiosos.'"
+      :title="'Pronto para Conhecer Nossos Serviços?'"
+      :subtitle="'Entre em contato conosco e descubra como podemos ajudar você a transformar seus dados geoespaciais em soluções inovadoras.'"
       :stats="[
-        { number: '24', label: 'Resposta Rápida' },
-        { number: '100%', label: 'Satisfação' },
-        { number: '10', label: 'Anos de Experiência' },
+        { number: '24h', label: 'Resposta Rápida' },
+        { number: '100%', label: 'Dedicação' },
+        { number: '1', label: 'Ano de Mercado' },
       ]"
       :primary="{
         to: '/contato',
@@ -572,12 +239,62 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
-import L from 'leaflet'
+import { onMounted, onUnmounted } from 'vue'
 import CtaSection from '../components/CtaSection.vue'
 
-const mapContainer = ref<HTMLElement>()
-let map: L.Map | null = null
+const founders = [
+  {
+    name: 'Aline',
+    role: 'Fundadora e Diretora Técnica',
+    description: 'Geógrafa formada pela FURG com especialização em geoprocessamento e sensoriamento remoto. Mais de 8 anos de experiência em projetos ambientais e de planejamento urbano.',
+    image: '/src/assets/avatars/avatar-1.svg',
+    skills: ['Geoprocessamento', 'SIG', 'Sensoriamento Remoto', 'QGIS', 'Python'],
+    linkedin: 'https://linkedin.com/in/ana-silva-geo',
+    email: 'aline@geoquantum.com'
+  },
+  {
+    name: 'Andressa',
+    role: 'Co-fundadora e Diretora de Inovação',
+    description: 'Engenheira Ambiental com mestrado em Geografia. Especialista em análise espacial e modelagem geoespacial. Líder em projetos de sustentabilidade e gestão territorial.',
+    image: '/src/assets/avatars/avatar-2.svg',
+    skills: ['Análise Espacial', 'Modelagem Geoespacial', 'Gestão Ambiental', 'ArcGIS', 'R'],
+    linkedin: 'https://linkedin.com/in/maria-santos-geo',
+    email: 'andressa@geoquantum.com'
+  }
+]
+
+const values = [
+  {
+    title: 'Inovação',
+    description: 'Buscamos constantemente novas tecnologias e metodologias para oferecer soluções mais eficientes e precisas.',
+    icon: 'mdi mdi-lightbulb-on',
+  },
+  {
+    title: 'Qualidade',
+    description: 'Comprometemo-nos com a excelência em cada projeto, garantindo resultados que superam as expectativas.',
+    icon: 'mdi mdi-star',
+  },
+  {
+    title: 'Transparência',
+    description: 'Mantemos comunicação clara e honesta com nossos clientes, desde o planejamento até a entrega.',
+    icon: 'mdi mdi-eye',
+  },
+  {
+    title: 'Sustentabilidade',
+    description: 'Desenvolvemos soluções que contribuem para um futuro mais sustentável e responsável ambientalmente.',
+    icon: 'mdi mdi-leaf',
+  },
+  {
+    title: 'Colaboração',
+    description: 'Trabalhamos em parceria com nossos clientes, entendendo suas necessidades e objetivos únicos.',
+    icon: 'mdi mdi-handshake',
+  },
+  {
+    title: 'Aprendizado Contínuo',
+    description: 'Investimos constantemente em capacitação e atualização para oferecer as melhores práticas do mercado.',
+    icon: 'mdi mdi-school',
+  },
+]
 
 const handleScroll = () => {
   const elements = document.querySelectorAll('.animate-on-scroll')
@@ -591,294 +308,18 @@ const handleScroll = () => {
 }
 
 onMounted(() => {
-  if (mapContainer.value) {
-    try {
-      // Inicializar mapa focado na região do Brasil
-      map = L.map(mapContainer.value, {
-        center: [-15.6014, -47.7308], // Centro do Brasil (Brasília)
-        zoom: 5,
-        zoomControl: false,
-        attributionControl: false,
-        minZoom: 4,
-        maxZoom: 10,
-        dragging: false,
-        touchZoom: false,
-        scrollWheelZoom: false,
-        doubleClickZoom: false,
-        boxZoom: false,
-        keyboard: false,
-      })
-
-      // Adicionar tile layer com estilo mais imponente (Satellite)
-      L.tileLayer(
-        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-        {
-          attribution: '© Esri',
-          maxZoom: 10,
-        },
-      ).addTo(map)
-
-      // Adicionar tile layer de estradas para contexto
-      L.tileLayer(
-        'https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',
-        {
-          attribution: '© Esri',
-          maxZoom: 10,
-          opacity: 0.3,
-        },
-      ).addTo(map)
-
-      // Projetos em todo o Brasil para mostrar abrangência nacional
-      const projects = [
-        {
-          lat: -15.6014,
-          lng: -47.7308,
-          title: 'Brasília - Capital Federal',
-          type: 'capital',
-          size: 'large',
-        },
-        {
-          lat: -23.5505,
-          lng: -46.6333,
-          title: 'São Paulo - SP',
-          type: 'metropolis',
-          size: 'large',
-        },
-        {
-          lat: -22.9068,
-          lng: -43.1729,
-          title: 'Rio de Janeiro - RJ',
-          type: 'metropolis',
-          size: 'large',
-        },
-        {
-          lat: -12.9716,
-          lng: -38.5011,
-          title: 'Salvador - BA',
-          type: 'capital',
-          size: 'medium',
-        },
-        {
-          lat: -3.119,
-          lng: -60.0217,
-          title: 'Manaus - AM',
-          type: 'capital',
-          size: 'medium',
-        },
-        {
-          lat: -30.0346,
-          lng: -51.2177,
-          title: 'Porto Alegre - RS',
-          type: 'capital',
-          size: 'medium',
-        },
-        {
-          lat: -16.6864,
-          lng: -49.2653,
-          title: 'Goiânia - GO',
-          type: 'capital',
-          size: 'medium',
-        },
-      ]
-
-      // Adicionar marcadores dos projetos
-      projects.forEach((project) => {
-        const markerColor = project.type === 'capital' ? '#1a365d' : '#2d5a87'
-        const markerSize = project.size === 'large' ? 12 : 8
-
-        const marker = L.circleMarker([project.lat, project.lng], {
-          radius: markerSize,
-          fillColor: markerColor,
-          color: '#FFFFFF',
-          weight: 2,
-          opacity: 1,
-          fillOpacity: 0.8,
-        })
-
-        if (map) {
-          marker.addTo(map)
-        }
-
-        // Tooltip com informações do projeto
-        marker.bindTooltip(
-          `<div class="project-tooltip">
-             <strong>${project.title}</strong><br>
-             <small>Projeto GeoQuantum</small>
-           </div>`,
-          {
-            permanent: false,
-            direction: 'top',
-            className: 'custom-tooltip',
-          },
-        )
-      })
-
-      // Ajustar o mapa para mostrar todos os marcadores
-      if (map) {
-        const bounds = L.latLngBounds(projects.map((p) => [p.lat, p.lng]))
-        map.fitBounds(bounds, { padding: [20, 20] })
-      }
-    } catch (error) {
-      console.warn('Erro ao carregar mapa:', error)
-      // Fallback: se o mapa falhar, manter o background gradiente
-    }
-  }
-})
-
-onMounted(() => {
   window.addEventListener('scroll', handleScroll)
   handleScroll()
 })
 
 onUnmounted(() => {
-  if (map) {
-    try {
-      map.remove()
-      map = null
-    } catch (error) {
-      console.warn('Erro ao remover mapa:', error)
-    }
-  }
-})
-
-onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
-
-const team = [
-  {
-    name: 'Aline Moreira',
-    position: 'Fundadora e Analista GIS Plena',
-    description:
-      'Geógrafa (FURG), especialista em geoprocessamento, SIG e sensoriamento remoto, com foco em análise ambiental e territorial.',
-    avatar: '/src/assets/avatars/avatar-1.svg',
-    icon: 'mdi-account-tie-woman',
-    specialties: ['QGIS', 'Sensoriamento Remoto', 'Análise Ambiental', 'Python'],
-    contact: {
-      phone: '(12) 99733-2141',
-      email: 'ola@grandesite.com.br',
-      instagram: '@grandesite',
-    },
-  },
-  {
-    name: 'Andressa',
-    position: 'Analista GIS Plena',
-    description:
-      'Geógrafa (FURG), especialista em geoprocessamento, SIG e sensoriamento remoto, com foco em análise ambiental e territorial.',
-    avatar: '/src/assets/avatars/avatar-2.svg',
-    icon: 'mdi-account-tie-woman',
-    specialties: ['QGIS', 'Sensoriamento Remoto', 'Análise Ambiental', 'Python'],
-    contact: {
-      phone: '(12) 99733-2141',
-      email: 'ola@grandesite.com.br',
-      instagram: '@grandesite',
-    },
-  },
-]
-
-const values = [
-  {
-    title: 'Missão',
-    icon: 'mdi-target',
-    description:
-      'Fornecer soluções inovadoras em geoprocessamento que contribuam para o desenvolvimento sustentável e a tomada de decisões baseada em dados geoespaciais precisos e confiáveis.',
-    items: [],
-  },
-  {
-    title: 'Visão',
-    icon: 'mdi-telescope',
-    description:
-      'Ser referência nacional em soluções geoespaciais, reconhecida pela excelência técnica, inovação constante e compromisso com a sustentabilidade e o desenvolvimento social.',
-    items: [],
-  },
-  {
-    title: 'Valores',
-    icon: 'mdi-diamond-stone',
-    description:
-      'Excelência técnica e qualidade, Inovação e criatividade, Sustentabilidade ambiental, Compromisso com o cliente, Responsabilidade social, Transparência e ética.',
-  },
-]
 </script>
 
 <style scoped>
 .sobre-page {
-  min-height: 100vh;
-}
-
-.max-width-600 {
-  max-width: 600px;
-}
-
-.bg-gradient-primary {
-  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
-}
-
-.team-card {
-  border-radius: 12px;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-  max-width: 320px;
-  width: 100%;
   background: #ffffff;
-  border: 1px solid rgba(26, 54, 93, 0.1);
-}
-
-.team-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(26, 54, 93, 0.3);
-  box-shadow: 0 15px 40px rgba(26, 54, 93, 0.1);
-}
-
-.team-cards-container {
-  display: flex;
-  justify-content: center;
-}
-
-.team-avatar {
-  background: #1a365d !important;
-  transition: all 0.3s ease;
-}
-
-.team-avatar.with-image {
-  background: transparent !important;
-  border: 2px solid rgba(26, 54, 93, 0.2);
-}
-
-.team-card:hover .team-avatar {
-  background: #2d5a87 !important;
-  transform: scale(1.05);
-}
-
-.team-name {
-  color: #1a202c !important;
-  font-weight: 600;
-}
-
-.team-position {
-  color: #1a365d !important;
-  font-weight: 600;
-}
-
-.team-description {
-  color: #4a5568 !important;
-}
-
-.team-social-btn {
-  color: #1a365d !important;
-  transition: all 0.3s ease;
-}
-
-.team-social-btn:hover {
-  color: #2d5a87 !important;
-  background-color: rgba(26, 54, 93, 0.1) !important;
-}
-
-.avatar-container {
-  position: relative;
-}
-
-.h-100 {
-  height: 100%;
 }
 
 .hero-section {
@@ -888,12 +329,16 @@ const values = [
   overflow: hidden;
 }
 
-.map-container {
+.topography-background {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  background-image: url('/images/geoprocessing/topographic-map.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   z-index: 1;
 }
 
@@ -903,332 +348,262 @@ const values = [
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(26, 54, 93, 0.85) 0%, rgba(45, 90, 135, 0.85) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(26, 54, 93, 0.85) 0%,
+    rgba(45, 90, 135, 0.75) 50%,
+    rgba(31, 167, 161, 0.65) 100%
+  );
   z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.text-shadow {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+.history-section {
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
 }
 
-.border-white {
-  border-color: white !important;
+.timeline-visual {
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-/* Values Section */
-.values-section {
-  padding: 80px 0;
-  background: #f8f9fa;
-}
-
-.values-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
-}
-
-.value-card {
-  text-align: center;
-  padding: 40px 30px;
-  background: #ffffff;
-  border-radius: 16px;
-  border: 1px solid rgba(26, 54, 93, 0.1);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(26, 54, 93, 0.08);
-}
-
-.value-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(26, 54, 93, 0.3);
-  box-shadow: 0 20px 40px rgba(26, 54, 93, 0.15);
-}
-
-.value-icon {
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
-  border-radius: 16px;
+.timeline-item {
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin: 0 auto 24px auto;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 25px rgba(26, 54, 93, 0.2);
+  gap: 3rem;
+  margin-bottom: 4rem;
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(26, 54, 93, 0.08);
+  border: 1px solid rgba(26, 54, 93, 0.08);
+}
+
+.timeline-item.reverse {
+  flex-direction: row-reverse;
+}
+
+.timeline-image {
   position: relative;
+  flex: 0 0 300px;
+  height: 200px;
+  border-radius: 0.75rem;
   overflow: hidden;
 }
 
-.value-card:hover .value-icon {
-  background: linear-gradient(135deg, #2d5a87 0%, #1a365d 100%);
-  transform: scale(1.1) rotate(5deg);
-  box-shadow: 0 12px 35px rgba(26, 54, 93, 0.3);
+.timeline-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.value-icon::before {
-  content: '';
+.timeline-overlay {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background: linear-gradient(
-    45deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.1) 50%,
-    transparent 70%
+    to bottom,
+    transparent 0%,
+    rgba(26, 54, 93, 0.8) 100%
   );
-  transform: translateX(-100%);
-  transition: transform 0.6s ease;
-}
-
-.value-card:hover .value-icon::before {
-  transform: translateX(100%);
-}
-
-.value-icon i {
-  font-size: 36px;
-  color: white;
-  z-index: 2;
-  position: relative;
-}
-
-.value-card h4 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1a202c;
-  margin-bottom: 16px;
-}
-
-.value-card p {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #4a5568;
-  margin-bottom: 0;
-}
-
-.value-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-align: left;
-}
-
-.value-list li {
-  color: #4a5568;
-  line-height: 1.6;
-  margin-bottom: 8px;
-  padding-left: 20px;
-  position: relative;
-}
-
-.value-list li::before {
-  content: '•';
-  color: #1a365d;
-  font-weight: bold;
-  position: absolute;
-  left: 0;
-}
-
-/* History Section */
-.history-content {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Timeline Visual */
-.timeline-visual {
-  position: relative;
-}
-
-.timeline-item {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: center;
-  margin-bottom: 60px;
-}
-
-.timeline-item.reverse {
-  direction: rtl;
-}
-
-.timeline-item.reverse .timeline-content {
-  direction: ltr;
-}
-
-.timeline-image {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 25px rgba(26, 54, 93, 0.15);
-  transition: transform 0.3s ease;
-}
-
-.timeline-image:hover {
-  transform: translateY(-8px);
-}
-
-.timeline-img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  display: block;
-}
-
-.timeline-img-placeholder {
-  width: 100%;
-  height: 300px;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 12px;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-}
-
-.timeline-img-placeholder:hover {
-  transform: translateY(-8px);
-}
-
-.timeline-img-placeholder i {
-  font-size: 80px;
-  color: #1a365d;
-  opacity: 0.7;
-}
-
-.timeline-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%);
-  color: white;
-  padding: 16px;
-  text-align: left;
-}
-
-.timeline-year {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 8px;
-}
-
-.timeline-title {
-  font-size: 1.1rem;
-  opacity: 0.9;
+  align-items: flex-end;
+  padding: 1rem;
 }
 
 .timeline-chips {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .timeline-chip {
+  background: rgba(31, 167, 161, 0.9);
+  color: #ffffff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
   display: inline-block;
-  background: #d4a574;
-  color: #2e3a47;
-  padding: 6px 10px;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 700;
 }
 
-@media (max-width: 600px) {
-  .timeline-chips {
-    gap: 6px;
-  }
-
-  .timeline-chip {
-    padding: 4px 8px;
-    font-size: 0.7rem;
-  }
+.timeline-content {
+  flex: 1;
 }
 
-.timeline-content h3 {
-  margin-bottom: 16px;
+.founders-section {
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
 }
 
-.timeline-content p {
-  line-height: 1.6;
-  margin-bottom: 16px;
-}
-
-.timeline-content p:last-child {
-  margin-bottom: 0;
-}
-
-/* Highlights Section */
-.highlights-section {
-  margin-top: 80px;
-}
-
-.highlights-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
-}
-
-.highlight-card {
-  text-align: center;
-  padding: 30px 20px;
+.founder-card {
   background: #ffffff;
-  border-radius: 12px;
-  border: 1px solid rgba(26, 54, 93, 0.1);
-  transition: all 0.3s ease;
-  position: relative;
+  border: 1px solid rgba(26, 54, 93, 0.08);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.founder-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(26, 54, 93, 0.12);
+  border-color: rgba(26, 54, 93, 0.15);
+}
+
+.founder-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
   overflow: hidden;
+  margin-bottom: 1.5rem;
+  border: 4px solid rgba(31, 167, 161, 0.2);
+  transition: all 0.3s ease;
 }
 
-.highlight-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(26, 54, 93, 0.3);
-  box-shadow: 0 15px 40px rgba(26, 54, 93, 0.1);
+.founder-card:hover .founder-avatar {
+  border-color: rgba(31, 167, 161, 0.4);
+  transform: scale(1.05);
 }
 
-.highlight-icon {
-  width: 80px;
-  height: 80px;
-  background: #1a365d;
+.founder-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.founder-card:hover .founder-img {
+  transform: scale(1.1);
+}
+
+.founder-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.founder-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a365d;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.founder-role {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #1fa7a1;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.founder-description {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #4a5568;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+
+.founder-social {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.social-link {
+  width: 2.25rem;
+  height: 2.25rem;
+  background: rgba(31, 167, 161, 0.1);
+  border: 1px solid rgba(31, 167, 161, 0.2);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 20px auto;
+  color: #1fa7a1;
+  text-decoration: none;
   transition: all 0.3s ease;
 }
 
-.highlight-card:hover .highlight-icon {
-  background: #2d5a87;
+.social-link:hover {
+  background: #1fa7a1;
+  color: #ffffff;
   transform: scale(1.1);
 }
 
-.highlight-icon i {
-  font-size: 36px;
-  color: white;
+.social-link i {
+  font-size: 1rem;
 }
 
-.highlight-card h4 {
-  margin-bottom: 12px;
-  color: #1a202c;
-  font-weight: 600;
+.values-section {
+  background: #ffffff;
 }
 
-.highlight-card p {
+.value-card {
+  background: #ffffff;
+  border: 1px solid rgba(26, 54, 93, 0.08);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.value-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(26, 54, 93, 0.12);
+  border-color: rgba(26, 54, 93, 0.15);
+}
+
+.value-icon {
+  width: 4rem;
+  height: 4rem;
+  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.value-card:hover .value-icon {
+  transform: scale(1.1);
+}
+
+.value-icon i {
+  font-size: 1.75rem;
+  color: #ffffff;
+}
+
+.value-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a365d;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.value-description {
+  font-size: 0.9375rem;
+  line-height: 1.6;
   color: #4a5568;
-  line-height: 1.5;
-  margin: 0;
+  flex: 1;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .hero-section {
     height: 50vh;
@@ -1243,250 +618,128 @@ const values = [
     font-size: 2rem;
   }
 
-  .text-h6 {
-    font-size: 1rem;
-  }
-
   .timeline-item {
-    grid-template-columns: 1fr;
-    gap: 30px;
+    flex-direction: column;
+    gap: 1.5rem;
     text-align: center;
   }
 
   .timeline-item.reverse {
-    direction: ltr;
+    flex-direction: column;
   }
 
   .timeline-image {
-    order: -1;
+    flex: none;
+    width: 100%;
+    height: 180px;
   }
 
-  .highlights-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+  .founder-card {
+    padding: 1.5rem;
   }
 
-  .highlight-card {
-    padding: 25px 15px;
+  .founder-avatar {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1.25rem;
   }
 
-  .values-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+  .founder-name {
+    font-size: 1.125rem;
+  }
+
+  .founder-role {
+    font-size: 0.875rem;
+  }
+
+  .founder-description {
+    font-size: 0.8125rem;
+  }
+
+  .social-link {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .social-link i {
+    font-size: 0.875rem;
   }
 
   .value-card {
-    padding: 30px 20px;
+    padding: 1.5rem;
   }
 
   .value-icon {
-    width: 70px;
-    height: 70px;
-    margin-bottom: 20px;
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
   }
 
   .value-icon i {
-    font-size: 30px;
+    font-size: 1.5rem;
   }
 
-  .value-card h4 {
-    font-size: 1.25rem;
-    margin-bottom: 12px;
+  .value-title {
+    font-size: 1.125rem;
   }
 
-  .history-section,
-  .values-section,
-  .team-section,
-  .stats-section,
-  .cta-section {
-    padding: 3rem 0;
+  .value-description {
+    font-size: 0.875rem;
   }
 }
 
-.stats-section {
-  background: #1a365d !important;
-}
-
-.stat-item {
-  text-align: center;
-}
-
-.stat-item .text-h2 {
-  color: #ffffff !important;
-  font-weight: 700;
-}
-
-.stat-item .text-h6 {
-  color: #e2e8f0 !important;
-}
-
-/* Animações globais importadas via assets/styles/animations.scss */
-
-/* Galeria */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-@media (max-width: 960px) {
-  .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 479px) {
+  .hero-section {
+    height: 40vh;
+    min-height: 300px;
   }
-}
 
-@media (max-width: 600px) {
-  .gallery-grid {
-    grid-template-columns: 1fr;
+  .text-h2 {
+    font-size: 1.75rem;
   }
-}
 
-.gallery-item {
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px;
-}
+  .timeline-item {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
 
-.gallery-image {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-  display: block;
-}
+  .timeline-image {
+    height: 150px;
+  }
 
-.gallery-item:hover .gallery-image {
-  transform: scale(1.05);
-}
+  .founder-card {
+    padding: 1.25rem;
+  }
 
-.gallery-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 12px 16px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
-  color: white;
-}
+  .founder-avatar {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+  }
 
-.gallery-label {
-  display: inline-block;
-  background: #d4a574;
-  color: #2e3a47;
-  padding: 6px 12px;
-  border-radius: 999px;
-  font-weight: 700;
-  font-size: 0.85rem;
-}
+  .founder-name {
+    font-size: 1rem;
+  }
 
-/* Cards de Tecnologias */
-.tech-card {
-  overflow: hidden;
-  border-radius: 12px;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-  background: #ffffff;
-  border: 1px solid rgba(26, 54, 93, 0.1);
-}
+  .founder-role {
+    font-size: 0.8125rem;
+  }
 
-.tech-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 15px 40px rgba(26, 54, 93, 0.12);
-}
+  .founder-description {
+    font-size: 0.75rem;
+  }
 
-.tech-card-image {
-  position: relative;
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-}
+  .social-link {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
 
-.tech-card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.3s ease;
-}
-
-.tech-card:hover .tech-card-image img {
-  transform: scale(1.05);
-}
-
-.tech-card-chip {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background: #d4a574;
-  color: #2e3a47;
-  padding: 6px 10px;
-  border-radius: 999px;
+  .social-link i {
   font-size: 0.75rem;
-  font-weight: 700;
-}
+  }
 
-.tech-card-content {
-  padding: 16px;
-}
-
-.tech-card-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #1a202c;
-  margin-bottom: 6px;
-}
-
-.tech-card-text {
-  color: #4a5568;
-  font-size: 0.95rem;
-}
-
-/* CTA - Benefícios e contato rápido */
-.cta-benefits {
-  display: flex;
-  justify-content: center;
-  gap: 1.25rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.5rem;
-}
-
-.benefit {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #e2e8f0;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 8px 12px;
-  border-radius: 999px;
-  font-weight: 600;
-}
-
-.cta-quick-contact {
-  display: flex;
-  justify-content: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  margin-top: 1rem;
-}
-
-.cta-quick-contact .chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 6px 10px;
-  border-radius: 999px;
-  font-size: 0.85rem;
-}
-
-@media (max-width: 600px) {
-  .tech-card-chip {
-    padding: 4px 8px;
-    font-size: 0.7rem;
+  .value-card {
+    padding: 1.25rem;
   }
 }
 </style>

@@ -138,10 +138,8 @@ const navigationItems: NavigationItem[] = [
   { label: 'Home', path: '/', icon: 'mdi mdi-home' },
   { label: 'Sobre', path: '/sobre', icon: 'mdi mdi-information' },
   { label: 'Serviços', path: '/servicos', icon: 'mdi mdi-cog' },
-  { label: 'Projetos', path: '/projetos', icon: 'mdi mdi-folder' },
   { label: 'Documentos', path: '/documentos', icon: 'mdi mdi-file-document' },
   { label: 'Blog', path: '/blog', icon: 'mdi mdi-post' },
-  { label: 'Equipe', path: '/equipe', icon: 'mdi mdi-account-group' },
 ]
 
 const handleScroll = () => {

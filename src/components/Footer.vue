@@ -100,7 +100,6 @@ const quickLinks = [
   { name: 'Home', path: '/' },
   { name: 'Sobre', path: '/sobre' },
   { name: 'Serviços', path: '/servicos' },
-  { name: 'Projetos', path: '/projetos' },
   { name: 'Blog', path: '/blog' },
 ]
 

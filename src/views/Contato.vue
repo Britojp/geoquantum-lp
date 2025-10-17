@@ -226,9 +226,9 @@
                 Nossos Serviços
               </v-btn>
 
-              <v-btn size="large" variant="outlined" to="/projetos" class="text-white border-white">
+              <v-btn size="large" variant="outlined" to="/servicos" class="text-white border-white">
                 <v-icon start>mdi-briefcase</v-icon>
-                Ver Projetos
+                Nossos Serviços
               </v-btn>
             </div>
           </v-col>

@@ -68,7 +68,7 @@
 
 
             <div class="text-center animate-fade-in-up" :style="{ animationDelay: '0.6s' }">
-              <button href="/sobre" clbuttonss="btn-section">
+              <button href="/sobre" class="btn-section">
                 <span>Conheça Nossa História</span>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -165,22 +165,12 @@
     <CtaSection
       :title="'Pronto para Iniciar Seu Projeto?'"
       :subtitle="'Entre em contato conosco e descubra como nossa equipe especializada pode ajudar você a transformar seus dados geoespaciais em soluções inovadoras.'"
-      :stats="[
-        { number: '24h', label: 'Resposta Rápida' },
-        { number: '100%', label: 'Dedicação' },
-        { number: '1', label: 'Ano de Mercado' },
-      ]"
       :primary="{
         to: '/contato',
         label: 'Solicitar Orçamento',
         icon: 'mdi-phone',
       }"
-      :secondary="{ to: '/documentos', label: 'Ver Documentação', icon: 'mdi-file-document' }"
-      :contactChips="[
-        { icon: 'mdi-email', text: 'contato@geoquantum.com' },
-        { icon: 'mdi-phone', text: '+55 (11) 99999-9999' },
-        { icon: 'mdi-clock', text: 'Seg-Sex: 8h às 18h' },
-      ]"
+      :secondary="{ to: '/blog', label: 'Ver Blog', icon: 'mdi-post' }"
     />
   </div>
 </template>
@@ -201,7 +191,7 @@ const metricsVisible = ref(false)
 const ctaStatsVisible = ref(false)
 
 const navigateToDocuments = () => {
-  router.push('/documentos')
+  router.push('/blog')
 }
 
 // Função para animar contagem crescente - Otimizada
@@ -308,7 +298,7 @@ const services = [
       'Padrões cartográficos',
       'Sensoriamento remoto',
     ],
-    image: '/images/geoprocessing/agriculture-precision.jpg',
+    image: './images/geoprocessing/agriculture-precision.jpg',
     icon: 'mdi-map-marker-radius',
   },
   {
@@ -323,7 +313,7 @@ const services = [
       'Operações geoespaciais',
       'Processos repetitivos',
     ],
-    image: '/images/geoprocessing/qgis-interface.jpg',
+    image: './images/geoprocessing/qgis-interface.jpg',
     icon: 'mdi-cog-sync',
   },
   {
@@ -339,7 +329,7 @@ const services = [
       'Inovações tecnológicas',
       'Formação contínua',
     ],
-    image: '/images/geoprocessing/team-collaboration.jpg',
+    image: './images/geoprocessing/team-collaboration.jpg',
     icon: 'mdi-school',
   },
   {
@@ -354,7 +344,7 @@ const services = [
       'Gestão ambiental',
       'Sustentabilidade',
     ],
-    image: '/images/geoprocessing/environmental-monitoring.jpg',
+    image: './images/geoprocessing/environmental-monitoring.jpg',
     icon: 'mdi-leaf-circle',
   },
 ]

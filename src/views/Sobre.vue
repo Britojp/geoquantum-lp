@@ -32,17 +32,10 @@
     <section class="history-section py-16 py-sm-12 py-md-16 animate-on-scroll">
       <v-container class="mobile-padding">
         <div class="text-center mb-12 mb-sm-8 mb-md-12 animate-fade-in-up">
-          <h2
-            class="text-h3 text-h4-sm text-h3-md font-weight-bold text-primary mb-4 mobile-title animate-slide-in-left"
-          >
-            Quem Somos
-          </h2>
-          <p
-            class="text-h6 text-body-1-sm text-h6-md text-grey-darken-1 max-width-600 mx-auto mobile-text animate-slide-in-right"
-          >
-            Uma empresa nascida da paixão pela geografia e tecnologia, transformando dados
-            geoespaciais em soluções inovadoras.
-          </p>
+          <SectionTitle
+            title="Quem Somos"
+            subtitle="Uma empresa nascida da paixão pela geografia e tecnologia, transformando dados geoespaciais em soluções inovadoras."
+          />
         </div>
 
         <div class="history-content">
@@ -121,16 +114,10 @@
     <section class="founders-section py-16 py-sm-12 py-md-16 animate-on-scroll">
       <v-container class="mobile-padding">
         <div class="text-center mb-12 mb-sm-8 mb-md-12 animate-fade-in-up">
-          <h2
-            class="text-h3 text-h4-sm text-h3-md font-weight-bold text-primary mb-4 mobile-title animate-slide-in-left"
-          >
-            Nossas Idealizadoras
-          </h2>
-          <p
-            class="text-h6 text-body-1-sm text-h6-md text-grey-darken-1 max-width-600 mx-auto mobile-text animate-slide-in-right"
-          >
-            Conheça as profissionais que transformaram sua paixão pela geografia em soluções inovadoras.
-          </p>
+          <SectionTitle
+            title="Nossas Idealizadoras"
+            subtitle="Conheça as profissionais que transformaram sua paixão pela geografia em soluções inovadoras."
+          />
         </div>
 
         <v-row class="mobile-grid justify-center">
@@ -179,16 +166,10 @@
     <section class="values-section py-16 py-sm-12 py-md-16 animate-on-scroll">
       <v-container class="mobile-padding">
         <div class="text-center mb-12 mb-sm-8 mb-md-12 animate-fade-in-up">
-          <h2
-            class="text-h3 text-h4-sm text-h3-md font-weight-bold text-primary mb-4 mobile-title animate-slide-in-left"
-          >
-            Nossos Valores
-          </h2>
-          <p
-            class="text-h6 text-body-1-sm text-h6-md text-grey-darken-1 max-width-600 mx-auto mobile-text animate-slide-in-right"
-          >
-            Os princípios que guiam nossa atuação e definem nossa identidade como empresa.
-          </p>
+          <SectionTitle
+            title="Nossos Valores"
+            subtitle="Os princípios que guiam nossa atuação e definem nossa identidade como empresa."
+          />
         </div>
 
         <v-row class="mobile-grid">
@@ -230,10 +211,6 @@
         icon: 'mdi-phone',
       }"
       :secondary="{ to: '/servicos', label: 'Nossos Serviços', icon: 'mdi-cog' }"
-      :contactChips="[
-        { icon: 'mdi-email', text: 'contato@geoquantum.com' },
-        { icon: 'mdi-phone', text: '+55 (11) 99999-9999' },
-      ]"
     />
   </div>
 </template>
@@ -241,6 +218,7 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted } from 'vue'
 import CtaSection from '../components/CtaSection.vue'
+import SectionTitle from '../components/SectionTitle.vue'
 
 const founders = [
   {
@@ -696,6 +674,25 @@ onUnmounted(() => {
 
   .text-h2 {
     font-size: 1.75rem;
+    line-height: 1.2;
+  }
+
+  .text-h6 {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  /* Ajustes específicos para o hero mobile */
+  .hero-section .text-h2 {
+    font-size: 1.5rem !important;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .hero-section .text-h6 {
+    font-size: 0.85rem !important;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
   }
 
   .timeline-item {
@@ -740,6 +737,159 @@ onUnmounted(() => {
 
   .value-card {
     padding: 1.25rem;
+  }
+
+  .timeline-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .timeline-item.reverse {
+    flex-direction: column;
+  }
+
+  .timeline-image {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .timeline-content {
+    width: 100%;
+  }
+
+  .timeline-chips {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .timeline-chip {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .value-card {
+    padding: 1rem;
+  }
+
+  .value-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .value-icon i {
+    font-size: 1.25rem;
+  }
+
+  .value-title {
+    font-size: 1.125rem;
+  }
+
+  .value-description {
+    font-size: 0.875rem;
+  }
+
+  .founder-card {
+    padding: 1rem;
+  }
+
+  .founder-avatar {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .founder-name {
+    font-size: 1.125rem;
+  }
+
+  .founder-role {
+    font-size: 0.75rem;
+  }
+
+  .founder-description {
+    font-size: 0.7rem;
+  }
+
+  .social-link {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .social-link i {
+    font-size: 0.7rem;
+  }
+
+  /* Melhorias específicas para mobile baseadas na imagem */
+  .mobile-title {
+    font-size: 1.5rem !important;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .mobile-text {
+    font-size: 0.85rem !important;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+  }
+
+  .timeline-content h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .timeline-content p {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+  }
+
+  .timeline-chips {
+    margin-bottom: 1rem;
+  }
+
+  .value-card {
+    text-align: center;
+  }
+
+  .value-icon {
+    margin: 0 auto 0.75rem;
+  }
+
+  .value-title {
+    margin-bottom: 0.5rem;
+  }
+
+  .value-description {
+    line-height: 1.4;
+  }
+
+  .founder-card {
+    text-align: center;
+  }
+
+  .founder-avatar {
+    margin: 0 auto 0.75rem;
+  }
+
+  .founder-name {
+    margin-bottom: 0.25rem;
+  }
+
+  .founder-role {
+    margin-bottom: 0.5rem;
+  }
+
+  .founder-description {
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+  }
+
+  .social-link {
+    margin: 0 0.25rem;
   }
 }
 </style>

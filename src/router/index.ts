@@ -2,7 +2,6 @@ import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import Home from '../views/Home.vue'
 import Sobre from '../views/Sobre.vue'
 import Servicos from '../views/Servicos.vue'
-import Documentos from '../views/Documentos.vue'
 import Blog from '../views/Blog.vue'
 import Contato from '../views/Contato.vue'
 
@@ -35,15 +34,6 @@ const routes: RouteRecordRaw[] = [
       title: 'Serviços - GeoQuantum',
       description:
         'Oferecemos serviços especializados em geoprocessamento, mapeamento, análise geoespacial e consultoria técnica.',
-    },
-  },
-  {
-    path: '/documentos',
-    name: 'documentos',
-    component: Documentos,
-    meta: {
-      title: 'Documentos - GeoQuantum',
-      description: 'Documentação institucional, certificados, políticas e métodos da GeoQuantum.',
     },
   },
   {

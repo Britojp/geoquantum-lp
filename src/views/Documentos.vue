@@ -106,10 +106,6 @@
         color: 'accent',
       }"
       :secondary="{ to: '/servicos', label: 'Nossos Serviços', icon: 'mdi-cog' }"
-      :contactChips="[
-        { icon: 'mdi-email', text: 'contato@geoquantum.com' },
-        { icon: 'mdi-phone', text: '+55 (11) 99999-9999' },
-      ]"
     />
   </div>
 </template>

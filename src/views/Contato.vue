@@ -1,27 +1,33 @@
 <template>
   <div class="contato-page">
-    <!-- Hero Section -->
-    <section class="hero-section py-16 bg-gradient-primary">
-      <v-container>
-        <v-row class="text-center">
-          <v-col cols="12" md="8" class="mx-auto">
-            <h1 class="text-h2 text-h3-sm font-weight-bold text-white mb-4">Entre em Contato</h1>
-            <p class="text-h6 text-grey-lighten-2 mb-6">
-              Estamos prontos para ajudar você a transformar seus dados geoespaciais em insights
-              valiosos. Entre em contato conosco!
-            </p>
-          </v-col>
-        </v-row>
-      </v-container>
+    <section class="hero-section">
+      <div class="hero-overlay">
+        <v-container>
+          <v-row class="text-center">
+            <v-col cols="12" md="8" class="mx-auto">
+              <h1
+                class="text-h2 text-h3-sm font-weight-bold text-white mb-4 text-shadow animate-fade-in-down hero-title"
+              >
+                Entre em Contato
+              </h1>
+              <p 
+                class="text-h6 text-grey-lighten-2 mb-6 animate-fade-in-up hero-subtitle"
+                :style="{ animationDelay: '0.2s' }"
+              >
+                Estamos prontos para ajudar você a transformar seus dados geoespaciais em insights
+                valiosos. Entre em contato conosco!
+              </p>
+            </v-col>
+          </v-row>
+        </v-container>
+      </div>
     </section>
 
-    <!-- Seção Principal -->
     <section class="main-section py-16">
       <v-container>
         <v-row>
-          <!-- Informações de Contato -->
           <v-col cols="12" lg="4" class="mb-8">
-            <v-card class="contact-info-card" elevation="4">
+            <v-card class="contact-info-card animate-fade-in-up" elevation="4">
               <v-card-item class="pa-6">
                 <h2 class="text-h4 font-weight-bold text-primary mb-6">Informações de Contato</h2>
 
@@ -151,49 +157,49 @@
             </v-card>
           </v-col>
 
-          <!-- Formulário de Contato -->
           <v-col cols="12" lg="8">
-            <ContactForm />
+            <div class="animate-fade-in-up" :style="{ animationDelay: '0.2s' }">
+              <ContactForm />
+            </div>
           </v-col>
         </v-row>
       </v-container>
     </section>
 
-    <!-- Seção do Mapa -->
     <section class="map-section py-16 bg-grey-lighten-4">
       <v-container>
-        <div class="text-center mb-8">
-          <h2 class="text-h3 font-weight-bold text-primary mb-4">Nossa Localização</h2>
-          <p class="text-h6 text-grey-darken-1 max-width-600 mx-auto">
-            Visite nossa sede em São Paulo ou entre em contato para agendar uma visita.
-          </p>
+        <div class="text-center mb-8 animate-fade-in-up">
+          <SectionTitle
+            title="Nossa Localização"
+            subtitle="Visite nossa sede em São Paulo ou entre em contato para agendar uma visita."
+          />
         </div>
 
-        <v-card elevation="4" class="map-card">
+        <v-card elevation="4" class="map-card animate-fade-in-up" :style="{ animationDelay: '0.2s' }">
           <div ref="mapContainer" class="map-container" style="height: 400px"></div>
         </v-card>
       </v-container>
     </section>
 
-    <!-- Seção FAQ -->
     <section class="faq-section py-16">
       <v-container>
-        <div class="text-center mb-12">
-          <h2 class="text-h3 font-weight-bold text-primary mb-4">Perguntas Frequentes</h2>
-          <p class="text-h6 text-grey-darken-1 max-width-600 mx-auto">
-            Respostas para as dúvidas mais comuns sobre nossos serviços.
-          </p>
+        <div class="text-center mb-12 animate-fade-in-up">
+          <SectionTitle
+            title="Perguntas Frequentes"
+            subtitle="Respostas para as dúvidas mais comuns sobre nossos serviços."
+          />
         </div>
 
         <v-row>
           <v-col cols="12" md="8" class="mx-auto">
-            <v-expansion-panels variant="accordion">
-              <v-expansion-panel v-for="faq in faqs" :key="faq.question">
-                <v-expansion-panel-title class="text-h6 font-weight-bold">
+            <v-expansion-panels variant="accordion" class="animate-fade-in-up" :style="{ animationDelay: '0.2s' }">
+              <v-expansion-panel v-for="(faq, index) in faqs" :key="faq.question" class="faq-panel">
+                <v-expansion-panel-title class="text-h6 font-weight-bold faq-title">
+                  <v-icon start color="primary">mdi-help-circle</v-icon>
                   {{ faq.question }}
                 </v-expansion-panel-title>
                 <v-expansion-panel-text>
-                  <p class="text-body-1">{{ faq.answer }}</p>
+                  <p class="text-body-1 faq-answer">{{ faq.answer }}</p>
                 </v-expansion-panel-text>
               </v-expansion-panel>
             </v-expansion-panels>
@@ -202,39 +208,6 @@
       </v-container>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section py-16 bg-gradient-primary">
-      <v-container>
-        <v-row class="text-center">
-          <v-col cols="12" md="8" class="mx-auto">
-            <h2 class="text-h3 font-weight-bold text-white mb-4">
-              Pronto para Iniciar Seu Projeto?
-            </h2>
-            <p class="text-h6 text-grey-lighten-2 mb-6">
-              Entre em contato conosco e descubra como podemos ajudar você a transformar seus dados
-              geoespaciais em insights valiosos.
-            </p>
-            <div class="d-flex flex-column flex-sm-row gap-6 justify-center">
-              <v-btn
-                color="accent"
-                size="large"
-                variant="elevated"
-                to="/servicos"
-                class="text-dark font-weight-bold"
-              >
-                <v-icon start>mdi-cog</v-icon>
-                Nossos Serviços
-              </v-btn>
-
-              <v-btn size="large" variant="outlined" to="/servicos" class="text-white border-white">
-                <v-icon start>mdi-briefcase</v-icon>
-                Nossos Serviços
-              </v-btn>
-            </div>
-          </v-col>
-        </v-row>
-      </v-container>
-    </section>
   </div>
 </template>
 
@@ -320,28 +293,50 @@ onMounted(() => {
   min-height: 100vh;
 }
 
-.max-width-600 {
-  max-width: 600px;
+.hero-section {
+  position: relative;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(26, 54, 93, 0.95) 0%, rgba(45, 90, 135, 0.95) 100%),
+    url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072') center/cover;
+  background-attachment: fixed;
+  overflow: hidden;
 }
 
-.bg-gradient-primary {
-  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
+.hero-overlay {
+  position: relative;
+  z-index: 2;
+  padding: 4rem 0;
+  width: 100%;
+}
+
+.text-shadow {
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 .contact-info-card {
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
 }
 
 .contact-info-card:hover {
   transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
 .contact-item {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding-bottom: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.contact-item:hover {
+  transform: translateX(4px);
 }
 
 .contact-item:last-child {
@@ -349,20 +344,46 @@ onMounted(() => {
   padding-bottom: 0;
 }
 
+.contact-item a {
+  color: #1a365d;
+  transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+  color: #2d5a87;
+}
+
 .map-card {
   border-radius: 12px;
   overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.map-card:hover {
+  transform: translateY(-4px);
 }
 
 .map-container {
   width: 100%;
 }
 
-.border-white {
-  border-color: white !important;
+.faq-panel {
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-/* Custom marker styles */
+.faq-title {
+  font-size: 1rem;
+  padding: 1rem 1.5rem;
+}
+
+.faq-answer {
+  color: rgba(0, 0, 0, 0.7);
+  line-height: 1.6;
+}
+
 :deep(.custom-marker) {
   background: transparent;
 }
@@ -390,18 +411,123 @@ onMounted(() => {
   border-top: 10px solid #1a365d;
 }
 
-/* Responsive adjustments */
+@media (min-width: 768px) {
+  .hero-section {
+    min-height: 60vh;
+  }
+
+  .hero-overlay {
+    padding: 6rem 0;
+  }
+
+  .faq-title {
+    font-size: 1.125rem;
+  }
+}
+
 @media (max-width: 768px) {
-  .hero-section,
-  .main-section,
-  .map-section,
-  .faq-section,
-  .cta-section {
+  .hero-section {
+    min-height: 40vh;
+    background-attachment: scroll;
+  }
+
+  .hero-overlay {
     padding: 3rem 0;
   }
 
+  .hero-title {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .main-section,
+  .map-section,
+  .faq-section {
+    padding: 3rem 0 !important;
+  }
+
   .contact-info-card {
-    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .map-container {
+    height: 300px !important;
+  }
+
+  .faq-title {
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .faq-answer {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .hero-section {
+    min-height: 35vh;
+  }
+
+  .hero-overlay {
+    padding: 2rem 0;
+  }
+
+  .hero-title {
+    font-size: 1.5rem !important;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.85rem !important;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-info-card {
+    border-radius: 8px;
+  }
+
+  .contact-info-card .text-h4 {
+    font-size: 1.5rem !important;
+  }
+
+  .contact-item {
+    padding-bottom: 1rem;
+  }
+
+  .contact-item .text-h6 {
+    font-size: 1rem !important;
+  }
+
+  .contact-item .text-body-1 {
+    font-size: 0.875rem !important;
+  }
+
+  .map-container {
+    height: 250px !important;
+  }
+
+  .faq-title {
+    font-size: 0.85rem;
+    padding: 0.625rem 0.75rem;
+  }
+
+  .faq-answer {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .main-section,
+  .map-section,
+  .faq-section {
+    padding: 2rem 0 !important;
   }
 }
 </style>

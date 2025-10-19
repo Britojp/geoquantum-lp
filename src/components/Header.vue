@@ -138,7 +138,6 @@ const navigationItems: NavigationItem[] = [
   { label: 'Home', path: '/', icon: 'mdi mdi-home' },
   { label: 'Sobre', path: '/sobre', icon: 'mdi mdi-information' },
   { label: 'Serviços', path: '/servicos', icon: 'mdi mdi-cog' },
-  { label: 'Documentos', path: '/documentos', icon: 'mdi mdi-file-document' },
   { label: 'Blog', path: '/blog', icon: 'mdi mdi-post' },
 ]
 

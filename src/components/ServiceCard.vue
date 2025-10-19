@@ -2,29 +2,29 @@
   <article class="service-card">
     <div class="card-image">
       <img 
-        v-if="service.image && !imageError" 
-        :src="service.image" 
-        :alt="service.title"
+        v-if="props.service.image && !imageError" 
+        :src="props.service.image" 
+        :alt="props.service.title"
         loading="lazy"
         @error="handleImageError"
         @load="handleImageLoad"
       />
-      <div v-if="!service.image || imageError" class="image-placeholder">
-        <i :class="service.icon || 'mdi-image'"></i>
+      <div v-if="!props.service.image || imageError" class="image-placeholder">
+        <i :class="props.service.icon || 'mdi-image'"></i>
       </div>
       <div class="image-overlay"></div>
       <div class="card-icon">
-        <i :class="service.icon || 'mdi-cog'"></i>
+        <i :class="props.service.icon || 'mdi-cog'"></i>
       </div>
     </div>
 
     <div class="card-content">
-      <h3 class="card-title">{{ service.title }}</h3>
-      <p class="card-description">{{ service.description }}</p>
+      <h3 class="card-title">{{ props.service.title }}</h3>
+      <p class="card-description">{{ props.service.description }}</p>
 
-      <div v-if="service.features" class="card-features">
+      <div v-if="props.service.features" class="card-features">
         <div
-          v-for="(feature, index) in service.features?.slice(0, 3)"
+          v-for="(feature, index) in props.service.features?.slice(0, 3)"
           :key="index"
           class="feature-tag"
         >
@@ -58,7 +58,7 @@ interface Service {
   features?: string[]
 }
 
-defineProps<{
+const props = defineProps<{
   service: Service
 }>()
 

@@ -10,36 +10,21 @@
         <v-container>
           <v-row class="text-center">
             <v-col cols="12" md="8" class="mx-auto">
-              <div class="hero-badge mb-4">
-                <i class="mdi mdi-newspaper-variant-outline"></i>
-                <span>Blog & Insights</span>
-              </div>
+            
               <h1
                 class="text-h2 text-h3-sm font-weight-bold text-white mb-4 text-shadow animate-fade-in-down"
+                :style="{ animationDelay: '0.2s' }"
               >
                 Conhecimento em Geoprocessamento
               </h1>
-              <p class="text-h6 text-grey-lighten-2 mb-6 animate-fade-in-up animate-delay-300">
+              <p 
+                class="text-h6 text-grey-lighten-2 mb-6 animate-fade-in-up"
+                :style="{ animationDelay: '0.4s' }"
+              >
                 Artigos, tutoriais e insights sobre tecnologias geoespaciais, análise de dados e
                 tendências do setor
               </p>
-              <div class="hero-stats animate-fade-in-up animate-delay-600">
-                <div class="stat-item">
-                  <i class="mdi mdi-post"></i>
-                  <span class="stat-number">{{ posts.length }}+</span>
-                  <span class="stat-label">Artigos</span>
-                </div>
-                <div class="stat-item">
-                  <i class="mdi mdi-account-group"></i>
-                  <span class="stat-number">{{ uniqueAuthors }}</span>
-                  <span class="stat-label">Autores</span>
-                </div>
-                <div class="stat-item">
-                  <i class="mdi mdi-tag-multiple"></i>
-                  <span class="stat-number">{{ tags.length }}</span>
-                  <span class="stat-label">Categorias</span>
-                </div>
-              </div>
+
             </v-col>
           </v-row>
         </v-container>
@@ -49,7 +34,14 @@
     <!-- Filtros e Busca -->
     <section class="filters-section py-8">
       <v-container>
-        <v-row align="center">
+        <div class="text-center mb-8 animate-fade-in-up">
+          <SectionTitle
+            title="Encontre o Conteúdo Ideal"
+            subtitle="Filtre por categoria, tags ou busque por palavras-chave para encontrar exatamente o que você procura."
+          />
+        </div>
+        
+        <v-row align="center" class="animate-fade-in-up" :style="{ animationDelay: '0.2s' }">
           <v-col cols="12" sm="6" md="4">
             <v-text-field
               v-model="searchQuery"
@@ -68,6 +60,7 @@
               label="Categoria"
               :items="categories"
               variant="outlined"
+              prepend-inner-icon="mdi-tag"
               clearable
               @update:model-value="filterPosts"
               class="category-select"
@@ -80,6 +73,7 @@
               label="Tag"
               :items="tags"
               variant="outlined"
+              prepend-inner-icon="mdi-tag-multiple"
               clearable
               @update:model-value="filterPosts"
               class="tag-select"
@@ -94,6 +88,7 @@
               block
               class="reset-filters-btn"
             >
+              <v-icon start>mdi-refresh</v-icon>
               Limpar
             </v-btn>
           </v-col>
@@ -104,57 +99,71 @@
     <!-- Posts em Destaque -->
     <section class="featured-posts py-16" v-if="featuredPosts.length > 0">
       <v-container>
-        <SectionTitle
-          title="Artigos em Destaque"
-          subtitle="Os artigos mais populares e relevantes sobre geoprocessamento."
-        />
+        <div class="text-center mb-12 animate-fade-in-up">
+          <SectionTitle
+            title="Artigos em Destaque"
+            subtitle="Os artigos mais populares e relevantes sobre geoprocessamento."
+          />
+        </div>
 
         <v-row>
-          <v-col v-for="post in featuredPosts" :key="post.id" cols="12" md="6" lg="4" class="mb-6">
-            <v-card class="featured-post-card h-100" elevation="4">
-              <v-img :src="post.image" height="200" cover class="post-image">
-                <div class="post-overlay">
-                  <div class="post-date">{{ formatDate(post.date) }}</div>
-                  <v-chip :color="post.category.color" size="small" class="category-chip">
-                    {{ post.category.name }}
-                  </v-chip>
-                </div>
-              </v-img>
-
-              <v-card-item class="pa-6">
-                <v-card-title class="text-h6 font-weight-bold mb-2">
-                  {{ post.title }}
-                </v-card-title>
-                <v-card-text class="text-body-2 text-grey-darken-1 mb-3">
-                  {{ post.excerpt }}
-                </v-card-text>
-
-                <div class="d-flex flex-wrap gap-2 mb-3">
-                  <v-chip
-                    v-for="tag in post.tags"
-                    :key="tag"
-                    size="small"
-                    color="primary"
-                    variant="outlined"
-                  >
-                    {{ tag }}
-                  </v-chip>
-                </div>
-
-                <div class="d-flex justify-space-between align-center">
-                  <div class="d-flex align-center">
-                    <v-avatar size="24" color="primary" class="me-2">
-                      <v-icon size="16" color="white">{{ post.author.icon }}</v-icon>
-                    </v-avatar>
-                    <span class="text-body-2">{{ post.author.name }}</span>
+          <v-col 
+            v-for="(post, index) in featuredPosts" 
+            :key="post.id" 
+            cols="12" 
+            md="6" 
+            lg="4" 
+            class="mb-6"
+          >
+            <div 
+              class="post-wrapper animate-fade-in-up" 
+              :style="{ animationDelay: `${0.1 * index}s` }"
+            >
+              <v-card class="featured-post-card h-100" elevation="4">
+                <v-img :src="post.image" height="200" cover class="post-image">
+                  <div class="post-overlay">
+                    <div class="post-date">{{ formatDate(post.date) }}</div>
+                    <v-chip :color="post.category.color" size="small" class="category-chip">
+                      {{ post.category.name }}
+                    </v-chip>
                   </div>
-                  <v-btn color="primary" variant="text" size="small" @click="readPost(post)">
-                    Ler Mais
-                    <v-icon end>mdi-arrow-right</v-icon>
-                  </v-btn>
-                </div>
-              </v-card-item>
-            </v-card>
+                </v-img>
+
+                <v-card-item class="pa-6">
+                  <v-card-title class="text-h6 font-weight-bold mb-2">
+                    {{ post.title }}
+                  </v-card-title>
+                  <v-card-text class="text-body-2 text-grey-darken-1 mb-3">
+                    {{ post.excerpt }}
+                  </v-card-text>
+
+                  <div class="d-flex flex-wrap gap-2 mb-3">
+                    <v-chip
+                      v-for="tag in post.tags"
+                      :key="tag"
+                      size="small"
+                      color="primary"
+                      variant="outlined"
+                    >
+                      {{ tag }}
+                    </v-chip>
+                  </div>
+
+                  <div class="d-flex justify-space-between align-center">
+                    <div class="d-flex align-center">
+                      <v-avatar size="24" color="primary" class="me-2">
+                        <v-icon size="16" color="white">{{ post.author.icon }}</v-icon>
+                      </v-avatar>
+                      <span class="text-body-2">{{ post.author.name }}</span>
+                    </div>
+                    <v-btn color="primary" variant="text" size="small" @click="readPost(post)">
+                      Ler Mais
+                      <v-icon end>mdi-arrow-right</v-icon>
+                    </v-btn>
+                  </div>
+                </v-card-item>
+              </v-card>
+            </div>
           </v-col>
         </v-row>
       </v-container>
@@ -163,68 +172,90 @@
     <!-- Lista de Posts -->
     <section class="posts-section py-16">
       <v-container>
-        <div v-if="filteredPosts.length === 0" class="text-center py-12">
+        <div v-if="filteredPosts.length === 0" class="text-center py-12 animate-fade-in-up">
           <v-icon icon="mdi-magnify" size="64" color="grey" class="mb-4"></v-icon>
           <h3 class="text-h5 text-grey-darken-1 mb-2">Nenhum artigo encontrado</h3>
           <p class="text-body-1 text-grey">Tente ajustar os filtros de busca.</p>
+          <v-btn 
+            color="primary" 
+            variant="elevated" 
+            @click="resetFilters"
+            class="mt-4"
+          >
+            <v-icon start>mdi-refresh</v-icon>
+            Limpar Filtros
+          </v-btn>
         </div>
 
         <v-row v-else>
-          <v-col v-for="post in paginatedPosts" :key="post.id" cols="12" md="6" lg="4" class="mb-6">
-            <v-card class="post-card h-100" elevation="4">
-              <v-img :src="post.image" height="200" cover class="post-image">
-                <div class="post-overlay">
-                  <div class="post-date">{{ formatDate(post.date) }}</div>
-                  <v-chip :color="post.category.color" size="small" class="category-chip">
-                    {{ post.category.name }}
-                  </v-chip>
-                </div>
-              </v-img>
-
-              <v-card-item class="pa-6">
-                <v-card-title class="text-h6 font-weight-bold mb-2">
-                  {{ post.title }}
-                </v-card-title>
-                <v-card-text class="text-body-2 text-grey-darken-1 mb-3">
-                  {{ post.excerpt }}
-                </v-card-text>
-
-                <div class="d-flex flex-wrap gap-2 mb-3">
-                  <v-chip
-                    v-for="tag in post.tags"
-                    :key="tag"
-                    size="small"
-                    color="primary"
-                    variant="outlined"
-                  >
-                    {{ tag }}
-                  </v-chip>
-                </div>
-
-                <div class="d-flex justify-space-between align-center">
-                  <div class="d-flex align-center">
-                    <v-avatar size="24" color="primary" class="me-2">
-                      <v-icon size="16" color="white">{{ post.author.icon }}</v-icon>
-                    </v-avatar>
-                    <span class="text-body-2">{{ post.author.name }}</span>
+          <v-col 
+            v-for="(post, index) in paginatedPosts" 
+            :key="post.id" 
+            cols="12" 
+            md="6" 
+            lg="4" 
+            class="mb-6"
+          >
+            <div 
+              class="post-wrapper animate-fade-in-up" 
+              :style="{ animationDelay: `${0.1 * index}s` }"
+            >
+              <v-card class="post-card h-100" elevation="4">
+                <v-img :src="post.image" height="200" cover class="post-image">
+                  <div class="post-overlay">
+                    <div class="post-date">{{ formatDate(post.date) }}</div>
+                    <v-chip :color="post.category.color" size="small" class="category-chip">
+                      {{ post.category.name }}
+                    </v-chip>
                   </div>
-                  <v-btn color="primary" variant="text" size="small" @click="readPost(post)">
-                    Ler Mais
-                    <v-icon end>mdi-arrow-right</v-icon>
-                  </v-btn>
-                </div>
-              </v-card-item>
-            </v-card>
+                </v-img>
+
+                <v-card-item class="pa-6">
+                  <v-card-title class="text-h6 font-weight-bold mb-2">
+                    {{ post.title }}
+                  </v-card-title>
+                  <v-card-text class="text-body-2 text-grey-darken-1 mb-3">
+                    {{ post.excerpt }}
+                  </v-card-text>
+
+                  <div class="d-flex flex-wrap gap-2 mb-3">
+                    <v-chip
+                      v-for="tag in post.tags"
+                      :key="tag"
+                      size="small"
+                      color="primary"
+                      variant="outlined"
+                    >
+                      {{ tag }}
+                    </v-chip>
+                  </div>
+
+                  <div class="d-flex justify-space-between align-center">
+                    <div class="d-flex align-center">
+                      <v-avatar size="24" color="primary" class="me-2">
+                        <v-icon size="16" color="white">{{ post.author.icon }}</v-icon>
+                      </v-avatar>
+                      <span class="text-body-2">{{ post.author.name }}</span>
+                    </div>
+                    <v-btn color="primary" variant="text" size="small" @click="readPost(post)">
+                      Ler Mais
+                      <v-icon end>mdi-arrow-right</v-icon>
+                    </v-btn>
+                  </div>
+                </v-card-item>
+              </v-card>
+            </div>
           </v-col>
         </v-row>
 
         <!-- Paginação -->
-        <div class="text-center mt-8">
+        <div v-if="filteredPosts.length > 0" class="text-center mt-8 animate-fade-in-up">
           <v-pagination
             v-model="currentPage"
             :length="totalPages"
             :total-visible="7"
             color="primary"
+            class="pagination-custom"
           ></v-pagination>
         </div>
       </v-container>
@@ -235,12 +266,14 @@
       <v-container>
         <v-row class="text-center">
           <v-col cols="12" md="8" class="mx-auto">
-            <SectionTitle
-              title="Fique por Dentro"
-              subtitle="Inscreva-se em nossa newsletter para receber os melhores artigos sobre geoprocessamento e tecnologia geoespacial."
-            />
+            <div class="animate-fade-in-up">
+              <SectionTitle
+                title="Fique por Dentro"
+                subtitle="Inscreva-se em nossa newsletter para receber os melhores artigos sobre geoprocessamento e tecnologia geoespacial."
+              />
+            </div>
 
-            <v-form @submit.prevent="subscribeNewsletter">
+            <v-form @submit.prevent="subscribeNewsletter" class="animate-fade-in-up" :style="{ animationDelay: '0.2s' }">
               <v-row justify="center">
                 <v-col cols="12" sm="8" md="6">
                   <v-text-field
@@ -264,45 +297,12 @@
                     block
                     class="newsletter-btn"
                   >
+                    <v-icon start>mdi-email-plus</v-icon>
                     Inscrever-se
                   </v-btn>
                 </v-col>
               </v-row>
             </v-form>
-          </v-col>
-        </v-row>
-      </v-container>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section py-16 bg-gradient-primary">
-      <v-container>
-        <v-row class="text-center">
-          <v-col cols="12" md="8" class="mx-auto">
-            <h2 class="text-h3 font-weight-bold text-white mb-4">
-              Pronto para Aplicar o Conhecimento?
-            </h2>
-            <p class="text-h6 text-grey-lighten-2 mb-6">
-              Entre em contato conosco e descubra como podemos ajudar você a transformar seus dados
-              geoespaciais em insights valiosos.
-            </p>
-            <div class="d-flex flex-column flex-sm-row gap-6 justify-center">
-              <v-btn
-                color="accent"
-                size="large"
-                variant="elevated"
-                to="/contato"
-                class="text-dark font-weight-bold"
-              >
-                <v-icon start>mdi-phone</v-icon>
-                Solicitar Orçamento
-              </v-btn>
-
-              <v-btn size="large" variant="outlined" to="/servicos" class="text-white border-white">
-                <v-icon start>mdi-cog</v-icon>
-                Nossos Serviços
-              </v-btn>
-            </div>
           </v-col>
         </v-row>
       </v-container>
@@ -567,7 +567,7 @@ const posts = [
       icon: 'mdi-account-tie',
     },
     date: '2024-01-15',
-    image: '/api/placeholder/400/200',
+    image: './images/geoprocessing/data-visualization.jpg',
     featured: true,
     sections: [
       {
@@ -599,7 +599,7 @@ const posts = [
       icon: 'mdi-account-tie-woman',
     },
     date: '2024-01-10',
-    image: '/api/placeholder/400/200',
+    image: './images/geoprocessing/urban-planning.jpg',
     featured: true,
     sections: [
       {
@@ -625,7 +625,7 @@ const posts = [
       icon: 'mdi-account-cog',
     },
     date: '2024-01-05',
-    image: '/api/placeholder/400/200',
+    image: './images/geoprocessing/agriculture-precision.jpg',
     featured: false,
     conclusion:
       'A agricultura de precisão representa o futuro da agricultura sustentável no Brasil.',
@@ -644,7 +644,7 @@ const posts = [
       icon: 'mdi-account-search',
     },
     date: '2023-12-28',
-    image: '/api/placeholder/400/200',
+    image: './images/geoprocessing/drone-mapping.jpg',
     featured: false,
     conclusion:
       'A combinação de drones com tecnologias geoespaciais está criando novas possibilidades para o monitoramento ambiental.',
@@ -663,7 +663,7 @@ const posts = [
       icon: 'mdi-account-code',
     },
     date: '2023-12-20',
-    image: '/api/placeholder/400/200',
+    image: './images/geoprocessing/gis-analysis.jpg',
     featured: false,
     conclusion: 'O Big Data está redefinindo os limites do que é possível em geoprocessamento.',
   },
@@ -681,7 +681,7 @@ const posts = [
       icon: 'mdi-account-leaf',
     },
     date: '2023-12-15',
-    image: '/api/placeholder/400/200',
+    image: './images/geoprocessing/environmental-monitoring.jpg',
     featured: false,
     conclusion:
       'A integração de geoprocessamento com práticas sustentáveis é fundamental para o futuro do planeta.',
@@ -1035,6 +1035,14 @@ const formatDate = (dateString: string) => {
   font-size: 0.95rem;
   letter-spacing: 0.5px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-badge:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 .hero-badge i {
@@ -1681,6 +1689,19 @@ const formatDate = (dateString: string) => {
   background: #f8f9fa;
 }
 
+
+.post-wrapper {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.post-wrapper:hover {
+  transform: translateY(-5px);
+}
+
+.pagination-custom {
+  margin-top: 2rem;
+}
+
 :deep(.search-input .v-field),
 :deep(.category-select .v-field),
 :deep(.tag-select .v-field) {
@@ -1770,19 +1791,210 @@ const formatDate = (dateString: string) => {
 
   .text-h2 {
     font-size: 2rem;
+    line-height: 1.2;
   }
 
   .text-h6 {
     font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  /* Ajustes específicos para o hero mobile */
+  .hero-section .text-h2 {
+    font-size: 1.5rem !important;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .hero-section .text-h6 {
+    font-size: 0.85rem !important;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-stats {
+    gap: 1.5rem;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat-item {
+    padding: 15px 20px;
+    min-width: 200px;
   }
 
   .hero-section,
   .filters-section,
   .featured-posts,
   .posts-section,
-  .newsletter-section,
-  .cta-section {
+  .newsletter-section {
     padding: 3rem 0;
+  }
+
+  .filters-section .v-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .filters-section .v-col {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .post-wrapper {
+    margin-bottom: 1.5rem;
+  }
+
+  .featured-post-card,
+  .post-card {
+    margin-bottom: 1rem;
+  }
+
+  .modal-header {
+    padding: 16px;
+  }
+
+  .modal-title {
+    font-size: 1.25rem;
+  }
+
+  .modal-content {
+    padding: 16px;
+  }
+
+  .sharing-section {
+    margin: 0 -16px -16px -16px;
+    padding: 16px;
+  }
+
+  .sharing-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .social-buttons {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    height: 40vh;
+    min-height: 300px;
+  }
+
+  .hero-badge {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+
+  .stat-item {
+    padding: 12px 16px;
+    min-width: 150px;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+  }
+
+  .filters-section .v-col {
+    padding: 0 8px;
+  }
+
+  .featured-post-card,
+  .post-card {
+    border-radius: 12px;
+  }
+
+  .post-overlay {
+    top: 12px;
+    left: 12px;
+    right: 12px;
+  }
+
+  .post-date {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+  }
+
+  .modal-header {
+    padding: 12px;
+  }
+
+  .modal-title {
+    font-size: 1.125rem;
+  }
+
+  .modal-content {
+    padding: 12px;
+  }
+
+  /* Melhorias específicas para mobile baseadas na responsividade */
+  .post-wrapper {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+  }
+
+  .featured-post-card,
+  .post-card {
+    border-radius: 12px;
+    padding: 1rem;
+  }
+
+  .featured-post-card .v-card-title,
+  .post-card .v-card-title {
+    font-size: 1rem;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+
+  .featured-post-card .v-card-text,
+  .post-card .v-card-text {
+    font-size: 0.875rem;
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+  }
+
+  .featured-post-card .v-chip,
+  .post-card .v-chip {
+    font-size: 0.75rem;
+    margin: 0.125rem;
+  }
+
+  .featured-post-card .v-btn,
+  .post-card .v-btn {
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .filters-section .v-col {
+    padding: 0 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .filters-section .v-text-field,
+  .filters-section .v-select {
+    font-size: 0.875rem;
+  }
+
+  .filters-section .v-btn {
+    font-size: 0.8rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .newsletter-section .v-text-field {
+    font-size: 0.875rem;
+  }
+
+  .newsletter-section .v-btn {
+    font-size: 0.8rem;
+    padding: 0.75rem 1rem;
   }
 }
 </style>

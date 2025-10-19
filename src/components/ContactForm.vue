@@ -13,6 +13,7 @@
               required
               variant="outlined"
               prepend-inner-icon="mdi-account"
+              class="contact-input"
             ></v-text-field>
           </v-col>
 
@@ -25,6 +26,7 @@
               variant="outlined"
               prepend-inner-icon="mdi-email"
               type="email"
+              class="contact-input"
             ></v-text-field>
           </v-col>
 
@@ -35,6 +37,7 @@
               variant="outlined"
               prepend-inner-icon="mdi-phone"
               v-mask="'(##) #####-####'"
+              class="contact-input"
             ></v-text-field>
           </v-col>
 
@@ -44,6 +47,7 @@
               label="Empresa"
               variant="outlined"
               prepend-inner-icon="mdi-domain"
+              class="contact-input"
             ></v-text-field>
           </v-col>
 
@@ -55,6 +59,7 @@
               variant="outlined"
               prepend-inner-icon="mdi-cog"
               clearable
+              class="contact-select"
             ></v-select>
           </v-col>
 
@@ -68,6 +73,7 @@
               prepend-inner-icon="mdi-message"
               rows="4"
               auto-grow
+              class="contact-textarea"
             ></v-textarea>
           </v-col>
 
@@ -76,6 +82,7 @@
               v-model="formData.newsletter"
               label="Desejo receber novidades e atualizações da GeoQuantum"
               color="primary"
+              class="contact-checkbox"
             ></v-checkbox>
           </v-col>
         </v-row>
@@ -89,6 +96,7 @@
             :loading="loading"
             :disabled="!valid"
             block
+            class="contact-submit-btn"
           >
             <v-icon start>mdi-send</v-icon>
             Enviar Mensagem
@@ -239,5 +247,101 @@ const vMask = {
 
 .v-form {
   width: 100%;
+}
+
+/* Mobile First - Estilos base para mobile */
+.contact-input,
+.contact-select,
+.contact-textarea {
+  font-size: 0.875rem;
+}
+
+.contact-checkbox {
+  font-size: 0.875rem;
+}
+
+.contact-submit-btn {
+  font-size: 0.9rem;
+  padding: 12px 24px;
+}
+
+/* Tablet e Desktop */
+@media (min-width: 768px) {
+  .contact-input,
+  .contact-select,
+  .contact-textarea {
+    font-size: 1rem;
+  }
+
+  .contact-checkbox {
+    font-size: 1rem;
+  }
+
+  .contact-submit-btn {
+    font-size: 1rem;
+    padding: 16px 32px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .contact-form-card {
+    max-width: 700px;
+  }
+
+  .contact-input,
+  .contact-select,
+  .contact-textarea {
+    font-size: 1.1rem;
+  }
+
+  .contact-checkbox {
+    font-size: 1.1rem;
+  }
+
+  .contact-submit-btn {
+    font-size: 1.1rem;
+    padding: 18px 36px;
+  }
+}
+
+/* Melhorias específicas para mobile baseadas na responsividade */
+@media (max-width: 479px) {
+  .contact-form-card {
+    margin: 0.5rem;
+    border-radius: 8px;
+  }
+
+  .contact-input,
+  .contact-select,
+  .contact-textarea {
+    font-size: 0.8rem;
+  }
+
+  .contact-checkbox {
+    font-size: 0.8rem;
+  }
+
+  .contact-submit-btn {
+    font-size: 0.85rem;
+    padding: 10px 20px;
+  }
+
+  .v-card-title {
+    font-size: 1.25rem !important;
+    padding: 1rem !important;
+  }
+
+  .v-card-text {
+    padding: 1rem !important;
+  }
+
+  .v-row {
+    margin: 0 -0.5rem;
+  }
+
+  .v-col {
+    padding: 0.5rem;
+  }
 }
 </style>

@@ -1,0 +1,16 @@
+{
+  "name": "GeoQuantum - Soluções em Geoprocessamento",
+  "short_name": "GeoQuantum",
+  "description": "Soluções completas em geoprocessamento e análise geoespacial",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1a365d",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}

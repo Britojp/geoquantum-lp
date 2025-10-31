@@ -10,7 +10,7 @@
               >
                 Entre em Contato
               </h1>
-              <p 
+              <p
                 class="text-h6 text-grey-lighten-2 mb-6 animate-fade-in-up hero-subtitle"
                 :style="{ animationDelay: '0.2s' }"
               >
@@ -175,7 +175,11 @@
           />
         </div>
 
-        <v-card elevation="4" class="map-card animate-fade-in-up" :style="{ animationDelay: '0.2s' }">
+        <v-card
+          elevation="4"
+          class="map-card animate-fade-in-up"
+          :style="{ animationDelay: '0.2s' }"
+        >
           <div ref="mapContainer" class="map-container" style="height: 400px"></div>
         </v-card>
       </v-container>
@@ -192,7 +196,11 @@
 
         <v-row>
           <v-col cols="12" md="8" class="mx-auto">
-            <v-expansion-panels variant="accordion" class="animate-fade-in-up" :style="{ animationDelay: '0.2s' }">
+            <v-expansion-panels
+              variant="accordion"
+              class="animate-fade-in-up"
+              :style="{ animationDelay: '0.2s' }"
+            >
               <v-expansion-panel v-for="(faq, index) in faqs" :key="faq.question" class="faq-panel">
                 <v-expansion-panel-title class="text-h6 font-weight-bold faq-title">
                   <v-icon start color="primary">mdi-help-circle</v-icon>
@@ -207,7 +215,6 @@
         </v-row>
       </v-container>
     </section>
-
   </div>
 </template>
 
@@ -222,34 +229,44 @@ let map: L.Map | null = null
 
 const faqs = [
   {
-    question: 'Quais são os principais serviços oferecidos pela GeoQuantum?',
+    question: 'O que é geoprocessamento e como pode ajudar minha empresa?',
     answer:
-      'Oferecemos serviços de geoprocessamento, mapeamento temático, desenvolvimento de sistemas SIG, análise geoespacial e consultoria técnica especializada.',
+      'Geoprocessamento é o conjunto de técnicas para coleta, processamento e análise de dados geográficos. Ele permite visualizar padrões espaciais, otimizar rotas, identificar áreas de risco, planejar expansões e tomar decisões estratégicas baseadas em localização, economizando tempo e recursos.',
   },
   {
-    question: 'Como posso solicitar um orçamento?',
+    question: 'Qual a diferença entre mapas de localização e mapas de uso e cobertura do solo?',
     answer:
-      'Você pode solicitar um orçamento através do formulário de contato em nosso site, por telefone ou e-mail. Nossa equipe entrará em contato em até 24 horas.',
+      "Mapas de localização mostram a posição geográfica de elementos específicos (cultivos, propriedades, infraestrutura). Já os mapas de uso e cobertura do solo classificam e quantificam diferentes tipos de ocupação territorial (áreas agrícolas, florestais, urbanas, corpos d'água), essenciais para planejamento e monitoramento ambiental.",
   },
   {
-    question: 'Quais tecnologias vocês utilizam?',
+    question: 'Como funciona a automatização de processos no QGIS?',
     answer:
-      'Utilizamos as principais tecnologias do mercado como QGIS, ArcGIS, Python, PostgreSQL, GeoServer, Vue.js e outras ferramentas geoespaciais.',
+      'Utilizamos o Modelador Gráfico do QGIS para criar fluxos de trabalho automatizados que executam sequências de operações geoespaciais. Isso reduz erros humanos, padroniza resultados, permite processamento em lote e economiza horas de trabalho repetitivo, tornando projetos mais eficientes e escaláveis.',
   },
   {
-    question: 'Vocês atendem todo o Brasil?',
+    question: 'Por que investir em capacitação em QGIS?',
     answer:
-      'Sim, atendemos clientes em todo o Brasil. Realizamos projetos presenciais e remotos, dependendo das necessidades do cliente.',
+      'O QGIS é um software livre, poderoso e amplamente usado em geoprocessamento. Dominar essa ferramenta aumenta sua empregabilidade, permite criar mapas profissionais, realizar análises espaciais complexas e reduz custos com licenças de software. Oferecemos cursos do nível iniciante ao avançado com 6 anos de experiência.',
   },
   {
-    question: 'Qual o prazo médio para entrega dos projetos?',
+    question: 'Como o geomarketing pode impulsionar meu negócio?',
     answer:
-      'O prazo varia de acordo com a complexidade do projeto. Projetos simples podem ser entregues em 1-2 semanas, enquanto projetos complexos podem levar 2-3 meses.',
+      'Geomarketing combina dados de mercado com localização geográfica para identificar onde estão seus clientes, concorrentes e oportunidades. Isso permite escolher melhores pontos de venda, segmentar campanhas por região, otimizar logística e direcionar investimentos com base em dados reais, aumentando o retorno sobre investimento.',
   },
   {
-    question: 'Vocês oferecem suporte técnico após a entrega?',
+    question: 'Quais setores se beneficiam mais do geoprocessamento?',
     answer:
-      'Sim, oferecemos suporte técnico e treinamento para todos os nossos projetos. O período de suporte é definido no contrato de cada projeto.',
+      'Praticamente todos os setores: agronegócio (agricultura de precisão, gestão de talhões), meio ambiente (monitoramento, licenciamento), planejamento urbano (infraestrutura, mobilidade), logística (otimização de rotas), energia (localização de usinas), mercado imobiliário (análise de mercado) e saúde pública (mapeamento epidemiológico).',
+  },
+  {
+    question: 'Quanto tempo leva para implementar uma solução de geoprocessamento?',
+    answer:
+      'Depende da complexidade: mapas temáticos simples podem ser entregues em 3-5 dias; projetos de automatização levam 1-2 semanas; sistemas completos de análise territorial podem levar 1-3 meses. Trabalhamos com prazos realistas e mantemos você informado em cada etapa do projeto.',
+  },
+  {
+    question: 'Vocês oferecem consultoria personalizada em geoprocessamento?',
+    answer:
+      'Sim! Nossa consultoria funciona por pacotes de horas mensais flexíveis. Você tem acesso a analistas especializados sem custo fixo de equipe, com soluções personalizadas para seu setor, transparência total nas atividades realizadas e custo previsível. Ideal para empresas que precisam de suporte técnico sob demanda.',
   },
 ]
 
@@ -299,7 +316,8 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(26, 54, 93, 0.95) 0%, rgba(45, 90, 135, 0.95) 100%),
+  background:
+    linear-gradient(135deg, rgba(26, 54, 93, 0.95) 0%, rgba(45, 90, 135, 0.95) 100%),
     url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072') center/cover;
   background-attachment: fixed;
   overflow: hidden;
@@ -320,7 +338,9 @@ onMounted(() => {
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   height: 100%;
 }
 

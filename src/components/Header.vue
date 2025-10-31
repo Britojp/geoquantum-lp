@@ -138,7 +138,7 @@ const navigationItems: NavigationItem[] = [
   { label: 'Home', path: '/', icon: 'mdi mdi-home' },
   { label: 'Sobre', path: '/sobre', icon: 'mdi mdi-information' },
   { label: 'Serviços', path: '/servicos', icon: 'mdi mdi-cog' },
-  { label: 'Blog', path: '/blog', icon: 'mdi mdi-post' },
+//  { label: 'Blog', path: '/blog', icon: 'mdi mdi-post' },
 ]
 
 const handleScroll = () => {

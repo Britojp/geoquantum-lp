@@ -94,16 +94,10 @@
     <CtaSection
       :title="'Pronto para Conhecer Nossos Serviços?'"
       :subtitle="'Entre em contato e descubra como podemos ajudar você a transformar seus dados geoespaciais em insights valiosos.'"
-      :stats="[
-        { number: '24h', label: 'Resposta Rápida' },
-        { number: '100%', label: 'Satisfação' },
-        { number: '10+', label: 'Anos de Experiência' },
-      ]"
       :primary="{
         to: '/contato',
         label: 'Solicitar Orçamento',
         icon: 'mdi-phone',
-        color: 'accent',
       }"
       :secondary="{ to: '/servicos', label: 'Nossos Serviços', icon: 'mdi-cog' }"
     />
@@ -265,7 +259,7 @@ const documents = [
     icon: 'mdi-briefcase',
     size: '5.2 MB',
     format: 'PDF',
-    url: '/documents/portfolio-projetos.pdf',
+    url: '/GeoQuantum (1).pdf',
   },
   {
     title: 'Catálogo de Serviços',

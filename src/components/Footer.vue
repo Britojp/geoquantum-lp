@@ -1,10 +1,10 @@
 <template>
   <v-footer class="footer-main">
     <v-container>
-      <v-row>
+      <v-row class="justify-center">
         <!-- Logo e Descrição -->
-        <v-col cols="12" md="4" class="mb-4">
-          <div class="d-flex align-center mb-3">
+        <v-col cols="12" md="4" class="mb-4 text-center text-md-left">
+          <div class="d-flex align-center justify-center justify-md-start mb-3">
             <img
               src="@/assets/main-logo-removebg-preview.png"
               alt="GeoQuantum Logo"
@@ -15,29 +15,46 @@
             <span class="text-h6 font-weight-bold text-white">GeoQuantum</span>
           </div>
           <p class="footer-description">
-            Especialistas em geoprocessamento e análise geoespacial. Soluções inovadoras para
-            projetos de engenharia e meio ambiente.
+            Serviços ambientais & mapeamentos. Transformamos dados geoespaciais em decisões
+            estratégicas e sustentáveis.
           </p>
-          <div class="d-flex mt-3">
-            <v-btn icon variant="text" color="white" class="me-2 social-btn">
-              <v-icon>mdi-facebook</v-icon>
-            </v-btn>
-            <v-btn icon variant="text" color="white" class="me-2 social-btn">
-              <v-icon>mdi-linkedin</v-icon>
-            </v-btn>
-            <v-btn icon variant="text" color="white" class="me-2 social-btn">
+          <div class="d-flex justify-center justify-md-start mt-3">
+            <v-btn
+              icon
+              variant="text"
+              color="white"
+              class="me-2 social-btn"
+              href="https://www.instagram.com/geo.quantum"
+              target="_blank"
+            >
               <v-icon>mdi-instagram</v-icon>
             </v-btn>
-            <v-btn icon variant="text" color="white" class="social-btn">
-              <v-icon>mdi-youtube</v-icon>
+            <v-btn
+              icon
+              variant="text"
+              color="white"
+              class="me-2 social-btn"
+              href="mailto:comercial@consultgeoquantum.com"
+            >
+              <v-icon>mdi-email</v-icon>
+            </v-btn>
+            <v-btn
+              icon
+              variant="text"
+              color="white"
+              class="social-btn"
+              href="https://wa.me/5512997332141"
+              target="_blank"
+            >
+              <v-icon>mdi-whatsapp</v-icon>
             </v-btn>
           </div>
         </v-col>
 
         <!-- Links Rápidos -->
-        <v-col cols="12" sm="6" md="2" class="mb-4">
+        <v-col cols="12" sm="6" md="2" class="mb-4 text-center text-md-left">
           <h6 class="footer-section-title">Links Rápidos</h6>
-          <div class="footer-links">
+          <div class="footer-links d-flex flex-column align-center align-md-start">
             <div v-for="item in quickLinks" :key="item.name" class="footer-link-item">
               <router-link :to="item.path" class="footer-link">
                 {{ item.name }}
@@ -46,34 +63,28 @@
           </div>
         </v-col>
 
-        <!-- Serviços -->
-        <v-col cols="12" sm="6" md="3" class="mb-4">
-          <h6 class="footer-section-title">Serviços</h6>
-          <div class="footer-links">
-            <div v-for="service in services" :key="service.name" class="footer-link-item">
-              <span class="footer-link">{{ service.name }}</span>
-            </div>
-          </div>
-        </v-col>
-
         <!-- Contato -->
-        <v-col cols="12" md="3" class="mb-4">
+        <v-col cols="12" sm="6" md="4" class="mb-4 text-center text-md-left">
           <h6 class="footer-section-title">Contato</h6>
-          <div class="footer-contact-item">
+          <div class="footer-contact-item justify-center justify-md-start">
             <v-icon icon="mdi-map-marker" size="16" class="me-2 contact-icon"></v-icon>
             <span class="contact-text">Goiânia, GO - Brasil</span>
           </div>
-          <div class="footer-contact-item">
+          <div class="footer-contact-item justify-center justify-md-start">
             <v-icon icon="mdi-phone" size="16" class="me-2 contact-icon"></v-icon>
-            <span class="contact-text">(12) 99733-2141</span>
+            <span class="contact-text">+55 (12) 99733-2141</span>
           </div>
-          <div class="footer-contact-item">
+          <div class="footer-contact-item justify-center justify-md-start">
+            <v-icon icon="mdi-phone" size="16" class="me-2 contact-icon"></v-icon>
+            <span class="contact-text">+32 467 81 33 77</span>
+          </div>
+          <div class="footer-contact-item justify-center justify-md-start">
             <v-icon icon="mdi-email" size="16" class="me-2 contact-icon"></v-icon>
-            <span class="contact-text">ola@grandesite.com.br</span>
+            <span class="contact-text">comercial@consultgeoquantum.com</span>
           </div>
-          <div class="footer-contact-item">
+          <div class="footer-contact-item justify-center justify-md-start">
             <v-icon icon="mdi-instagram" size="16" class="me-2 contact-icon"></v-icon>
-            <span class="contact-text">@grandesite</span>
+            <span class="contact-text">@geo.quantum</span>
           </div>
         </v-col>
       </v-row>
@@ -82,15 +93,11 @@
       <v-divider class="footer-divider"></v-divider>
 
       <!-- Copyright -->
-      <div class="d-flex flex-column flex-sm-row justify-space-between align-center">
-        <p class="copyright-text">© 2025 GeoQuantum. Todos os direitos reservados.</p>
-        <div class="d-flex mt-2 mt-sm-0">
-          <v-btn variant="text" size="small" class="footer-legal-link">
-            Política de Privacidade
-          </v-btn>
-          <v-btn variant="text" size="small" class="footer-legal-link"> Termos de Uso </v-btn>
-        </div>
-      </div>
+      <v-row>
+        <v-col cols="12" class="text-center">
+          <p class="copyright-text">© 2024 GeoQuantum. Todos os direitos reservados.</p>
+        </v-col>
+      </v-row>
     </v-container>
   </v-footer>
 </template>
@@ -100,15 +107,6 @@ const quickLinks = [
   { name: 'Home', path: '/' },
   { name: 'Sobre', path: '/sobre' },
   { name: 'Serviços', path: '/servicos' },
-  { name: 'Blog', path: '/blog' },
-]
-
-const services = [
-  { name: 'Mapas de Localização' },
-  { name: 'Mapas de Produção Agrícola' },
-  { name: 'Mapas de Uso e Cobertura do Solo' },
-  { name: 'Automatização QGIS' },
-  { name: 'Capacitação em QGIS' },
 ]
 </script>
 

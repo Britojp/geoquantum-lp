@@ -131,10 +131,8 @@ Preview de artigos do blog com metadata completa.
   <div class="home-page">
     <HeroMap />
 
-    <!-- NOVO: Números Impactantes -->
     <ImpactNumbers
       :numbers="[
-        { value: '1', label: 'Ano de Mercado', icon: 'mdi mdi-calendar-star' },
         { value: '20+', label: 'Clientes Fidelizados', icon: 'mdi mdi-account-heart' },
         { value: '150+', label: 'Projetos Entregues', icon: 'mdi mdi-folder-check' },
         { value: '98%', label: 'Satisfação', icon: 'mdi mdi-thumb-up' },

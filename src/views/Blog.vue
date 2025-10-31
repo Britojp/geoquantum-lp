@@ -30,72 +30,6 @@
         </v-container>
       </div>
     </section>
-
-    <!-- Filtros e Busca -->
-    <section class="filters-section py-8">
-      <v-container>
-        <div class="text-center mb-8 animate-fade-in-up">
-          <SectionTitle
-            title="Encontre o Conteúdo Ideal"
-            subtitle="Filtre por categoria, tags ou busque por palavras-chave para encontrar exatamente o que você procura."
-          />
-        </div>
-        
-        <v-row align="center" class="animate-fade-in-up" :style="{ animationDelay: '0.2s' }">
-          <v-col cols="12" sm="6" md="4">
-            <v-text-field
-              v-model="searchQuery"
-              label="Buscar artigos..."
-              prepend-inner-icon="mdi-magnify"
-              variant="outlined"
-              clearable
-              @input="filterPosts"
-              class="search-input"
-            ></v-text-field>
-          </v-col>
-
-          <v-col cols="12" sm="6" md="3">
-            <v-select
-              v-model="selectedCategory"
-              label="Categoria"
-              :items="categories"
-              variant="outlined"
-              prepend-inner-icon="mdi-tag"
-              clearable
-              @update:model-value="filterPosts"
-              class="category-select"
-            ></v-select>
-          </v-col>
-
-          <v-col cols="12" sm="6" md="3">
-            <v-select
-              v-model="selectedTag"
-              label="Tag"
-              :items="tags"
-              variant="outlined"
-              prepend-inner-icon="mdi-tag-multiple"
-              clearable
-              @update:model-value="filterPosts"
-              class="tag-select"
-            ></v-select>
-          </v-col>
-
-          <v-col cols="12" sm="6" md="2">
-            <v-btn
-              color="primary"
-              variant="elevated"
-              @click="resetFilters"
-              block
-              class="reset-filters-btn"
-            >
-              <v-icon start>mdi-refresh</v-icon>
-              Limpar
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-container>
-    </section>
-
     <!-- Posts em Destaque -->
     <section class="featured-posts py-16" v-if="featuredPosts.length > 0">
       <v-container>
@@ -261,52 +195,7 @@
       </v-container>
     </section>
 
-    <!-- Newsletter -->
-    <section class="newsletter-section py-16">
-      <v-container>
-        <v-row class="text-center">
-          <v-col cols="12" md="8" class="mx-auto">
-            <div class="animate-fade-in-up">
-              <SectionTitle
-                title="Fique por Dentro"
-                subtitle="Inscreva-se em nossa newsletter para receber os melhores artigos sobre geoprocessamento e tecnologia geoespacial."
-              />
-            </div>
 
-            <v-form @submit.prevent="subscribeNewsletter" class="animate-fade-in-up" :style="{ animationDelay: '0.2s' }">
-              <v-row justify="center">
-                <v-col cols="12" sm="8" md="6">
-                  <v-text-field
-                    v-model="newsletterEmail"
-                    label="Seu e-mail"
-                    type="email"
-                    variant="outlined"
-                    prepend-inner-icon="mdi-email"
-                    :rules="emailRules"
-                    required
-                    class="newsletter-input"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12" sm="4" md="3">
-                  <v-btn
-                    type="submit"
-                    color="primary"
-                    size="large"
-                    variant="elevated"
-                    :loading="newsletterLoading"
-                    block
-                    class="newsletter-btn"
-                  >
-                    <v-icon start>mdi-email-plus</v-icon>
-                    Inscrever-se
-                  </v-btn>
-                </v-col>
-              </v-row>
-            </v-form>
-          </v-col>
-        </v-row>
-      </v-container>
-    </section>
 
     <!-- Modal de Leitura do Post -->
     <v-dialog

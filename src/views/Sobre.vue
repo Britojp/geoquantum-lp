@@ -34,7 +34,7 @@
         <div class="text-center mb-12 mb-sm-8 mb-md-12 animate-fade-in-up">
           <SectionTitle
             title="Quem Somos"
-            subtitle="Uma empresa nascida da paixão pela geografia e tecnologia, transformando dados geoespaciais em soluções inovadoras."
+            subtitle="Desde o início, buscamos integrar o conhecimento técnico à visão estratégica, com ênfase na análise ambiental e territorial. Essa abordagem está presente em cada projeto, consultoria e treinamento que oferecemos."
           />
         </div>
 
@@ -62,14 +62,16 @@
               <div class="timeline-content">
                 <h3 class="text-h5 font-weight-bold text-primary mb-3">O Início de uma Jornada</h3>
                 <p class="text-body-1 text-grey-darken-1 mb-4">
-                  A nossa jornada começou em 2024, quando uma geógrafa apaixonada pela análise do
-                  território e pela gestão de dados ambientais decidiu transformar seu conhecimento
-                  em um projeto com propósito.
+                  Nossa trajetória teve início em 2024, impulsionada por um grupo de profissionais
+                  comprometidos com a análise territorial e a gestão de dados ambientais. Unimos
+                  nossas experiências e conhecimentos para transformar essa paixão em um projeto com
+                  propósito real e impacto positivo.
                 </p>
                 <p class="text-body-1 text-grey-darken-1">
-                  Com sólida formação pela FURG e especialização em geoprocessamento, SIG e
-                  sensoriamento remoto, ela enxergou uma necessidade urgente no mercado: capacitar
-                  profissionais e empresas para utilizar o potencial dos dados espaciais.
+                  Formados em Geografia e com especializações em geoprocessamento, SIG e
+                  sensoriamento remoto, identificamos uma necessidade urgente no mercado: capacitar
+                  profissionais e organizações para explorar o potencial dos dados espaciais na
+                  tomada de decisões mais sustentáveis e estratégicas.
                 </p>
               </div>
             </div>
@@ -93,15 +95,123 @@
                 </div>
               </div>
               <div class="timeline-content">
-                <h3 class="text-h5 font-weight-bold text-primary mb-3">Nossa Missão</h3>
+                <h3 class="text-h5 font-weight-bold text-primary mb-3">Criando a GeoQuantum</h3>
                 <p class="text-body-1 text-grey-darken-1 mb-4">
-                  Democratizar o acesso às tecnologias geoespaciais, oferecendo soluções
-                  personalizadas que transformam dados complexos em insights acionáveis para
-                  diferentes setores da economia.
+                  Foi com esse objetivo que criamos a GeoQuantum, uma empresa dedicada ao ensino
+                  completo de QGIS — do nível básico ao avançado — e à oferta de soluções
+                  ambientais, automação de processos espaciais e produção de mapas temáticos. Nosso
+                  foco está sempre em resultados práticos, aplicados e que realmente gerem valor.
                 </p>
                 <p class="text-body-1 text-grey-darken-1">
-                  Acreditamos que a análise espacial pode revolucionar a forma como empresas e
-                  organizações tomam decisões, desde o planejamento urbano até a gestão ambiental.
+                  Desde o início, buscamos integrar o conhecimento técnico à visão estratégica, com
+                  ênfase na análise ambiental e territorial. Essa abordagem está presente em cada
+                  projeto, consultoria e treinamento que oferecemos.
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="timeline-item animate-fade-in-up mobile-card touch-optimized"
+              :style="{ animationDelay: '0.5s' }"
+            >
+              <div class="timeline-image">
+                <img
+                  src="/src/assets/home/agricultura-precisao.jpg"
+                  alt="Crescimento e Impacto"
+                  class="timeline-img"
+                  loading="lazy"
+                />
+                <div class="timeline-overlay">
+                  <div class="timeline-chips">
+                    <span class="timeline-chip">2024</span>
+                    <span class="timeline-chip">Crescimento</span>
+                  </div>
+                </div>
+              </div>
+              <div class="timeline-content">
+                <h3 class="text-h5 font-weight-bold text-primary mb-3">Crescimento e Impacto</h3>
+                <p class="text-body-1 text-grey-darken-1 mb-4">
+                  Em menos de um ano de atuação, conquistamos a confiança de mais de 20 clientes
+                  fidelizados, que reconhecem a qualidade das nossas metodologias e a personalização
+                  das soluções oferecidas.
+                </p>
+                <p class="text-body-1 text-grey-darken-1">
+                  Nosso impacto vai além da formação técnica: contribuímos para o desenvolvimento de
+                  profissionais mais conscientes e preparados, de empresas mais eficientes e de
+                  territórios mais sustentáveis. Atualmente, sob uma liderança coletiva e
+                  colaborativa, seguimos em expansão, ajudando profissionais e empresas a dominar o
+                  universo da geotecnologia.
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="timeline-item reverse animate-fade-in-up mobile-card touch-optimized"
+              :style="{ animationDelay: '0.7s' }"
+            >
+              <div class="timeline-image">
+                <img
+                  src="/src/assets/home/monitoramento-ambiental.jpg"
+                  alt="Missão e Propósito"
+                  class="timeline-img"
+                  loading="lazy"
+                />
+                <div class="timeline-overlay">
+                  <div class="timeline-chips">
+                    <span class="timeline-chip">Missão</span>
+                    <span class="timeline-chip">Propósito</span>
+                  </div>
+                </div>
+              </div>
+              <div class="timeline-content">
+                <h3 class="text-h5 font-weight-bold text-primary mb-3">Missão e Propósito</h3>
+                <p class="text-body-1 text-grey-darken-1 mb-4">
+                  <strong>Missão:</strong> Democratizar o acesso às geotecnologias, capacitando
+                  profissionais e organizações a transformar dados espaciais em conhecimento
+                  estratégico. Buscamos promover a tomada de decisões sustentáveis, integrando
+                  excelência técnica, inovação e responsabilidade socioambiental.
+                </p>
+                <p class="text-body-1 text-grey-darken-1">
+                  <strong>Propósito:</strong> Acreditamos que o futuro depende de como utilizamos as
+                  informações que já temos. Por isso, nosso propósito é revelar o poder dos dados
+                  geoespaciais para enfrentar desafios ambientais, sociais e territoriais, criando
+                  soluções práticas que gerem impacto positivo e duradouro na sociedade.
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="timeline-item animate-fade-in-up mobile-card touch-optimized"
+              :style="{ animationDelay: '0.9s' }"
+            >
+              <div class="timeline-image">
+                <img
+                  src="/src/assets/home/Arc_De_Triomphe.jpg"
+                  alt="Visão de Futuro"
+                  class="timeline-img"
+                  loading="lazy"
+                />
+                <div class="timeline-overlay">
+                  <div class="timeline-chips">
+                    <span class="timeline-chip">Visão</span>
+                    <span class="timeline-chip">Futuro</span>
+                  </div>
+                </div>
+              </div>
+              <div class="timeline-content">
+                <h3 class="text-h5 font-weight-bold text-primary mb-3">Nossa Visão</h3>
+                <p class="text-body-1 text-grey-darken-1 mb-4">
+                  Ser referência em ensino e soluções de geotecnologia na América Latina e na
+                  Europa, unindo inovação, excelência técnica e impacto socioambiental.
+                </p>
+                <p class="text-body-1 text-grey-darken-1">
+                  Nosso compromisso é aliar excelência técnica, responsabilidade socioambiental e
+                  inovação em tudo o que fazemos. À medida que crescemos, expandimos nossa rede de
+                  parceiros e multiplicamos os efeitos de nossas soluções, reforçando o compromisso
+                  com a inovação e com o futuro das geotecnologias.
+                </p>
+                <p class="text-body-1 text-grey-darken-1 mt-4">
+                  <strong>E essa jornada está apenas começando.</strong>
                 </p>
               </div>
             </div>
@@ -134,29 +244,29 @@
               :style="{ animationDelay: `${index * 0.2}s` }"
             >
               <div class="founder-avatar">
-                <img
-                  :src="founder.image"
-                  :alt="founder.name"
-                  class="founder-img"
-              loading="lazy"
-            />
-            </div>
-              
+                <img :src="founder.image" :alt="founder.name" class="founder-img" loading="lazy" />
+              </div>
+
               <div class="founder-content">
                 <h3 class="founder-name">{{ founder.name }}</h3>
                 <p class="founder-role">{{ founder.role }}</p>
                 <p class="founder-description">{{ founder.description }}</p>
-                
+
                 <div class="founder-social">
-                  <a v-if="founder.linkedin" :href="founder.linkedin" target="_blank" class="social-link">
+                  <a
+                    v-if="founder.linkedin"
+                    :href="founder.linkedin"
+                    target="_blank"
+                    class="social-link"
+                  >
                     <i class="mdi mdi-linkedin"></i>
                   </a>
                   <a v-if="founder.email" :href="`mailto:${founder.email}`" class="social-link">
                     <i class="mdi mdi-email"></i>
                   </a>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
           </v-col>
         </v-row>
       </v-container>
@@ -200,11 +310,6 @@
     <CtaSection
       :title="'Pronto para Conhecer Nossos Serviços?'"
       :subtitle="'Entre em contato conosco e descubra como podemos ajudar você a transformar seus dados geoespaciais em soluções inovadoras.'"
-      :stats="[
-        { number: '24h', label: 'Resposta Rápida' },
-        { number: '100%', label: 'Dedicação' },
-        { number: '1', label: 'Ano de Mercado' },
-      ]"
       :primary="{
         to: '/contato',
         label: 'Solicitar Orçamento',
@@ -219,58 +324,66 @@
 import { onMounted, onUnmounted } from 'vue'
 import CtaSection from '../components/CtaSection.vue'
 import SectionTitle from '../components/SectionTitle.vue'
-
+import AlineImage from '../assets/equipe/analista_GIS_AlineMoreira.jpg'
+import AndressaImage from '../assets/equipe/analista_GIS_Andressa.jpg'
 const founders = [
   {
-    name: 'Aline',
-    role: 'Fundadora e Diretora Técnica',
-    description: 'Geógrafa formada pela FURG com especialização em geoprocessamento e sensoriamento remoto. Mais de 8 anos de experiência em projetos ambientais e de planejamento urbano.',
-    image: '/src/assets/avatars/avatar-1.svg',
-    skills: ['Geoprocessamento', 'SIG', 'Sensoriamento Remoto', 'QGIS', 'Python'],
-    linkedin: 'https://linkedin.com/in/ana-silva-geo',
-    email: 'aline@geoquantum.com'
+    name: 'Aline Landim Moreira',
+    role: 'Geógrafa e Analista GIS',
+    description:
+      'Geógrafa (FURG) e Analista GIS, com experiência em geoprocessamento, sensoriamento remoto e ensino de geotecnologias. Profissional dinâmica, proativa e orientada a soluções estratégicas baseadas em dados espaciais, com foco em inovação, automação de processos e sustentabilidade.',
+    image: AlineImage,
+    skills: ['Geoprocessamento', 'SIG', 'Sensoriamento Remoto', 'QGIS', 'Ensino'],
+    linkedin: 'https://linkedin.com/in/aline-landim',
+    email: 'comercial@consultgeoquantum.com',
   },
   {
-    name: 'Andressa',
-    role: 'Co-fundadora e Diretora de Inovação',
-    description: 'Engenheira Ambiental com mestrado em Geografia. Especialista em análise espacial e modelagem geoespacial. Líder em projetos de sustentabilidade e gestão territorial.',
-    image: '/src/assets/avatars/avatar-2.svg',
-    skills: ['Análise Espacial', 'Modelagem Geoespacial', 'Gestão Ambiental', 'ArcGIS', 'R'],
-    linkedin: 'https://linkedin.com/in/maria-santos-geo',
-    email: 'andressa@geoquantum.com'
-  }
+    name: 'Andressa C. Moreira de Almeida',
+    role: 'Geógrafa e Mestranda',
+    description:
+      'Geógrafa (UFG) e mestranda em Desenvolvimento Territorial (ULB), com experiência em docência, análise territorial e geotecnologias. Profissional dedicada, proativa e orientada a soluções estratégicas fundamentadas em dados espaciais, com foco em inovação, planejamento socioambiental e sustentabilidade.',
+    image: AndressaImage,
+    skills: ['Análise Territorial', 'Geotecnologias', 'Docência', 'Planejamento Socioambiental'],
+    linkedin: 'https://linkedin.com/in/andressa-moreira',
+    email: 'comercial@consultgeoquantum.com',
+  },
 ]
 
 const values = [
   {
     title: 'Inovação',
-    description: 'Buscamos constantemente novas tecnologias e metodologias para oferecer soluções mais eficientes e precisas.',
+    description:
+      'Buscamos constantemente novas formas de aplicar as geotecnologias em soluções práticas e eficientes.',
     icon: 'mdi mdi-lightbulb-on',
   },
   {
-    title: 'Qualidade',
-    description: 'Comprometemo-nos com a excelência em cada projeto, garantindo resultados que superam as expectativas.',
-    icon: 'mdi mdi-star',
-  },
-  {
-    title: 'Transparência',
-    description: 'Mantemos comunicação clara e honesta com nossos clientes, desde o planejamento até a entrega.',
-    icon: 'mdi mdi-eye',
-  },
-  {
-    title: 'Sustentabilidade',
-    description: 'Desenvolvemos soluções que contribuem para um futuro mais sustentável e responsável ambientalmente.',
+    title: 'Responsabilidade Socioambiental',
+    description:
+      'Cada solução que desenvolvemos deve gerar impacto positivo na sociedade e no meio ambiente.',
     icon: 'mdi mdi-leaf',
   },
   {
+    title: 'Excelência Técnica',
+    description:
+      'Qualidade e precisão em tudo que fazemos, garantindo resultados confiáveis e de alto nível.',
+    icon: 'mdi mdi-star',
+  },
+  {
     title: 'Colaboração',
-    description: 'Trabalhamos em parceria com nossos clientes, entendendo suas necessidades e objetivos únicos.',
+    description: 'Acreditamos no poder do trabalho coletivo e na construção conjunta de soluções.',
     icon: 'mdi mdi-handshake',
   },
   {
-    title: 'Aprendizado Contínuo',
-    description: 'Investimos constantemente em capacitação e atualização para oferecer as melhores práticas do mercado.',
-    icon: 'mdi mdi-school',
+    title: 'Acessibilidade',
+    description:
+      'Tornar o conhecimento geoespacial disponível e acessível a todos os profissionais e organizações.',
+    icon: 'mdi mdi-account-multiple',
+  },
+  {
+    title: 'Sustentabilidade',
+    description:
+      'Promovemos decisões sustentáveis através da análise inteligente de dados espaciais.',
+    icon: 'mdi mdi-earth',
   },
 ]
 
@@ -383,11 +496,7 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(26, 54, 93, 0.8) 100%
-  );
+  background: linear-gradient(to bottom, transparent 0%, rgba(26, 54, 93, 0.8) 100%);
   display: flex;
   align-items: flex-end;
   padding: 1rem;
@@ -732,7 +841,7 @@ onUnmounted(() => {
   }
 
   .social-link i {
-  font-size: 0.75rem;
+    font-size: 0.75rem;
   }
 
   .value-card {

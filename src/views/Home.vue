@@ -21,7 +21,11 @@
             lg="3"
             class="mb-6 mb-sm-4 mb-md-6 d-flex"
           >
-            <ServiceCard :service="service" class="flex-grow-1 mobile-card touch-optimized" />
+            <ServiceCard
+              :service="service"
+              :show-button="true"
+              class="flex-grow-1 mobile-card touch-optimized"
+            />
           </v-col>
         </v-row>
       </v-container>
@@ -30,27 +34,7 @@
       <v-container class="mobile-padding">
         <v-row class="justify-center">
           <v-col cols="12" lg="10" class="mx-auto">
-            <div class="metrics-grid">
-              <div class="metric-item animate-fade-in-up" :style="{ animationDelay: '0.1s' }">
-                <div class="metric-number stat-number">1</div>
-                <div class="metric-label">Ano de Mercado</div>
-              </div>
-
-              <div class="metric-item animate-fade-in-up" :style="{ animationDelay: '0.3s' }">
-                <div class="metric-number stat-number">15+</div>
-                <div class="metric-label">Tecnologias Dominadas</div>
-              </div>
-
-              <div class="metric-item animate-fade-in-up" :style="{ animationDelay: '0.5s' }">
-                <div class="metric-number stat-number">100%</div>
-                <div class="metric-label">Dedicação</div>
-              </div>
-
-              <div class="metric-item animate-fade-in-up" :style="{ animationDelay: '0.7s' }">
-                <div class="metric-number stat-number">24h</div>
-                <div class="metric-label">Tempo de Resposta</div>
-              </div>
-            </div>
+            <div class="metrics-grid"></div>
           </v-col>
         </v-row>
       </v-container>
@@ -64,13 +48,19 @@
             <SectionTitle
               title="Sobre a GeoQuantum"
               subtitle="Somos uma empresa especializada em geoprocessamento e análise geoespacial, com mais de 10 anos de experiência no mercado. Nossa missão é fornecer soluções inovadoras que contribuam para o desenvolvimento sustentável."
-              />
-
+            />
 
             <div class="text-center animate-fade-in-up" :style="{ animationDelay: '0.6s' }">
               <button href="/sobre" class="btn-section">
                 <span>Conheça Nossa História</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
@@ -158,19 +148,16 @@
     </section>
 
     <!-- Seção de Métricas -->
-   
-
 
     <!-- Seção CTA -->
     <CtaSection
-      :title="'Pronto para Iniciar Seu Projeto?'"
+      :title="'Pronto para Inovar?'"
       :subtitle="'Entre em contato conosco e descubra como nossa equipe especializada pode ajudar você a transformar seus dados geoespaciais em soluções inovadoras.'"
       :primary="{
         to: '/contato',
         label: 'Solicitar Orçamento',
         icon: 'mdi-phone',
       }"
-      :secondary="{ to: '/blog', label: 'Ver Blog', icon: 'mdi-post' }"
     />
   </div>
 </template>
@@ -182,6 +169,10 @@ import ServiceCard from '../components/ServiceCard.vue'
 import SectionTitle from '../components/SectionTitle.vue'
 import { useRouter } from 'vue-router'
 import { onMounted, onUnmounted, ref } from 'vue'
+import imagemLocalizacao from '@/assets/projetos/mapa)Localizacao.jpeg'
+import imagemModels from '@/assets/projetos/models_model.png'
+import imagemCursosQGIS from '@/assets/projetos/Cursos_QGIS.jpg'
+import imagemUsoCobertura from '@/assets/projetos/Uso_e_Cobertura_2023.jpg'
 
 const router = useRouter()
 
@@ -292,13 +283,8 @@ const services = [
       'Mapas de produção agrícola com levantamento de dados e produção de mapas temáticos.',
     fullDescription:
       'Mapas de produção agrícola com levantamento de dados e produção de mapas temáticos dentro dos padrões cartográficos que representam um objeto ou fenômeno na superfície terrestre.',
-    features: [
-      'Levantamento de dados agrícolas',
-      'Produção de mapas temáticos',
-      'Padrões cartográficos',
-      'Sensoriamento remoto',
-    ],
-    image: './images/geoprocessing/agriculture-precision.jpg',
+    features: [],
+    image: imagemLocalizacao,
     icon: 'mdi-map-marker-radius',
   },
   {
@@ -307,13 +293,8 @@ const services = [
     description: 'Criar fluxos de trabalho automatizados utilizando o Modelador Gráfico do QGIS.',
     fullDescription:
       'Criar fluxos de trabalho automatizados utilizando o Modelador Gráfico do QGIS para encadear várias operações geoespaciais em um único processo.',
-    features: [
-      'Modelador Gráfico do QGIS',
-      'Fluxos de trabalho automatizados',
-      'Operações geoespaciais',
-      'Processos repetitivos',
-    ],
-    image: './images/geoprocessing/qgis-interface.jpg',
+    features: [],
+    image: imagemModels,
     icon: 'mdi-cog-sync',
   },
   {
@@ -323,13 +304,8 @@ const services = [
       'Programa de capacitação para profissionais e estudantes em Sistemas de Informação Geográfica.',
     fullDescription:
       'Um programa que oferece a capacitação necessária ao profissional qualificado e ao estudante que deseja estar em dia com as inovações dos SIG.',
-    features: [
-      'Capacitação profissional',
-      'Atualização em SIG',
-      'Inovações tecnológicas',
-      'Formação contínua',
-    ],
-    image: './images/geoprocessing/team-collaboration.jpg',
+    features: [],
+    image: imagemCursosQGIS,
     icon: 'mdi-school',
   },
   {
@@ -338,17 +314,11 @@ const services = [
     description: 'Desenvolvimento de projetos ambientais com análise geoespacial.',
     fullDescription:
       'Desenvolvimento de projetos ambientais utilizando geoprocessamento para análise e monitoramento ambiental.',
-    features: [
-      'Projetos ambientais',
-      'Análise geoespacial',
-      'Gestão ambiental',
-      'Sustentabilidade',
-    ],
-    image: './images/geoprocessing/environmental-monitoring.jpg',
+    features: [],
+    image: imagemUsoCobertura,
     icon: 'mdi-leaf-circle',
   },
 ]
-
 
 // Controle de animações baseadas no scroll - Otimizado com throttling
 let scrollTimeout: number | null = null
@@ -758,8 +728,6 @@ onUnmounted(() => {
   }
 }
 
-
-
 .category-chip {
   display: inline-block;
   padding: 4px 12px;
@@ -991,7 +959,6 @@ onUnmounted(() => {
   will-change: transform;
 }
 
-
 /* Animações para chips - Otimizado */
 .tech-chip,
 .category-chip {
@@ -1058,7 +1025,6 @@ onUnmounted(() => {
     font-size: 14px;
   }
 
-
   .services-section,
   .about-section {
     padding: 2rem 0;
@@ -1082,7 +1048,6 @@ onUnmounted(() => {
     font-size: 0.875rem !important;
     line-height: 1.3;
   }
-
 
   .project-image-container {
     height: 80px;
@@ -1326,7 +1291,6 @@ onUnmounted(() => {
     padding: 18px;
   }
 
-
   .about-logo {
     max-width: 350px;
   }
@@ -1366,7 +1330,6 @@ onUnmounted(() => {
   .stat-item {
     padding: 20px;
   }
-
 
   .about-logo {
     max-width: 400px;
@@ -1593,7 +1556,6 @@ onUnmounted(() => {
 
 /* Melhorias para Touch */
 @media (hover: none) and (pointer: coarse) {
-
   .v-btn:hover {
     transform: none;
   }
@@ -1605,7 +1567,6 @@ onUnmounted(() => {
 
 /* Melhorias para Mobile */
 @media (max-width: 599.98px) {
-
   .stat-item {
     margin-bottom: 1rem;
   }
@@ -1637,7 +1598,6 @@ onUnmounted(() => {
     background: #ffffff;
   }
 
-
   /* Melhorias para cards */
   .service-card {
     border-radius: 12px;
@@ -1655,7 +1615,6 @@ onUnmounted(() => {
     transform: scale(0.95);
     transition: transform 0.1s ease;
   }
-
 
   /* Melhorias para navegação */
   .v-container {
@@ -1709,7 +1668,6 @@ onUnmounted(() => {
     outline-offset: 2px;
   }
 
-
   /* Melhorias para scroll */
   .home-page {
     scroll-behavior: smooth;
@@ -1740,7 +1698,6 @@ onUnmounted(() => {
   .about-section .about-logo {
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
   }
-
 
   /* Melhorias para responsividade */
   .max-width-600 {
@@ -2013,10 +1970,33 @@ onUnmounted(() => {
 }
 
 .metrics-grid {
+  text-align: center;
+  font-size: 2rem;
+  color: #e2e8f0 !important;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  align-items: center;
+  gap: 3rem;
+  align-items: stretch;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.metric-item {
+  position: relative;
+  padding: 3rem 2rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.metric-item:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(212, 165, 116, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .metric-item::before {
@@ -2026,20 +2006,50 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(212, 165, 116, 0.1) 0%, transparent 100%);
+  background: linear-gradient(135deg, rgba(212, 165, 116, 0.15) 0%, rgba(31, 167, 161, 0.1) 100%);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+.metric-item:hover::before {
+  opacity: 1;
+}
+
+.metric-item::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(212, 165, 116, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  z-index: 0;
+}
+
+.metric-item:hover::after {
+  opacity: 1;
 }
 
 .metric-number {
-  font-size: 3rem;
+  font-size: 3.5rem;
   font-weight: 800;
-  color: #ffffff;
-  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #ffffff 0%, #d4a574 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.75rem;
   line-height: 1;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   position: relative;
   z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.metric-item:hover .metric-number {
+  transform: scale(1.1);
 }
 
 .metric-label {

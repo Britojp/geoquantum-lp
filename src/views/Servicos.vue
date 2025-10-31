@@ -22,10 +22,9 @@
                 class="hero-subtitle text-h6 text-grey-lighten-2 mb-6 animate-fade-in-up"
                 :style="{ animationDelay: '0.4s' }"
               >
-                Transformamos dados geoespaciais em insights valiosos para diversos setores e aplicações.
+                Transformamos dados geoespaciais em insights valiosos para diversos setores e
+                aplicações.
               </p>
-              
-
             </v-col>
           </v-row>
         </v-container>
@@ -48,8 +47,8 @@
         <!-- Filtros de Serviços -->
         <div class="services-filters mb-8 animate-fade-in-up" :style="{ animationDelay: '0.2s' }">
           <div class="filter-tabs">
-            <button 
-              v-for="category in serviceCategories" 
+            <button
+              v-for="category in serviceCategories"
               :key="category.id"
               @click="activeCategory = category.id"
               :class="['filter-tab', { active: activeCategory === category.id }]"
@@ -70,7 +69,7 @@
             lg="4"
             class="mb-6 mb-sm-4 mb-md-6 d-flex"
           >
-            <div 
+            <div
               class="service-wrapper animate-fade-in-up"
               :style="{ animationDelay: `${index * 0.1}s` }"
             >
@@ -81,13 +80,7 @@
 
         <!-- CTA para mais informações -->
         <div class="text-center mt-8 mb-0 animate-fade-in-up" :style="{ animationDelay: '0.8s' }">
-          <v-btn
-            color="primary"
-            size="large"
-            variant="elevated"
-            to="/contato"
-            class="btn-section"
-          >
+          <v-btn color="primary" size="large" variant="elevated" to="/contato" class="btn-section">
             <v-icon start>mdi-phone</v-icon>
             Solicitar Orçamento Personalizado
           </v-btn>
@@ -99,18 +92,12 @@
     <CtaSection
       :title="'Pronto para Transformar seus Dados?'"
       :subtitle="'Entre em contato e descubra como podemos ajudar seu projeto'"
-      :stats="[
-        { number: '24h', label: 'Resposta Rápida' },
-        { number: '100%', label: 'Dedicação' },
-        { number: '1', label: 'Ano de Mercado' },
-      ]"
       :primary="{
         to: '/contato',
         label: 'Solicitar Orçamento',
         icon: 'mdi-phone',
       }"
       :secondary="{ to: '/servicos', label: 'Nossos Serviços', icon: 'mdi-cog' }"
-
     />
   </div>
 </template>
@@ -123,6 +110,14 @@ import SectorsSection from '@/components/SectorsSection.vue'
 import WorkflowSection from '@/components/WorkflowSection.vue'
 import SectionTitle from '@/components/SectionTitle.vue'
 import { useScrollAnimations } from '@/composables/useAnimations'
+import imagemLocalizacao from '@/assets/projetos/mapa)Localizacao.jpeg'
+import imagemUsoCobertura from '@/assets/projetos/Uso_e_Cobertura_2023.jpg'
+import imagemModels from '@/assets/projetos/models_model.png'
+import imagemCursosQGIS from '@/assets/Cursos_QGIS (1).jpg'
+import imagemProducaoAgricola from '@/assets/projetos/Producao_Agricola.jpg'
+import imagemConsultoria1 from '@/assets/projetos/consultoria (1).jpg'
+import imagemConsultoria2 from '@/assets/projetos/consultoria (2).jpg'
+import imagemConsultoria3 from '@/assets/projetos/consultoria (3).jpg'
 
 const services = ref([
   {
@@ -139,40 +134,45 @@ const services = ref([
       'Sensoriamento remoto',
       'Estimativa de área e produtividade',
     ],
-    image: './images/geoprocessing/agriculture-precision.jpg',
+    image: imagemLocalizacao,
     icon: 'mdi-map-marker-outline',
   },
   {
     id: 2,
     title: 'Mapas de Uso e Cobertura do Solo',
     description:
-      'Mapeamento com interpretação de imagens de satélite para detectar alterações na dinâmica de ocupação.',
+      'Mapeamento realizado com base na interpretação de imagens de satélite, detectando e quantificando alterações na dinâmica das formas de ocupação e organização do espaço geográfico.',
     fullDescription:
       'Mapeamento realizado com base na interpretação de imagens de satélite, detectando e quantificando, periodicamente, as alterações na dinâmica das formas de ocupação e de organização do espaço geográfico.',
     features: [
-      'Interpretação de imagens de satélite',
-      'Detecção de alterações',
-      'Quantificação de mudanças',
-      'Análise de ocupação do solo',
-      'Organização do espaço geográfico',
+      'Planejamento territorial e urbano',
+      'Gestão ambiental e identificação de desmatamento',
+      'Monitoramento de mudanças ao longo do tempo',
+      'Suporte à legislação (APP e Reserva Legal)',
+      'Apoio à agricultura e pecuária',
+      'Base para estudos técnicos e impacto ambiental',
+      'Educação e conscientização territorial',
     ],
-    image: './images/geoprocessing/satellite-imagery.jpg',
+    image: '/src/assets/projetos/Uso_e_Cobertura_2023.jpg',
     icon: 'mdi-earth',
   },
   {
     id: 3,
-    title: 'Automatização QGIS',
-    description: 'Criar fluxos de trabalho automatizados utilizando o Modelador Gráfico do QGIS.',
+    title: 'Automatização de Processos no QGIS',
+    description:
+      'Criar fluxos de trabalho automatizados utilizando o Modelador Gráfico do QGIS, encadeando operações geoespaciais em um único processo.',
     fullDescription:
       'Criar fluxos de trabalho automatizados utilizando o Modelador Gráfico do QGIS. Como encadear várias operações geoespaciais em um único processo, permitindo a repetição de tarefas complexas de forma eficiente e com menos erros.',
     features: [
-      'Modelador Gráfico do QGIS',
-      'Fluxos de trabalho automatizados',
-      'Operações geoespaciais',
-      'Processos repetitivos',
-      'Redução de erros',
+      'Ganho de tempo e produtividade',
+      'Padronização dos resultados',
+      'Redução de erros humanos',
+      'Execução em lote de arquivos',
+      'Integração com outros sistemas',
+      'Reprodutibilidade de scripts',
+      'Escalabilidade para grandes volumes',
     ],
-    image: './images/geoprocessing/qgis-interface.jpg',
+    image: imagemModels,
     icon: 'mdi-cog-outline',
   },
   {
@@ -194,20 +194,24 @@ const services = ref([
   },
   {
     id: 5,
-    title: 'Capacitação QGIS',
+    title: 'Capacitação em QGIS',
     description:
-      'Programa de capacitação para profissionais e estudantes em Sistemas de Informação Geográfica.',
+      'Programa que oferece capacitação necessária ao profissional qualificado e ao estudante que deseja estar em dia com as inovações dos Sistemas de Informação Geográficas (SIG).',
     fullDescription:
-      'Um programa que oferece a capacitação necessária ao profissional qualificado e ao estudante que deseja estar em dia com as inovações dos Sistemas de Informação Geográficas (SIG).',
+      'Um programa que oferece a capacitação necessária ao profissional qualificado e ao estudante que deseja estar em dia com as inovações dos Sistemas de Informação Geográficas (SIG). Trabalhamos nisso há 6 anos e oferecemos níveis Iniciante, Intermediário e Avançado.',
     features: [
-      'Capacitação profissional',
-      'Atualização em SIG',
-      'Inovações tecnológicas',
-      'Formação contínua',
-      'Desenvolvimento de habilidades',
+      'Domínio das ferramentas (básico ao avançado)',
+      'Aceleração do aprendizado',
+      'Aplicabilidade profissional em diversas áreas',
+      'Atualização tecnológica constante',
+      'Melhoria na qualidade dos projetos',
+      'Autonomia na resolução de problemas',
+      'Certificação e credibilidade',
     ],
-    image: './images/geoprocessing/team-collaboration.jpg',
+    image: imagemCursosQGIS,
     icon: 'mdi-school-outline',
+    additionalInfo:
+      'Trabalhamos nisso há 6 anos. Temos níveis Iniciante, Intermediário e Avançado.',
   },
   {
     id: 6,
@@ -222,40 +226,66 @@ const services = ref([
       'Operações geoespaciais',
       'Automação de processos',
     ],
-    image: './images/geoprocessing/topographic-map.jpg',
+    image: imagemProducaoAgricola,
     icon: 'mdi-vector-polygon',
   },
   {
     id: 7,
     title: 'Geomarketing',
-    description: 'Análises espaciais para estratégias de marketing e localização de negócios.',
+    description:
+      'Ferramenta que combina dados de mercado com localização geográfica para apoiar decisões estratégicas em vendas, marketing e expansão de negócios.',
     fullDescription:
-      'A automação de processos em Python é uma técnica que usa a programação para automatizar tarefas repetitivas. O Python é uma linguagem de programação flexível que pode ser usada para manipular arquivos.',
+      'Um mapa de geomarketing é uma ferramenta que combina dados de mercado com localização geográfica para apoiar decisões estratégicas em vendas, marketing e expansão de negócios.',
     features: [
-      'Análises espaciais',
-      'Estratégias de marketing',
-      'Localização de negócios',
-      'Análise de mercado',
-      'Tomada de decisão',
+      'Identificação de oportunidades de mercado',
+      'Segmentação geográfica personalizada',
+      'Otimização de pontos de venda e logística',
+      'Análise de desempenho por região',
+      'Planejamento de campanhas direcionadas',
+      'Integração de dados socioeconômicos',
+      'Tomada de decisão baseada em evidências',
     ],
-    image: './images/geoprocessing/urban-planning.jpg',
+    image: imagemConsultoria1,
     icon: 'mdi-chart-line',
   },
   {
     id: 8,
     title: 'Projetos Ambientais',
-    description: 'Desenvolvimento de projetos ambientais com análise geoespacial.',
+    description:
+      'Conjunto de ações planejadas para prevenir, mitigar ou reverter impactos ambientais, promovendo o uso sustentável dos recursos naturais.',
     fullDescription:
-      'Um programa que oferece a capacitação necessária ao profissional qualificado e ao estudante que deseja estar em dia com as inovações dos Sistemas de Informação Geográficas (SIG).',
+      'Um projeto ambiental é um conjunto de ações planejadas para prevenir, mitigar ou reverter impactos ambientais, além de promover o uso sustentável dos recursos naturais.',
     features: [
-      'Projetos ambientais',
-      'Análise geoespacial',
-      'Gestão ambiental',
-      'Sustentabilidade',
-      'Compliance ambiental',
+      'Preservação e recuperação ambiental',
+      'Cumprimento da legislação',
+      'Prevenção de impactos ambientais',
+      'Promoção da sustentabilidade',
+      'Educação e conscientização',
+      'Apoio a licenciamento e certificações',
+      'Atração de investimentos sustentáveis',
+      'Benefícios sociais e econômicos',
     ],
-    image: './images/geoprocessing/environmental-monitoring.jpg',
+    image: imagemConsultoria2,
     icon: 'mdi-leaf-outline',
+  },
+  {
+    id: 9,
+    title: 'Consultoria em Geoprocessamento Aplicado',
+    description:
+      'Transformamos dados geográficos em decisões estratégicas utilizando ferramentas avançadas de geotecnologia para identificar padrões e otimizar operações.',
+    fullDescription:
+      'Ajudamos empresas e instituições de diferentes setores a transformar dados geográficos em decisões estratégicas. Nossos analistas de geoprocessamento utilizam ferramentas avançadas de geotecnologia para identificar padrões, otimizar operações e revelar oportunidades de crescimento. Atuamos em áreas como planejamento urbano, meio ambiente, agronegócio, logística, energia e mercado imobiliário.',
+    features: [
+      'Decisões baseadas em dados geográficos reais',
+      'Acesso a especialistas sem custo fixo',
+      'Soluções personalizadas para cada setor',
+      'Otimização de processos e redução de custos',
+      'Visualização clara e comunicação estratégica',
+      'Pacotes flexíveis de horas mensais',
+      'Transparência total e custo previsível',
+    ],
+    image: imagemConsultoria3,
+    icon: 'mdi-account-tie',
   },
 ])
 
@@ -357,16 +387,16 @@ const filteredServices = computed(() => {
   if (activeCategory.value === 'all') {
     return services.value
   }
-  
+
   const categoryMap: Record<string, number[]> = {
-    'mapping': [1, 2, 6], // Mapas de Localização, Uso do Solo, Talhões
-    'automation': [3, 4], // QGIS, Python
-    'training': [5], // Capacitação
-    'analysis': [7, 8], // Geomarketing, Projetos Ambientais
+    mapping: [1, 2, 6], // Mapas de Localização, Uso do Solo, Talhões
+    automation: [3, 4], // QGIS, Python
+    training: [5], // Capacitação
+    analysis: [7, 8, 9], // Geomarketing, Projetos Ambientais, Consultoria
   }
-  
+
   const serviceIds = categoryMap[activeCategory.value] || []
-  return services.value.filter(service => serviceIds.includes(service.id))
+  return services.value.filter((service) => serviceIds.includes(service.id))
 })
 
 const { initScrollAnimations, addStaggeredAnimation } = useScrollAnimations()
@@ -404,7 +434,7 @@ onUnmounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+  background-image: url('/src/assets/home/imagem-satelite.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -506,15 +536,21 @@ onUnmounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 20% 80%, rgba(31, 167, 161, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 80% 20%, rgba(26, 54, 93, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 40% 40%, rgba(45, 90, 135, 0.1) 0%, transparent 50%);
+  background:
+    radial-gradient(circle at 20% 80%, rgba(31, 167, 161, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(26, 54, 93, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(45, 90, 135, 0.1) 0%, transparent 50%);
   animation: float 6s ease-in-out infinite;
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(1deg); }
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(1deg);
+  }
 }
 
 /* Filtros de Serviços */
@@ -592,7 +628,6 @@ onUnmounted(() => {
 .service-wrapper:hover {
   transform: translateY(-5px);
 }
-
 
 @media (max-width: 768px) {
   .hero-section {

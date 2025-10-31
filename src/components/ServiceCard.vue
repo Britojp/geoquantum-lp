@@ -1,9 +1,9 @@
 <template>
   <article class="service-card">
     <div class="card-image">
-      <img 
-        v-if="props.service.image && !imageError" 
-        :src="props.service.image" 
+      <img
+        v-if="props.service.image && !imageError"
+        :src="props.service.image"
         :alt="props.service.title"
         loading="lazy"
         @error="handleImageError"
@@ -28,16 +28,30 @@
           :key="index"
           class="feature-tag"
         >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
           <span>{{ feature }}</span>
         </div>
       </div>
 
-      <router-link to="/servicos" class="card-link">
-        <span>Saiba Mais</span>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <router-link v-if="showButton" to="/servicos" class="card-link">
+        <span>Ver Todos os Serviços</span>
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
           <line x1="5" y1="12" x2="19" y2="12"></line>
           <polyline points="12 5 19 12 12 19"></polyline>
         </svg>
@@ -58,9 +72,14 @@ interface Service {
   features?: string[]
 }
 
-const props = defineProps<{
+interface Props {
   service: Service
-}>()
+  showButton?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  showButton: false,
+})
 
 const imageLoaded = ref(false)
 const imageError = ref(false)
@@ -148,11 +167,7 @@ const handleImageLoad = () => {
 .image-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(26, 54, 93, 0.3) 100%
-  );
+  background: linear-gradient(to bottom, transparent 0%, rgba(26, 54, 93, 0.3) 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -250,6 +265,7 @@ const handleImageLoad = () => {
   align-self: flex-start;
   position: relative;
   overflow: hidden;
+  margin-top: 1rem;
 }
 
 .card-link::after {
